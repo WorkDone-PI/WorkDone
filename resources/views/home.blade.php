@@ -61,88 +61,29 @@
 
 
         <div class="middle">
-            <div class="feeds">
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
+        <div class="feeds">
+    @foreach($projetos as $projeto)
+    <div class="feed">
+        <div class="head">
+            <div class="user">
+                <div class="profile-photo">
+                    <img src="{{ asset('img/profile.png') }}" alt="">
                 </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
+                <div class="ingo">
+                    <h3>{{ $projeto->Titulo }}</h3>
+                    <small>Adicionado em {{ $projeto->created_at->diffForHumans() }}</small>
                 </div>
             </div>
+            <div class="descricao">
+                <p>{{ $projeto->Descricao }}</p>
+            </div>
+        </div>
+        <div class="valor">
+            <p>Preço: R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
+        </div>
+    </div>
+    @endforeach
+</div>
         </div>
 
 
