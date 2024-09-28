@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,7 +71,8 @@
                             </div>
                             <div class="ingo">
                                 <h3>{{ $projeto->Titulo }}</h3>
-                                <small>Adicionado em {{ $projeto->created_at->diffForHumans() }}</small>
+                                <small>Adicionado em {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }} |</small>
+                                <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small> <!-- Exibe o nome do usuário -->
                             </div>
                         </div>
                         <div class="descricao">
@@ -85,14 +86,13 @@
                         <strong>Categorias:</strong>
                         <ul>
                             @foreach($projeto->categories as $category)
-                                <li>{{ $category->Titulo }}</li> <!-- Exibe o título da categoria -->
+                                <li>{{ $category->Titulo }}</li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
                 @endforeach
             </div>
-
         </div>
 
 

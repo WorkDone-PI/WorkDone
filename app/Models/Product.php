@@ -16,6 +16,10 @@ class Product extends Model
         'Id_User',
         'Id_Categoria'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'Id_User'); // Um produto pertence a um usuário
+    }
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
