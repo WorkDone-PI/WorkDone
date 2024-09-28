@@ -13,7 +13,7 @@ class ProjetosController extends Controller
     public function home()
     {
          // Obtenha os projetos do banco de dados
-         $projetos = Product::all(); // ou use outro método de recuperação que você precisa
+         $projetos = Product::with('categories')->get(); // ou use outro método de recuperação que você precisa
 
          // Retorne a view com a variável $projetos
          return view('home', compact('projetos')); // Altere 'home' para o nome da sua view

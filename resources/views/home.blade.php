@@ -61,29 +61,38 @@
 
 
         <div class="middle">
-        <div class="feeds">
-    @foreach($projetos as $projeto)
-    <div class="feed">
-        <div class="head">
-            <div class="user">
-                <div class="profile-photo">
-                    <img src="{{ asset('img/profile.png') }}" alt="">
+            <div class="feeds">
+                @foreach($projetos as $projeto)
+                <div class="feed">
+                    <div class="head">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="{{ asset('img/profile.png') }}" alt="">
+                            </div>
+                            <div class="ingo">
+                                <h3>{{ $projeto->Titulo }}</h3>
+                                <small>Adicionado em {{ $projeto->created_at->diffForHumans() }}</small>
+                            </div>
+                        </div>
+                        <div class="descricao">
+                            <p>{{ $projeto->Descricao }}</p>
+                        </div>
+                    </div>
+                    <div class="valor">
+                        <p>Preço: R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
+                    </div>
+                    <div class="categorias">
+                        <strong>Categorias:</strong>
+                        <ul>
+                            @foreach($projeto->categories as $category)
+                                <li>{{ $category->Titulo }}</li> <!-- Exibe o título da categoria -->
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <div class="ingo">
-                    <h3>{{ $projeto->Titulo }}</h3>
-                    <small>Adicionado em {{ $projeto->created_at->diffForHumans() }}</small>
-                </div>
+                @endforeach
             </div>
-            <div class="descricao">
-                <p>{{ $projeto->Descricao }}</p>
-            </div>
-        </div>
-        <div class="valor">
-            <p>Preço: R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
-        </div>
-    </div>
-    @endforeach
-</div>
+
         </div>
 
 
