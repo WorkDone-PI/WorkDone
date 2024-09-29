@@ -17,8 +17,18 @@
 - Foram feitas diversas alterações, consistindo em mudanças tanto no front-end quanto no back-end. 
 Alterações front-end:
  - Alinhar botões da, tela de login e cadastro, ao centro do formulário;
- - Fluxo de nacegação, pelo header, nas telas de login e cadastro;
+ - Fluxo de navegação, pelo header, nas telas de login e cadastro;
  - Ocultado a barra de rolagem, tela de home;.
 Alterações back-end:
  - Na tela de perfil, estão sendo listados o sprojetos que foram desenvolvidos pelo usuário em questão;
  - Correção do nome na tela home, agora exibe o nome do usuário que esta autenticado.
+
+ ## [1.5.0] - 2024-09-29
+  - As alterações que foram feitas, foram focadas na lógica de users, onde cadastramos novos campos na tabela, 
+  podendo agora adicionar uma imagem de perfil, um @ e descrição. 
+  Alterações feitas:
+    - Exibir @ na tela de home
+    - Exibir imagens dos usuários na tela de home, e caso não houver, exibe a imagem padrão
+    - Edição de perfil funcional (falta a parte visual)
+    - Adicionar imagem e salvar no banco de dados 
+    - Arrumado todo o fluxo de navegação pelo header

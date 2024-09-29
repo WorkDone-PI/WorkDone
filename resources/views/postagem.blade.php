@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/WK.png" type="Favicon_Image_Location">  
+    <link rel="shortcut icon" href="img/WK.png" type="Favicon_Image_Location">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/postagem.css') }}">
     <title>WorkDone</title>
 </head>
+
 <body>
     <header>
         <nav class="navigation">
@@ -48,23 +50,24 @@
                 </div>
                 <br>
                 <textarea placeholder="Descrição do projeto..." name="" id="" cols="30" rows="10"></textarea><br><br>
-                <div class="card-line"></div>   
-                <a id="publicar" href="{{ route('home') }}">Publicar</a>  
+                <div class="card-line"></div>
+                <a id="publicar" href="{{ route('home') }}">Publicar</a>
                 <div class="publi">
-                    <label for=""> Na plataforma WorkDone, os programadores tem a chance de trabalhar 
+                    <label for=""> Na plataforma WorkDone, os programadores tem a chance de trabalhar
                         em projetos variados e desafiadores. </label>
                     <img src="img/homeimg.jpg" alt="">
                 </div>
             </div>
-            
+
             <a id="proximo" href="{{ route('registerProject2') }}">Próximo</a>
-            <div class="card-line"></div>       
+            <div class="card-line"></div>
             <div class="publi">
-                <label for=""> Na plataforma WorkDone, os programadores têm a chance de trabalhar 
+                <label for=""> Na plataforma WorkDone, os programadores têm a chance de trabalhar
                     em projetos variados e desafiadores. </label>
                 <img src="img/homeimg.jpg" alt="">
             </div>
         </form>
     </div>
 </body>
+
 </html>

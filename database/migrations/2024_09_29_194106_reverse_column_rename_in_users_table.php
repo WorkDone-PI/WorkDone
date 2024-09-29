@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //$table->foreign('Id_User')->references('id')->on('users')->onDelete('cascade');
+        Schema::table('users', function (Blueprint $table) {
+            /*$table->renameColumn('Descricao', 'description');
+            $table->renameColumn('Arroba', 'arro');*/
         });
     }
 
@@ -25,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //$table->dropForeign(['Id_User']);
+        Schema::table('users', function (Blueprint $table) {
+            /*$table->renameColumn('description', 'Descricao');
+            $table->renameColumn('arro', 'Arroba');*/
         });
     }
 };

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="shortcut icon" href="{{ asset('img/logoWK.png' ) }}" type="Favicon_Image_Location">  
+    <link rel="shortcut icon" href="{{ asset('img/logoWK.png') }}" type="Favicon_Image_Location">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>WorkDone | Bem-vindo</title>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo"><a href="{{ route('index') }}">WorkDone</a></div>
@@ -47,9 +49,10 @@
                 <div class="left">
                     <div class="topic">Finka Tech</div>
                     <p>
-                        Somos apaixonados por transformar ideias em realidade digital. 
-                        Especializados em criar websites e aplicativos personalizados e sistemas exclusivos que impulsionam seu sucesso online. 
-                        Estamos animados para compartilhar nossa jornada tecnológica com vocês. 
+                        Somos apaixonados por transformar ideias em realidade digital.
+                        Especializados em criar websites e aplicativos personalizados e sistemas exclusivos que
+                        impulsionam seu sucesso online.
+                        Estamos animados para compartilhar nossa jornada tecnológica com vocês.
                         Fiquem ligados para conhecer nossos projetos incríveis!
                     </p>
                 </div>
@@ -63,7 +66,8 @@
             <div class="skill-details">
                 <div class="left">
                     <div class="topic">Publique seus projetos:</div>
-                    <p>Através da nossa plataforma você pode publicar seus projetos e encontrar compradores. Acha que seu projeto não tem importância? Aqui você pode encontrar o real valor das suas ideias!</p>
+                    <p>Através da nossa plataforma você pode publicar seus projetos e encontrar compradores. Acha que
+                        seu projeto não tem importância? Aqui você pode encontrar o real valor das suas ideias!</p>
                     <div class="experience">
                         <div class="num">4</div>
                         <div class="exp">Passos <br> para lucar com os seus projetos</div>
@@ -103,42 +107,48 @@
                         <i class="fas fa-desktop"></i>
                     </div>
                     <div class="topic">Desenvolvimento Web</div>
-                    <p>Potencialize seu negócio com soluções web desenvolvidas para performance, escalabilidade e segurança</p>
+                    <p>Potencialize seu negócio com soluções web desenvolvidas para performance, escalabilidade e
+                        segurança</p>
                 </div>
                 <div class="box">
                     <div class="icon">
                         <i class="fas fa-desktop"></i>
                     </div>
                     <div class="topic">Servidores/Automação</div>
-                    <p>Simplifique processos com automação inteligente e servidores robustos para uma operação eficiente.</p>
+                    <p>Simplifique processos com automação inteligente e servidores robustos para uma operação
+                        eficiente.</p>
                 </div>
                 <div class="box">
                     <div class="icon">
                         <i class="fas fa-desktop"></i>
                     </div>
                     <div class="topic">Design e Multimedia</div>
-                    <p>Explore projetos de design e multimídia que dão vida à sua marca, com criatividade e impacto visual.</p>
+                    <p>Explore projetos de design e multimídia que dão vida à sua marca, com criatividade e impacto
+                        visual.</p>
                 </div>
                 <div class="box">
                     <div class="icon">
                         <i class="fas fa-desktop"></i>
                     </div>
                     <div class="topic">Marketing</div>
-                    <p>Descubra estratégias vencedoras de marketing que impulsionam resultados e maximizam seu retorno sobre investimento.</p>
+                    <p>Descubra estratégias vencedoras de marketing que impulsionam resultados e maximizam seu retorno
+                        sobre investimento.</p>
                 </div>
                 <div class="box">
                     <div class="icon">
                         <i class="fas fa-desktop"></i>
                     </div>
                     <div class="topic">UI/UX</div>
-                    <p>Encontre designs UI/UX que cativam os usuários, criando experiências intuitivas e envolventes.</p>
+                    <p>Encontre designs UI/UX que cativam os usuários, criando experiências intuitivas e envolventes.
+                    </p>
                 </div>
                 <div class="box">
                     <div class="icon">
                         <i class="fas fa-desktop"></i>
                     </div>
                     <div class="topic">Apps</div>
-                    <p>Invista em aplicativos inovadores que transformam ideias em soluções digitais eficientes e funcionais</p>
+                    <p>Invista em aplicativos inovadores que transformam ideias em soluções digitais eficientes e
+                        funcionais</p>
                 </div>
             </div>
         </div>
@@ -163,4 +173,5 @@
         </div>
     </footer>
 </body>
+
 </html>
