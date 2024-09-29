@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ProjetosController extends Controller
@@ -12,11 +11,11 @@ class ProjetosController extends Controller
 
     public function home()
     {
-         // Obtenha os projetos do banco de dados
-         $projetos = Product::with('user', 'categories')->get(); // ou use outro método de recuperação que você precisa
+        $projetos = Product::with('user', 'categories')->get();
 
-         // Retorne a view com a variável $projetos
-         return view('home', compact('projetos')); // Altere 'home' para o nome da sua view
+        $user = Auth::user();
+     
+        return view('home', compact('projetos', 'user')); 
     }
 
     public function show()

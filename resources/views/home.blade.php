@@ -34,7 +34,7 @@
                     <img src="{{ asset('img/profile.png') }}" alt="">
                 </div>
                 <div class="handle">
-                    <h4>Lucas Monaco</h4>
+                    <h4>{{ $user->name }}</h4>
                     <p class="text-muted">
                         @lucasMonaco
                     </p>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -44,8 +45,10 @@ class UserController extends Controller
     {
 
         $user = Auth::user();
+        $userId = Auth::id();
+        $projetos = Product::where('Id_User', $userId)->get();
 
-        return view('profile', compact('user'));
+        return view('profile', compact('user', 'projetos'));
 
     }
 

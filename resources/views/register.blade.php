@@ -13,7 +13,7 @@
         <ul class="menu">
         </ul>
         <div class="media-icons">
-            <li><a href="{{ route('register') }}">Cadastrar</a></li>
+            <li><a href="{{ route('login') }}">Entrar</a></li>
         </div>
     </nav>
     <form action="{{ route('user.register') }}" method="POST" class="login" style="margin-top: 120px;">
