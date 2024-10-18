@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjetosController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -45,3 +47,14 @@ Route::delete('/delete/{Id}', [ProjetosController::class, 'delete'])->name('dele
     //Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth', 'verified'])->name('profile');
     //Route::get('/home', [UserController::class, 'home'])->name('home');
 //});   
+
+//Rotas da Categoria 
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('category.index'); // Listar todas as categorias
+    Route::get('/create', [CategoryController::class, 'create'])->name('category.create'); // Formulário de cadastro de categoria
+    Route::post('/', [CategoryController::class, 'store'])->name('category.store'); // Salvar nova categoria
+    Route::get('/{id}', [CategoryController::class, 'show'])->name('category.show'); // Detalhes de uma categoria específica
+    Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit'); // Formulário de edição de categoria
+    Route::put('/{id}', [CategoryController::class, 'update'])->name('category.update'); // Atualizar categoria
+    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('category.destroy'); // Excluir categoria
+});
