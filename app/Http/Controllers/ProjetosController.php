@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Produtos;
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class ProjetosController extends Controller
@@ -12,7 +11,11 @@ class ProjetosController extends Controller
 
     public function home()
     {
-        return view('home');
+        $projetos = Product::with('user', 'categories')->get();
+
+        $user = Auth::user();
+     
+        return view('home', compact('projetos', 'user')); 
     }
 
     public function show()
@@ -50,7 +53,7 @@ class ProjetosController extends Controller
         $data = $request->all();
         $fk_Id_User = $data['fk_Id_User'];*/
 
-        $teste = Produtos::create([
+        $teste = Product::create([
             'Titulo' => $request->Titulo,
             'Descricao' => $request->Descricao,
             'Valor' => $request->Valor,
@@ -67,7 +70,7 @@ class ProjetosController extends Controller
     public function prjs()
     {
         $userId = Auth::id();
-        $prjs = Produtos::where('fk_Id_User', $userId)->get();
+        $prjs = Product::where('fk_Id_User', $userId)->get();
 
         return view('prjs', compact('prjs'));
     }
@@ -75,7 +78,7 @@ class ProjetosController extends Controller
     public function projetos()
     {
 
-        $projetos = Produtos::all();
+        $projetos = Product::all();
         //dd($projetos);
         return view('home', compact('projetos'));
     }
@@ -87,7 +90,7 @@ class ProjetosController extends Controller
         //$prj = Produtos::where('fk_Id_User', $Id)->first();
 
         $user = auth()->user();
-        $prj = Produtos::where('id', $Id)
+        $prj = Product::where('id', $Id)
             ->where('fk_Id_User', $user->id)
             ->firstOrFail();
 
@@ -122,7 +125,7 @@ class ProjetosController extends Controller
          ]);*/
     public function updateP(Request $request, $Id)
     {
-        $prj = Produtos::findOrFail($Id);
+        $prj = Product::findOrFail($Id);
         $user = auth()->user();
 
         // Preencha os campos com os valores do formulário
@@ -152,7 +155,7 @@ class ProjetosController extends Controller
 
     public function delete($Id)
     {
-        $prj = Produtos::findOrFail($Id);
+        $prj = Product::findOrFail($Id);
         $prj->delete();
 
         return redirect()->route('prjs')->with('Projeto deletado com sucesso!');

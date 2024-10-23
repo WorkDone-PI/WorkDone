@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
 </head>
+
 <body>
     <nav>
         <div class="navbar">
@@ -17,10 +19,14 @@
                 <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
             </div>
             <div class="create">
-            <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
+                <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
                 <div class="profile-photo">
                     <a href="{{ route('profile') }}">
-                        <img src="{{ asset('img/profile.png') }}" alt="Foto de Perfil">
+                        @if($user->profile_image)
+                            <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image">
+                        @else
+                            <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
+                        @endif
                     </a>
                 </div>
             </div>
@@ -31,12 +37,16 @@
         <div class="left">
             <a href=" {{ route('profile') }} " class="profile">
                 <div class="profile-photo">
-                    <img src="{{ asset('img/profile.png') }}" alt="">
+                    @if($user->profile_image)
+                        <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image">
+                    @else
+                        <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
+                    @endif
                 </div>
                 <div class="handle">
-                    <h4>Lucas Monaco</h4>
+                    <h4>{{ $user->name }}</h4>
                     <p class="text-muted">
-                        @lucasMonaco
+                        {{ $user->arroba }}
                     </p>
                     <p class="text-view">
                         Vizualizar Perfil
@@ -47,101 +57,61 @@
 
             <div class="sidebar">
                 <a class="menu-item active">
-                    <span><i class='bx bx-home-alt-2'></i></span><h3>Home</h3>
+                    <span><i class='bx bx-home-alt-2'></i></span>
+                    <h3>Home</h3>
                 </a>
                 <a class="menu-item active">
-                    <span><i class='bx bx-filter-alt'></i></span><h3>Filtrar</h3>
+                    <span><i class='bx bx-filter-alt'></i></span>
+                    <h3>Filtrar</h3>
                 </a>
                 <a class="menu-item active">
-                    <span><i class='bx bx-message-square-dots'></i></span><h3>Mensagens</h3>
+                    <span><i class='bx bx-message-square-dots'></i></span>
+                    <h3>Mensagens</h3>
                 </a>
-                
+
             </div>
         </div>
 
 
         <div class="middle">
             <div class="feeds">
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
+                @foreach($projetos as $projeto)
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-photo">
+                                    @if($projeto->user && $projeto->user->profile_image)
+                                        <img src="{{ asset('storage/' . $projeto->user->profile_image) }}" alt="Profile Image">
+                                    @else
+                                        <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
+                                    @endif
+                                </div>
+                                <div class="ingo">
+                                    <h3>{{ $projeto->Titulo }}</h3>
+                                    <small>Adicionado em
+                                        {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
+                                        |</small>
+                                    <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
+                                    <!-- Exibe o nome do usuário -->
+                                </div>
                             </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
+                            <div class="descricao">
+                                <p>{{ $projeto->Descricao }}</p>
                             </div>
                         </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
+                        <div class="valor">
+                            <p>Preço: R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
                         </div>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
+                        <div class="categorias">
+                            <strong>Categorias:</strong>
+                            <ul>
+                                @foreach($projeto->categories as $category)
+                                    <li>{{ $category->Titulo }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="{{ asset('img/profile.png') }}" alt="">
-                            </div>
-                            <div class="ingo">
-                                <h3>Lucas Monaco</h3>
-                                <small>Há 15 minutos</small>
-                            </div>
-                        </div>
-                        <div class="descricao">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe provident quisquam tempore incidunt, nemo nesciunt placeat, distinctio alias maxime sapiente numquam officiis quia ea illo eveniet corrupti voluptates architecto modi quas aspernatur, facilis nulla porro cupiditate. Eius expedita deleniti illum.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 
@@ -172,6 +142,7 @@
             </div>
         </div>-->
     </div>
-    
+
 </body>
+
 </html>

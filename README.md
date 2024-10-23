@@ -1,64 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# *Instruções para Rodar o Projeto*
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este guia fornece um passo a passo para clonar e configurar o projeto Laravel "WorkDone" utilizando Git Flow.
 
-## About Laravel
+## *1. Clonar o Projeto do GitHub*
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Abrir o Prompt de Comando**: 
+   - Abra o terminal no Visual Studio Code ou no CMD.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. **Executar o Comando**:
+   ```bash
+   git clone https://github.com/WorkDone-PI/WorkDone.git
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### *1.1 Mudando de Branch*
+- Por padrão, o Git irá clonar a branch main. Para trabalhar na branch develop, execute:
+    ```bash
+    git checkout develop
+- Verificação: Verifique se os arquivos estão diferentes, especialmente se todas as migrations estão na pasta database/migrations. Na branch main, devem aparecer apenas 4 arquivos, enquanto na branch develop, você verá várias migrations.
 
-## Learning Laravel
+## *2. Criar o .env e a pasta vendor*
+1. Navegar para a Pasta do Projeto:
+   ```
+   cd WorkDone
+### *2.1. Criar a pasta vendor*
+- Execute o comando abaixo para instalar as dependências do projeto:
+  ```
+  composer install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### *2.2. Criar o Arquivo .env*
+- Para criar o arquivo .env, copie o arquivo de exemplo:
+  ```
+  cp .env.example .env
+- Para gerar a chave de aplicação, execute:
+  ```
+  php artisan key:generate
+## *3. Configuração do Banco de Dados*
+- Após criar o arquivo .env, configure as credenciais do banco de dados:
+1. Inicie o Apache e o MySQL no XAMPP.
+2. No arquivo .env, troque o nome do database pelo que você deseja criar, por exemplo, WorkDone.
+- Para criar o banco de dados e todas as tabelas, execute:
+  ```
+  php artisan migrate
+- Este comando irá criar todas as tabelas automaticamente conforme definido nas migrations.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## *4. Versionamento*
+Ao trabalhar em equipe, é importante evitar conflitos. Siga estas orientações para versionamento:
 
-## Laravel Sponsors
+### *4.1. Atualizar o Repositório*
+- Antes de iniciar qualquer nova tarefa, sempre execute o comando abaixo para garantir que você tenha a versão mais recente do repositório:
+  ```bash
+  git pull
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### *4.2. Criar uma Nova Feature*
+- Para iniciar uma nova feature, utilize o comando:
+  ```bash
+  git flow start feature <nome_da_feature>
+- Exemplo:
+  ```bash
+  git flow start feature fix_bug_login
+- Fazer Alterações: Realize as alterações necessárias para cumprir o objetivo da feature.
 
-### Premium Partners
+### *4.3. Adicionar e Comitar Alterações*
+1. Adicione todos os arquivos alterados:
+    ```bash
+    git add . 
+2. Realize um commit com uma descrição clara das alterações:
+    ```bash
+    git commit -m "Descrição das alterações"
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### *4.4. Versionamento de Releases*
+- Para seguir o controle de versões, crie uma versão utilizando o padrão (patch, minor e major):
+    ```bash
+    git tag -a v1.0.0 -m "Descrição da versão"
+- *Importante*: Modifique a versão conforme necessário antes de rodar o comando acima.
 
-## Contributing
+### *4.5. Finalizar a Feature*
+- Para encerrar a feature e voltar à branch develop, execute:
+    ```bash
+    git flow finish feature <nome_da_feature>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## *5. Subir as Alterações para o GitHub*
+- Após finalizar a feature, envie suas alterações para o GitHub com os comandos:
+  ```bash
+  git push origin develop
+  git push origin develop --tags
