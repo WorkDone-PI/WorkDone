@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjetosController;
+use App\Http\Controllers\FormController;
 
 
 Route::get('/', function () {
@@ -58,3 +59,8 @@ Route::prefix('categories')->group(function () {
     Route::put('/{id}', [CategoryController::class, 'update'])->name('category.update'); // Atualizar categoria
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('category.destroy'); // Excluir categoria
 });
+
+//Rotas de postagem do projeto
+Route::get('/form', [FormController::class, 'showForm'])->name('form.show');
+Route::post('/form', [FormController::class, 'submitForm'])->name('form.submit');
+
