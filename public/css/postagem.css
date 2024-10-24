@@ -22,7 +22,7 @@
 
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: white;
+    background-color: rgb(235, 235, 235);
 }
 
 nav{
@@ -142,15 +142,15 @@ img{
 
 .formPostagem{
     position: relative;
-    max-width: 900px;
+    max-width: 980px;
     width: 100%;
-    background-color: #dddddd;
+    background-color: white;
     top: var(--sticky-top-left);
     border-radius: 6px;
     padding: 30px;
     margin: 0 15px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    margin-left: 19rem;
+    margin-left: 16rem;
 }
 
 .formPostagem header{
@@ -174,7 +174,7 @@ img{
 .formPostagem form{
     position: relative;
     min-height: 350px;
-    background-color: #e0e0e0;
+    background-color: white;
     margin-top: 16px;
 }
 
