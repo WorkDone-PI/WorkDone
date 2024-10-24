@@ -1,54 +1,73 @@
-@extends('layouts.app') {{-- Extendendo o layout principal --}}
-
-<header>
-    <nav class="navigation">
-        <a href="#"><img class="logo" src="{{ asset('img/logoWK.png') }}" alt=""></a>
-        <ul class="nav-menu">
-            <li class="nav-item"><a href="{{ route('home') }}">Home</a></li>
-        </ul>
-    </nav>
-</header>
-
-@section('content')
-<div class="container">
-    <div class="card">
-        <h1>Editar Perfil de {{ $user->name }}</h1>
-
-        <main class="main-content">
-            <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data" class="login-form">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/editarperfil.css') }}">
+    <title>WorkDone | Editar Perfil</title>
+</head>
+    <body>
+    @extends('layouts.app') {{-- Extendendo o layout principal --}}
+        <nav>
+            <div class="navbar">
+                <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
+                <div class="search-bar">
+                    <i class='bx bx-search-alt'></i>
+                    <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
+                </div>
+                <div class="create">
+                    <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
+                    <div class="profile-photo">
+                        <a href="{{ route('profile') }}">
+                            @if($user->profile_image)
+                                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto de Perfil">
+                            @else
+                                <img src="https://via.placeholder.com/150" alt="Foto de Perfil Padrão">
+                            @endif
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        @section('content')
+        <div class="formPostagem">
+            <header>Editar Perfil</header>
+            @section('content')
+            <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
-                <div class="input-group">
-                    <label for="name">Nome:</label>
-                    <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}">
+                <div class="form">
+                    <div class="details">
+                        <span class="title">Atualize suas informações</span>
+                        <div class="fields">
+                            <div class="input-field">
+                                <label for="name">Nome</label>
+                                <input type="text" name="name" id="name" placeholder="Digite seu nome" value="{{ old('name', $user->name) }}" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" placeholder="Digite seu email" value="{{ old('email', $user->email) }}" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="username">Arroba (Nome de Usuário)</label>
+                                <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário" value="{{ old('arroba', $user->arroba) }}" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="description">Descrição</label>
+                                <textarea name="description" id="description" rows="4" placeholder="Adicione uma breve descrição" value="{{ old('descricao', $user->descricao) }}"></textarea>
+                            </div>
+                            <div class="input-field">
+                                <label for="profile_image">Imagem do Perfil</label>
+                                <input type="file" name="profile_image" id="profile_image" accept="image/*">
+                                <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : 'https://via.placeholder.com/100' }}" alt="Foto de Perfil Atual" class="profile-preview">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="input-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}">
-                </div>
-
-                <div class="input-group">
-                    <label for="arroba">@:</label>
-                    <input type="text" id="arroba" name="arroba" value="{{ old('arroba', $user->arroba) }}">
-                </div>
-
-                <div class="input-group">
-                    <label for="descricao">Descrição:</label>
-                    <input type="text" id="descricao" name="descricao" value="{{ old('descricao', $user->descricao) }}">
-                </div>
-
-                <div class="input-group">
-                    <label for="profile_image">Imagem de Perfil:</label>
-                    <input type="file" name="profile_image" accept="image/*">
-                </div>
-
-                <div class="button-group">
-                    <input type="submit" class="submit-btn" value="Atualizar">
-                </div>
+                <button type="submit" value="Atualizar">Atualizar Perfil</button>
             </form>
-        </main>
-    </div>
-</div>
+        </div>
+    </body>
+</html>
 @endsection
