@@ -57,9 +57,12 @@ class FormController extends Controller
             ]);
 
             // Limpa a sessão após finalizar
-            $request->session()->forget(['step', 'Titulo', 'V   alor']);
+            $request->session()->forget(['step', 'Titulo', 'Valor']);
 
             return redirect()->route('form.show')->with('success', 'Projeto cadastrado com sucesso!');
         }
+        
+        // Se a etapa não é 1 ou 2, redireciona de volta para o início
+        return redirect()->route('form.show')->withErrors('Etapa inválida.');
     }
 }

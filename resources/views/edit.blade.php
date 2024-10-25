@@ -50,12 +50,12 @@
                                 <input type="email" name="email" id="email" placeholder="Digite seu email" value="{{ old('email', $user->email) }}" required>
                             </div>
                             <div class="input-field">
-                                <label for="username">Arroba (Nome de Usuário)</label>
-                                <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário" value="{{ old('arroba', $user->arroba) }}" required>
+                                <label for="arroba">Arroba (Nome de Usuário)</label>
+                                <input type="text" name="arroba" id="arroba" placeholder="Digite seu @" value="{{ old('arroba', $user->Arroba) }}" required>
                             </div>
                             <div class="input-field">
-                                <label for="description">Descrição</label>
-                                <textarea name="description" id="description" rows="4" placeholder="Adicione uma breve descrição" value="{{ old('descricao', $user->descricao) }}"></textarea>
+                                <label for="descricao">Descrição</label>
+                                <textarea name="descricao" id="descricao" rows="4" placeholder="Adicione uma breve descrição">{{ old('descricao', $user->Descricao) }}</textarea>
                             </div>
                             <div class="input-field">
                                 <label for="profile_image">Imagem do Perfil</label>
