@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit">Finalizar<box-icon name='paper-plane' type='solid' color='#ffffff' ></box-icon></button>
+                <button type="submit">Salvar<box-icon name='paper-plane' type='solid' color='#ffffff' ></box-icon></button>
             
         </form>
     </div>

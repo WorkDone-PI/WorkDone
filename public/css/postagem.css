@@ -201,7 +201,7 @@ img{
 
 form .fields .input-field{
     display: flex;
-    width: calc(100% / 3 - 15px);
+    width: calc(100% / 3 - 30px);
     flex-direction: column;
     margin: 4px;
 }
@@ -226,6 +226,19 @@ form .fields .input-field{
     width: 20rem;
 }
 
+.input-field select {
+    padding: 0 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333 ;
+    outline: none;
+    border: 1px solid #aaa;
+    height: 38px;
+    margin: 8px 0;
+    width: 20rem;
+}
+
 .input-field textarea#desc{
     height: 8rem;
     padding: 10px 15px;
@@ -238,7 +251,8 @@ form .fields .input-field{
     margin: 8px 0;
     width: 47.5rem;
     font-family: 'Montserrat', sans-serif;
-    max-width: 47.5rem;
+    max-width: 27rem;
+    resize: none;
     max-height: 8rem;
 }
 
