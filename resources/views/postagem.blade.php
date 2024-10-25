@@ -28,16 +28,13 @@
             </div>
         </div>
     </nav>
-    @php
-        $step = $step ?? 1;
-    @endphp
+
     <div class="formPostagem">
         <header>Publique seu projeto</header>
 
-        <form action="{{ route('form.submit') }}" method="post">
+        <form action="{{ route('produto') }}" method="post">
             @csrf
 
-            @if ($step == 1)
                 <div class="form first">
                     <div class="details">
                         <span class="title">Adicione as informações do seu projeto</span>
@@ -50,24 +47,25 @@
                                 <label for="Valor">Precifique seu projeto</label>
                                 <input type="text" name="Valor" placeholder="Valor..." required>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit">Próxima Etapa <box-icon type='solid' name='right-arrow'></box-icon></button>
-                @elseif ($step == 2)
-                <div class="form second">
-                    <div class="details">
-                        <span class="title">Descreva seu projeto</span>
-                        <div class="fields">
                             <div class="input-field">
-                                <label for="Descricao">Faça uma descrição dele</label>
-                                <textarea name="Descricao" id="desc" placeholder="Descrição..." required></textarea>
+                            <label for="Categoria">Escolha uma categoria</label>
+                            <select name="Categoria" id="Categoria" required>
+                                <option value="">Selecione uma categoria</option>
+                                
+                            </select>
+                        </div>
+                            <span class="title">Descreva seu projeto</span>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label for="Descricao">Faça uma descrição dele</label>
+                                    <textarea name="Descricao" id="desc" placeholder="Descrição..." required></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <button type="submit">Finalizar<box-icon name='paper-plane' type='solid' color='#ffffff' ></box-icon></button>
-            @endif
+            
         </form>
     </div>
 

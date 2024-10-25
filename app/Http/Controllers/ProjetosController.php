@@ -24,47 +24,26 @@ class ProjetosController extends Controller
 
     }
 
-    public function shownext()
-    {
-        return view('postagem2');
 
-    }
 
     public function produto(Request $request)
     {
-        /*$userId = Auth::id();
-
-        $project = new Produtos;
-        $project->Titulo = $request->input('Titulo');
-        $project->Descricao = $request->input('Descricao');
-        $project->Valor = $request->input('Valor');
-        $project->fk_Id_User = $userId;
-        $project->save();
-*/
-
         $userId = Auth::id();
+
         $request->validate([
             'Titulo' => 'required|string|max:255',
             'Descricao' => 'required|string|max:255',
             'Valor' => 'required|numeric|between:0,99999.99',
         ]);
-
-        /*Produtos::create($request->all());       
-        $data = $request->all();
-        $fk_Id_User = $data['fk_Id_User'];*/
-
-        $teste = Product::create([
+    
+        $produto = Product::create([
             'Titulo' => $request->Titulo,
             'Descricao' => $request->Descricao,
             'Valor' => $request->Valor,
-            'fk_Id_User' => $userId,
+            'Id_User' => $userId,
         ]);
-
-
-        return view('project', compact('teste'));
-        //return redirect()->route('home')->with('Projeto criado!');
-
-        //return view ('home', compact('titulo', 'descricao', 'valor', 'fk_Id_User'));
+    
+        return redirect()->route('home')->with('success', 'Projeto criado com sucesso!');
     }
 
     public function prjs()
