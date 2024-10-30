@@ -27,24 +27,41 @@ class ProjetosController extends Controller
 
 
     public function produto(Request $request)
-    {
-        $userId = Auth::id();
+{
+    $userId = Auth::id();
 
-        $request->validate([
-            'Titulo' => 'required|string|max:255',
-            'Descricao' => 'required|string|max:255',
-            'Valor' => 'required|numeric|between:0,99999.99',
-        ]);
-    
-        $produto = Product::create([
-            'Titulo' => $request->Titulo,
-            'Descricao' => $request->Descricao,
-            'Valor' => $request->Valor,
-            'Id_User' => $userId,
-        ]);
-    
-        return redirect()->route('home')->with('success', 'Projeto criado com sucesso!');
+    $request->validate([
+        'Titulo' => 'required|string|max:255',
+        'Descricao' => 'required|string|max:255',
+        'Valor' => 'required|numeric|between:0,99999.99',
+        'project_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Criação do produto
+    $produto = new Product([
+        'Titulo' => $request->Titulo,
+        'Descricao' => $request->Descricao,
+        'Valor' => $request->Valor,
+        'Id_User' => $userId,
+    ]);
+
+    // Verifica se há uma imagem
+    if ($request->hasFile('project_image')) {
+        // Se já existir uma imagem, delete-a
+        if ($produto->project_image) {
+            Storage::disk('public')->delete($produto->project_image);
+        }
+
+        // Salva a nova imagem
+        $imagePath = $request->file('project_image')->store('project_image', 'public');
+        $produto->project_image = $imagePath;
     }
+
+    // Salva o produto no banco de dados
+    $produto->save();
+
+    return redirect()->route('home')->with('success', 'Projeto criado com sucesso!');
+}
 
     public function prjs()
     {

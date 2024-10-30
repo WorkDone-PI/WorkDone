@@ -13,6 +13,7 @@ class Product extends Model
         'Titulo',
         'Descricao',
         'Valor',
+        'project_image',
         'Id_User',
         'Id_Categoria'
     ];

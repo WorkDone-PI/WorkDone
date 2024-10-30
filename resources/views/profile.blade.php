@@ -77,8 +77,8 @@
                     @foreach($projetos as $projeto)
                         <div class="project-card">
 
-                            @if($projeto->image)
-                                <img src="{{ asset('storage/' . $projeto->image) }}" alt="Imagem do Projeto">
+                            @if($projeto->project_image)
+                                <img src="{{ asset('storage/' . $projeto->project_image) }}" alt="Imagem do Projeto">
                             @else
                                 <img src="https://via.placeholder.com/480x320" alt="Imagem Padrão do Projeto">
                             @endif
