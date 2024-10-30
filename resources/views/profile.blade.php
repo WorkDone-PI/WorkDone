@@ -21,7 +21,7 @@
                             @if($user->profile_image)
                                 <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto de Perfil">
                             @else
-                                <img src="https://via.placeholder.com/150" alt="Foto de Perfil Padrão">
+                            <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                             @endif
                         </a>
                     </div>
@@ -36,7 +36,7 @@
                         @if($user->profile_image)
                             <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto do Usuário">
                         @else
-                            <img src="https://via.placeholder.com/150" alt="Foto de Perfil Padrão">
+                            <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                         @endif
                     </div>
                     <div class="profile-info">
