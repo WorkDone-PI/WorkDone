@@ -22,7 +22,7 @@
                             @if($user->profile_image)
                                 <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto de Perfil">
                             @else
-                                <img src="https://via.placeholder.com/150" alt="Foto de Perfil Padrão">
+                                <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                             @endif
                         </a>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="input-field">
                                 <label for="profile_image">Imagem do Perfil</label>
                                 <input type="file" name="profile_image" id="profile_image" accept="image/*">
-                                <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : 'https://via.placeholder.com/100' }}" alt="Foto de Perfil Atual" class="profile-preview">
+                                <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('img/avatar.png') }}" alt="Foto de Perfil Atual" class="profile-preview">
                             </div>
                         </div>
                     </div>
