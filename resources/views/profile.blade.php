@@ -68,7 +68,12 @@
 
                 <div class="profile-actions">
                     <a href="{{ route('edit') }}" class="btn btn-primary">Editar Perfil</a>
+                    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
                 </div>
+
             </div>
 
             <div class="projects-section">

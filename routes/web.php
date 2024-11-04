@@ -16,7 +16,9 @@ Route::get('/', function () {
 //Rotas de Login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//Rota de Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Routa da home
 Route::get('/home', [ProjetosController::class, 'home'])->name('home')->middleware('auth');

@@ -66,6 +66,7 @@
                     </div>
                 </div>
                 <button type="submit" value="Atualizar">Atualizar Perfil</button>
+                <a href=" {{ route('profile') }} " class="btn btn-primary">Voltar</a>
             </form>
         </div>
     </body>
