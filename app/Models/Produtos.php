@@ -16,6 +16,6 @@ class Produtos extends Model
         'Titulo',
         'Descricao',
         'Valor',
-        'fk_Id_User',
+        'Id_User',
     ];
 }

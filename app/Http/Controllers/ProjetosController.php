@@ -66,10 +66,11 @@ class ProjetosController extends Controller
     public function prjs()
     {
         $userId = Auth::id();
-        $prjs = Product::where('fk_Id_User', $userId)->get();
-
-        return view('prjs', compact('prjs'));
+        $user = Auth::user(); // Obter o usuário autenticado
+        $prjs = Product::where('Id_User', $userId)->get();
+        return view('profile', compact('prjs', 'user'));
     }
+
 
     public function projetos()
     {
@@ -87,11 +88,11 @@ class ProjetosController extends Controller
 
         $user = auth()->user();
         $prj = Product::where('id', $Id)
-            ->where('fk_Id_User', $user->id)
+            ->where('Id_User', $user->id)
             ->firstOrFail();
 
         return view(
-            'editP',
+            'editpost',
             compact('prj', 'user')
         );
 
@@ -121,34 +122,28 @@ class ProjetosController extends Controller
          ]);*/
     public function updateP(Request $request, $Id)
     {
+        $request->validate([
+            'Titulo' => 'required|string|max:255',
+            'Descricao' => 'required|string|max:255',
+            'Valor' => 'required|numeric|between:0,99999.99',
+        ]);
+    
         $prj = Product::findOrFail($Id);
         $user = auth()->user();
-
-        // Preencha os campos com os valores do formulário
+    
         $prj->fill([
             'Titulo' => $request->input('Titulo'),
             'Descricao' => $request->input('Descricao'),
             'Valor' => $request->input('Valor'),
-            'fk_Id_User'=> $user->id,
+            'Id_User' => $user->id,
         ]);
-
-        //dd($prj->Titulo, $prj->Descricao, $prj->Valor);
-        
-        // Depois do save
-        /*if ($prj->save()) {
-            die('Projeto atualizado com sucesso!');
-        } else {
-            die('Erro ao atualizar o projeto.');
-        }*/
-
-        // Salve as alterações no banco de dados
+    
         if ($prj->save()) {
-            return redirect()->route('prjs')->with('success', 'Projeto atualizado com sucesso!');
+            return redirect()->route('profile')->with('success', 'Projeto atualizado com sucesso!'); // Mudei para redirecionar para a rota profile
         } else {
-            return redirect()->back()->withErrors(['Erro ao atualizar o projeto. Por favor, tente novamente.']);
+            return redirect()->back()->withErrors(['Erro ao atualizar o projeto.']);
         }
     }
-
     public function delete($Id)
     {
         $prj = Product::findOrFail($Id);

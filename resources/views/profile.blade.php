@@ -72,6 +72,7 @@
                         @csrf
                         <button type="submit" class="btn btn-danger">Logout</button>
                     </form>
+                    <a href="{{ route('chatbot.show') }}" class="btn btn-primary">Suporte</a>
                 </div>
 
             </div>
@@ -103,7 +104,8 @@
                                 @endforeach
                             </ul>
 
-                            <a href="" class="btn btn-primary">Ver Projeto</a>
+                            <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Editar Projeto</a>
+                            
                         </div>
                     @endforeach
                 </div>

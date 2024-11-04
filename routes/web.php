@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjetosController;
 use App\Http\Controllers\FormController;
-
+use App\Http\Controllers\ChatbotController;
 
 Route::get('/', function () {
     return view('index');
@@ -65,4 +65,11 @@ Route::prefix('categories')->group(function () {
 //Rotas de postagem do projeto
 Route::get('/form', [FormController::class, 'showForm'])->name('form.show');
 Route::post('/form', [FormController::class, 'submitForm'])->name('form.submit');
+
+Route::get('/projetos/{id}/edit', [ProjetosController::class, 'search'])->name('editProject');
+Route::put('/projetos/{id}', [ProjetosController::class, 'updateP'])->name('updateProject');
+
+//Rotas de ChatBot
+Route::post('/chatbot', [ChatbotController::class, 'respond']);
+Route::get('/chatbot', [ChatbotController::class, 'showChat'])->name('chatbot.show');
 
