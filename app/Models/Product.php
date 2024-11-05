@@ -15,7 +15,8 @@ class Product extends Model
         'Valor',
         'project_image',
         'Id_User',
-        'Id_Categoria'
+        'Id_Categoria',
+        'removed'
     ];
     public function user()
     {

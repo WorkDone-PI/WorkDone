@@ -35,6 +35,7 @@ class ProjetosController extends Controller
         'Descricao' => 'required|string|max:255',
         'Valor' => 'required|numeric|between:0,99999.99',
         'project_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'removed' => 'false'
     ]);
 
     // Criação do produto
@@ -43,6 +44,7 @@ class ProjetosController extends Controller
         'Descricao' => $request->Descricao,
         'Valor' => $request->Valor,
         'Id_User' => $userId,
+        'removed' => false
     ]);
 
     // Verifica se há uma imagem
