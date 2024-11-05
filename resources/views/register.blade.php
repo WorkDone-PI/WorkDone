@@ -24,7 +24,7 @@
         </div>
         <form action="{{ route('user.register') }}" method="POST" class="login">
             @csrf
-            <h2>Cadastro</h2>
+            <h2>Crie sua conta!</h2>
             <div class="box-user">
                 <input type="text" name="name" id="name" value="{{ old('name') }}" required>
                 <label>Nome</label>
@@ -56,7 +56,11 @@
                 @error('password_confirmation')
                 <div class="error">{{ $message }}</div> @enderror
             </div>
-            <input type="submit" class="btn" value="Cadastrar">
+            <button class="btn-31">
+                <span class="text-container">
+                    <span class="text">Cadastrar</span>
+                </span>
+            </button>
         </form>
     </div>
 </body>

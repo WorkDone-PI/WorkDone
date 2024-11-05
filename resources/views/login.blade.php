@@ -31,7 +31,7 @@
         <form action="{{ route('auth.login') }}" method="post" class="login">
             @csrf
             <h2>Login</h2>
-            
+
             <div class="box-user">
                 <input type="text" name="email" id="email" value="{{ old('email') }}" required>
                 <label for="email">Email</label>
@@ -52,8 +52,13 @@
                 <a href="" class="forget">Esqueceu a senha?</a>
             </div>
 
-            <input type="submit" class="btn" value="Entrar">
+            <button class="btn-31">
+                <span class="text-container">
+                    <span class="text">Entrar</span>
+                </span>
+            </button>
         </form>
     </div>
 </body>
+
 </html>
