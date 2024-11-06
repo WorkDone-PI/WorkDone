@@ -23,7 +23,8 @@ class UserController extends Controller
         // Validação dos dados do formulário de registro
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 're  quired|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'dataNasc' => 'nullable|date',
             'password' => 'required|string|min:8|confirmed'
         ]);
 
@@ -35,10 +36,12 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'dataNasc' => $request->dataNasc,
             'password' => Hash::make($request->password),
             'descricao' => null,
             'arroba' => null,
-            'profile_image' => null
+            'profile_image' => null,
+            'background_image' => null,
         ]);
 
         // Redireciona para a página inicial com uma mensagem de sucesso
@@ -73,7 +76,9 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'descricao' => 'nullable|string|max:255',
             'arroba' => 'nullable|string|max:255',
+            'dataNasc' => 'nullable|date',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'background_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('profile_image')) {
@@ -88,6 +93,18 @@ class UserController extends Controller
             // Atualiza o caminho da imagem no banco de dados
             $user->profile_image = $imagePath;
         }
+        if ($request->hasFile('background_image')) {
+            // Remove a imagem antiga se existir
+            if ($user->background_image) {
+                Storage::disk('public')->delete($user->background_image);
+            }
+
+            // Salva a nova imagem no diretório 'profile_images' dentro do storage/public
+            $imagePath = $request->file('background_image')->store('background_images', 'public');
+
+            // Atualiza o caminho da imagem no banco de dados
+            $user->background_image = $imagePath;
+        }
 
 
         $user->update([
@@ -95,7 +112,8 @@ class UserController extends Controller
             'email' => $request->email,
             'descricao' => $request->descricao,
             'arroba' => $request->arroba,
-            'profile_image' => $user->profile_image
+            'profile_image' => $user->profile_image,
+            'background_image' => $user->background_image
         ]);
 
         return redirect()->route('profile')->with('success', 'Perfil atualizado com sucesso.');

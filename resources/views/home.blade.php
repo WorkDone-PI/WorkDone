@@ -75,6 +75,14 @@
 
         <div class="middle">
             <div class="feeds">
+                @if ($projetos->isEmpty())
+                    <div class="feed empty_container">
+                        <div class="head empty_project">
+                            <img src="{{ asset('img/no_projects.png')}}" alt="Sem Projetos!" class="empty_image">
+                            <h2>Não há projetos disponíveis no momento, mas você pode criar o seu próprio!</h2>
+                        </div>
+                    </div>
+                @endif
                 @foreach($projetos as $projeto)
                     <div class="feed">
                         <div class="head">

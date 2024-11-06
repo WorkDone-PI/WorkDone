@@ -20,10 +20,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'dataNasc',
         'password',
         'descricao',
         'arroba',
-        'profile_image'
+        'profile_image',
+        'background_image',
     ];
 
     public function products()

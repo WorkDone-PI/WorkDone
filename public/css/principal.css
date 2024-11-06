@@ -328,3 +328,14 @@ main{
     position: relative;
     overflow: visible;
 }
+
+.empty_project{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.empty_image {
+    width: 50%;
+}

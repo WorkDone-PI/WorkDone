@@ -65,6 +65,8 @@
                                 </div>
                                 <!--</div>-->
                             </div>
+                            <label for="background_image">Imagem do Fundo</label>
+                            <input type="file" name="background_image" id="background_image" accept="image/*">
                         </div>
                         <div class="cima_baixo">
                             <div class="input-field">
