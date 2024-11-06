@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('img/WK.png') }}" type="Favicon_Image_Location">
     <link rel="stylesheet" href="{{ asset('css/editarperfil.css') }}">
     <title>WorkDone | Editar Perfil</title>
 </head>
@@ -13,10 +14,7 @@
     <nav>
         <div class="navbar">
             <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
-            <div class="search-bar">
-                <i class='bx bx-search-alt'></i>
-                <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
-            </div>
+            <a href="{{ route('profile') }}" class="btn btn-primary">Voltar</a>
             <div class="create">
                 <div class="profile-photo">
                     <a href="{{ route('profile') }}">
@@ -28,9 +26,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <div>
-            <a href="{{ route('profile') }}" class="bn3">Voltar</a>
         </div>
     </nav>
     @section('content')

@@ -171,6 +171,7 @@ img {
             left: 50%;
             transform: translateX(-50%);
             object-fit: cover;
+            background-color: white;
         }
 
         .profile-info {

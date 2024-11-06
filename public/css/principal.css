@@ -86,8 +86,8 @@ img{
 }
 
 .btn-primary{
-    background: black;
-    color: white;
+    background: none;
+    color: red;
 }
 
 .text-bold{

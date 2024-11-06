@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('img/WK.png') }}" type="Favicon_Image_Location">
     <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
     <title>WorkDone | {{ $user->name }}</title>
 </head>
@@ -10,10 +11,6 @@
         <nav>
             <div class="navbar">
                 <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
-                <div class="search-bar">
-                    <i class='bx bx-search-alt'></i>
-                    <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
-                </div>
                 <div class="create">
                     <a href="{{ route('edit') }}" class="btn btn-primary">Editar Perfil</a>
                     <div class="profile-photo">
@@ -34,11 +31,10 @@
             <div class="profile-header">
                 <div class="profile-background"></div>
                 @if($user->profile_image)
-                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto do Usuário">
+                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="">
                 @else
                     <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                 @endif
-                <img src="https://via.placeholder.com/100" alt="Foto de Perfil">
                 <div class="profile-info">
                     <h2>{{ $user->name }}</h2>
                     <h4>{{ $user->email }}</h4>

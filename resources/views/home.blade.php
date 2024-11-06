@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('img/WK.png') }}" type="Favicon_Image_Location">
     <title>WorkDone | Feed</title>
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
 </head>
@@ -19,7 +19,7 @@
                 <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
             </div>
             <div class="create">
-                <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
+                <h5>Olá, {{ $user->name }}! </h5>
                 <div class="profile-photo">
                     <a href="{{ route('profile') }}">
                         @if($user->profile_image)
@@ -56,17 +56,17 @@
 
 
             <div class="sidebar">
-                <a class="menu-item active">
-                    <span><i class='bx bx-home-alt-2'></i></span>
-                    <h3>Home</h3>
+                <a class="menu-item active" href=" {{ route('registerProject') }} ">
+                    <span><i class='bx bx-plus-circle'></i></i></span>
+                    <h3>Novo Projeto</h3>
                 </a>
                 <a class="menu-item active">
                     <span><i class='bx bx-filter-alt'></i></span>
                     <h3>Filtrar</h3>
                 </a>
                 <a class="menu-item active">
-                    <span><i class='bx bx-message-square-dots'></i></span>
-                    <h3>Mensagens</h3>
+                    <span><i class='bx bx-question-mark'></i></span>
+                    <h3>Suporte</h3>
                 </a>
 
             </div>

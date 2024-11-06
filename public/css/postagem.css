@@ -141,7 +141,9 @@ img{
 }
 
 .formPostagem{
-    position: relative;
+    position: absolute;
+    left: 50%; /* Coloca a esquerda no meio da tela */
+    transform: translate(-50%); /* Ajusta a posição para centralizar */
     max-width: 980px;
     width: 100%;
     background-color: white;
@@ -150,7 +152,6 @@ img{
     padding: 30px;
     margin: 0 15px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    margin-left: 16rem;
 }
 
 .formPostagem header{
