@@ -15,13 +15,13 @@
                     <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
                 </div>
                 <div class="create">
-                    <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
+                    <a href="{{ route('edit') }}" class="btn btn-primary">Editar Perfil</a>
                     <div class="profile-photo">
                         <a href="{{ route('profile') }}">
                             @if($user->profile_image)
                                 <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto de Perfil">
                             @else
-                                <img src="https://via.placeholder.com/150" alt="Foto de Perfil Padrão">
+                            <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                             @endif
                         </a>
                     </div>
@@ -29,56 +29,46 @@
             </div>
         </nav>
 
-        <div class="profile">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-photo">
-                        @if($user->profile_image)
-                            <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto do Usuário">
-                        @else
-                            <img src="https://via.placeholder.com/150" alt="Foto de Perfil Padrão">
-                        @endif
-                    </div>
-                    <div class="profile-info">
-
-                        <h1 class="username">{{ $user->name }}</h1>
-
-                        <!--<p class="arroba">@{{ $user->arroba }}</p>-->
-
-                        <p class="email">Email: {{ $user->email }}</p>
-
-                        <p class="bio">{{ $user->descricao }}</p>
-                    </div>
-                </div>
-
-                <div class="profile-details">
-                    <div class="stat">
-                        <h3>Projetos</h3>
-                        <p>{{ count($projetos) }}</p>
-                    </div>
-                    <div class="stat">
-                        <h3>Seguidores</h3>
-                        <p>250</p>
-                    </div>
-                    <div class="stat">
-                        <h3>Seguindo</h3>
-                        <p>180</p>
-                    </div>
-                </div>
-
-                <div class="profile-actions">
-                    <a href="{{ route('edit') }}" class="btn btn-primary">Editar Perfil</a>
+        <div class="profile-container">
+            <!-- Primeira sessão: Imagem de fundo e informações do perfil -->
+            <div class="profile-header">
+                <div class="profile-background"></div>
+                @if($user->profile_image)
+                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto do Usuário">
+                @else
+                    <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
+                @endif
+                <img src="https://via.placeholder.com/100" alt="Foto de Perfil">
+                <div class="profile-info">
+                    <h2>{{ $user->name }}</h2>
+                    <h4>{{ $user->email }}</h4>
+                    <p>{{ $user->descricao }}</p>
                 </div>
             </div>
 
+            <!-- Segunda sessão: Estatísticas -->
+            <div class="stats">
+                <div class="stat">
+                    <h3>{{ count($projetos) }}</h3>
+                    <p>Projetos</p>
+                </div>
+                <div class="stat">
+                    <h3>200</h3>
+                    <p>Seguidores</p>
+                </div>
+                <div class="stat">
+                    <h3>150</h3>
+                    <p>Seguindo</p>
+                </div>
+            </div>
             <div class="projects-section">
                 <h2 class="projects-title">Meus Projetos</h2>
                 <div class="projects-container">
                     @foreach($projetos as $projeto)
                         <div class="project-card">
 
-                            @if($projeto->image)
-                                <img src="{{ asset('storage/' . $projeto->image) }}" alt="Imagem do Projeto">
+                            @if($projeto->project_image)
+                                <img src="{{ asset('storage/' . $projeto->project_image) }}" alt="Imagem do Projeto">
                             @else
                                 <img src="https://via.placeholder.com/480x320" alt="Imagem Padrão do Projeto">
                             @endif
@@ -98,11 +88,21 @@
                                 @endforeach
                             </ul>
 
-                            <a href="" class="btn btn-primary">Ver Projeto</a>
+                            <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Editar Projeto</a>
+                            
                         </div>
                     @endforeach
                 </div>
             </div>
+
+                <!--<div class="profile-actions">
+                    <a href="{{ route('edit') }}" class="btn btn-primary">Editar Perfil</a>
+                    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                    <a href="{{ route('chatbot.show') }}" class="btn btn-primary">Suporte</a>
+                </div>-->
         </div>
     </body>
 </html>

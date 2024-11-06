@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjetosController;
 use App\Http\Controllers\FormController;
-
+use App\Http\Controllers\ChatbotController;
 
 Route::get('/', function () {
     return view('index');
@@ -16,7 +16,9 @@ Route::get('/', function () {
 //Rotas de Login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//Rota de Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Routa da home
 Route::get('/home', [ProjetosController::class, 'home'])->name('home')->middleware('auth');
@@ -63,4 +65,11 @@ Route::prefix('categories')->group(function () {
 //Rotas de postagem do projeto
 Route::get('/form', [FormController::class, 'showForm'])->name('form.show');
 Route::post('/form', [FormController::class, 'submitForm'])->name('form.submit');
+
+Route::get('/projetos/{id}/edit', [ProjetosController::class, 'search'])->name('editProject');
+Route::put('/projetos/{id}', [ProjetosController::class, 'updateP'])->name('updateProject');
+
+//Rotas de ChatBot
+Route::post('/chatbot', [ChatbotController::class, 'respond']);
+Route::get('/chatbot', [ChatbotController::class, 'showChat'])->name('chatbot.show');
 

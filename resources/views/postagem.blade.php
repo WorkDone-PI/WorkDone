@@ -32,7 +32,7 @@
     <div class="formPostagem">
         <header>Publique seu projeto</header>
 
-        <form action="{{ route('produto') }}" method="post">
+        <form action="{{ route('produto') }}" method="post" enctype="multipart/form-data">
             @csrf
 
                 <div class="form first">
@@ -58,9 +58,13 @@
 
                             <div class="input-field">
                                 <label for="Categoria">Escolha uma categoria</label>
-                                <select name="Categoria" id="Categoria" required>
+                                <select name="Categoria" id="Categoria">
                                     <option value="">Selecione uma categoria</option>
                                 </select>
+                            </div>
+                            <div class="input-field">
+                                <label for="project_image">Imagem do Perfil</label>
+                                <input type="file" name="project_image" id="project_image" accept="image/*">
                             </div>
                             
                         </div>

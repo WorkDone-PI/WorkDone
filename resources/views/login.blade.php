@@ -18,32 +18,47 @@
             <li><a href="{{ route('register') }}">Cadastrar</a></li>
         </div>
     </nav>
-    <form action="{{ route('auth.login') }}" method="post" class="login">
-        @csrf
-        <h2>Login</h2>
-        <div class="box-user">
-            <input type="text" name="email" id="email" value="{{ old('email') }}" required>
-            <label>Email</label>
-            @error('email')
-            <div class="error">{{ $message }}</div> @enderror
+
+    <div class="principal">
+        <div class="introduction">
+            <h2 class="intro-text">Bem-vindo de volta!</h2>
+            <p class="sub-text">Acesse seus projetos em qualquer lugar. Basta fazer login para continuar.</p>
+            <div class="illustration">
+                <img src="{{ asset('img/login_image.png') }}" alt="Login Illustration">
+            </div>
         </div>
-        <div class="box-user">
-            <input type="password" name="password" id="password" required>
-            <label>Senha</label>
-            @error('password')
-            <div class="error">{{ $message }}</div> @enderror
-        </div>
-        <div>
-            <a href="" class="forget">Esqueceu a senha?</a>
-        </div>
-        <input type="submit" class="btn" value="Entrar"> <!-- Mudei o valor para "Entrar" -->
-    </form>
-    <!--<a href="{{ route('home') }}" class="btn">
-            <span></span>
-            <span></span>
-            <span></span>
-            Entrar
-        </a>-->
+
+        <form action="{{ route('auth.login') }}" method="post" class="login">
+            @csrf
+            <h2>Login</h2>
+
+            <div class="box-user">
+                <input type="text" name="email" id="email" value="{{ old('email') }}" required>
+                <label for="email">Email</label>
+                @error('email')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="box-user">
+                <input type="password" name="password" id="password" required>
+                <label for="password">Senha</label>
+                @error('password')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <a href="" class="forget">Esqueceu a senha?</a>
+            </div>
+
+            <button class="btn-31">
+                <span class="text-container">
+                    <span class="text">Entrar</span>
+                </span>
+            </button>
+        </form>
+    </div>
 </body>
 
 </html>

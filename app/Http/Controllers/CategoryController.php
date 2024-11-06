@@ -20,8 +20,8 @@ class CategoryController extends Controller
     
     function store(Request $request) {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required'
+            'titulo' => 'required',
+            'descricao' => 'required'
         ]);
 
         Category::create($request->all());
@@ -30,8 +30,8 @@ class CategoryController extends Controller
     }
 
     function show($id) {
-        $category = Category::find($id);
-        return view('categories.show', compact('category'));
+        $categories = Category::find($id);
+        return view('categories.show', compact('categories'));
     }
     
     function edit(Request $request) {
