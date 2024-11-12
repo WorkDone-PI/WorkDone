@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProjetosController extends Controller
 {
@@ -165,10 +166,19 @@ class ProjetosController extends Controller
             'Titulo' => 'required|string|max:255',
             'Descricao' => 'required|string|max:255',
             'Valor' => 'required|numeric|between:0,99999.99',
-            'Id_Categoria' => 'required|exists:categories,id'
+            'Id_Categoria' => 'required|exists:categories,id',
+            'project_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+        
         $prj = Product::findOrFail($Id);
+        if ($request->hasFile('project_image')) {
+            if ($prj->project_image) {
+                Storage::disk('public')->delete($prj->project_image);
+            }
+            // Salva a nova imagem
+            $imagePath = $request->file('project_image')->store('project_image', 'public');
+            $prj->project_image = $imagePath;
+        }
         $user = auth()->user();
 
         $prj->fill([

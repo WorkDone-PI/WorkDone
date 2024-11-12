@@ -32,7 +32,7 @@
     <div class="formPostagem">
         <header>Publique seu projeto</header>
 
-        <form action="{{ route('updateProject', $prj->id) }}" method="post">
+        <form action="{{ route('updateProject', $prj->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -59,7 +59,12 @@
                                     required>{{ old('Descricao', $prj->Descricao) }}</textarea>
                             </div>
                         </div>
-
+                        <div class="input-field">
+                            <label for="Imagem">Escolha uma Imagem</label>
+                            <!--<img src="{{ $prj->project_image ? asset('storage/' . $prj->project_image) : asset('img/no-image-icon.png') }}"
+                                alt="Foto do Projeto Atual" class="profile-preview">-->
+                            <input type="file" name="project_image" id="project_image" accept="image/*">
+                        </div>
                         <div class="input-field">
                             <label for="Categoria">Escolha uma categoria</label>
                             <select name="Id_Categoria" id="Categoria" required>

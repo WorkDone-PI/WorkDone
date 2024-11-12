@@ -68,7 +68,7 @@
                     <span><i class='bx bx-filter-alt'></i></span>
                     <h3>Filtrar</h3>
                 </a>
-                <a class="menu-item active">
+                <a href=" {{ route('chatbot.show') }} " class="menu-item active">
                     <span><i class='bx bx-question-mark'></i></span>
                     <h3>Suporte</h3>
                 </a>
@@ -122,6 +122,7 @@
                                 @endforeach
                             </ul>
                         </div>
+                        <a href="{{ route('home') }}">Ver Projeto</a>
                     </div>
                 @endforeach
                 <div class="pagination-container">

@@ -346,6 +346,7 @@ main{
 
 .empty_image {
     width: 50%;
+    mix-blend-mode: darken;
 }
 
 /* Nova classe para a paginação */

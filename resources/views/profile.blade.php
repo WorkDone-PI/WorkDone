@@ -90,6 +90,7 @@
                         </ul>
 
                         <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Editar Projeto</a>
+                        <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Remover Projeto</a>
 
                     </div>
                 @endforeach
