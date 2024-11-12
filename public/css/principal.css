@@ -208,6 +208,7 @@ main{
     max-height: calc(100vh - 6rem);
     overflow-y: scroll;
     overflow-x: hidden; 
+    padding-bottom: 1.5rem;
 }
 
 .middle::-webkit-scrollbar{
@@ -332,6 +333,10 @@ main{
     overflow: visible;
 }
 
+.empty_container {
+    margin: 0rem 4.7rem;
+}
+
 .empty_project{
     display: flex;
     flex-direction: column;
@@ -342,3 +347,79 @@ main{
 .empty_image {
     width: 50%;
 }
+
+/* Nova classe para a paginação */
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1rem;
+}
+
+.pagination-btn, .pagination-page {
+    padding: 0.6rem 1.2rem;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.pagination-btn:hover, .pagination-page:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination-btn.disabled, .pagination-page.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pagination-page.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination-page.active:hover {
+    background-color: #3b3a3a;
+}
+
+.pagination-btn {
+    width: 120px;
+    text-align: center;
+}
+
+.pagination-page {
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.pagination-container .pagination a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-container .pagination .active {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: black; 
+    text-decoration: none; 
+}
+
+a:visited  a:hover a:active{
+    color: black; 
+}
+

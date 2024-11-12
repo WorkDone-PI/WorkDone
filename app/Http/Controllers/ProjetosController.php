@@ -10,14 +10,46 @@ use Illuminate\Support\Facades\Auth;
 class ProjetosController extends Controller
 {
 
-    public function home()
-    {
-        $projetos = Product::with('user', 'categories')->get();
+    /*    public function home()
+        {
+            $projetos = Product::with('user', 'categories')->orderBy('created_at', 'desc')->get();
 
+            $user = Auth::user();
+
+            return view('home', compact('projetos', 'user'));
+        }*/
+
+    public function home(Request $request)
+    {
+        $query = Product::with('user', 'categories');
+
+        // Verifica se há uma busca sendo feita
+        if ($request->has('search') && $request->search != '') {
+            $searchTerm = $request->search;
+
+            // Realiza a busca nas colunas Titulo e Descricao do produto
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('Titulo', 'like', "%$searchTerm%")
+                    ->orWhere('Descricao', 'like', "%$searchTerm%")
+                    ->orWhereHas('user', function ($query) use ($searchTerm){
+                        $query->where('name', 'like', "%$searchTerm%");
+                    })
+                    ->orWhereHas('categories', function ($query) use ($searchTerm) {
+                        $query->where('Titulo', 'like', "%$searchTerm%");
+                    });
+            });
+        }
+
+        // Ordena os projetos pela data de criação (mais recente primeiro)
+        $projetos = $query->orderBy('created_at', 'desc')->paginate(2);
+
+        // Obtém o usuário autenticado
         $user = Auth::user();
 
+        // Retorna a view com os projetos e o usuário
         return view('home', compact('projetos', 'user'));
     }
+
 
     public function show()
     {

@@ -15,8 +15,12 @@
         <div class="navbar">
             <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
             <div class="search-bar">
-                <i class='bx bx-search-alt'></i>
-                <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
+                <form action="{{ route('home') }}" method="GET">
+                    <i class='bx bx-search-alt'></i>
+                    <input type="search" name="search" id="search"
+                        placeholder="Pesquise por projetos, pessoas e filtros..."
+                        value="{{ request()->input('search') }}">
+                </form>
             </div>
             <div class="create">
                 <h5>Olá, {{ $user->name }}! </h5>
@@ -120,37 +124,26 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="pagination-container">
+                    <div class="pagination">
+                        <a href="{{ $projetos->previousPageUrl() }}"
+                            class="pagination-btn {{ $projetos->onFirstPage() ? 'disabled' : '' }}">
+                            Anterior
+                        </a>
+                        @foreach($projetos->getUrlRange(1, $projetos->lastPage()) as $page => $url)
+                            <a href="{{ $url }}"
+                                class="pagination-page {{ $projetos->currentPage() == $page ? 'active' : '' }}">
+                                {{ $page }}
+                            </a>
+                        @endforeach
+                        <a href="{{ $projetos->nextPageUrl() }}"
+                            class="pagination-btn {{ !$projetos->hasMorePages() ? 'disabled' : '' }}">
+                            Próximo
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-        <!--<div class="right">
-            <div class="messages">
-                <div class="heading">
-                    <h4>Mensagens</h4><i class='bx bxs-edit'></i>
-                </div>
-                <div class="search-bar">
-                    <i class='bx bx-search-alt'></i>
-                    <input type="search" name="" id="search-message" placeholder="Procurar mensagens...">
-                </div>
-                <div class="category">
-                    <h6 class="active">Primary</h6>
-                    <h6>General</h6>
-                    <h6 class="message-requests">Request</h6>
-                </div>
-                <div class="message">
-                    <div class="profile-photo">
-                        <img src="{{ asset('img/profile.png') }}" alt="">
-                    </div>
-                    <div class="message-body">
-                        <h5>Matheus Candido</h5>
-                        <p class="text-muted">Estou interessado no seu projeto</p>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </div>
-
 </body>
-
 </html>
