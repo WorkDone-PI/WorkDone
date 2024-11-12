@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="{{ asset('js/index.js') }}"></script>
     <link rel="shortcut icon" href="{{ asset('img/WK.png') }}" type="Favicon_Image_Location">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>WorkDone | Bem-vindo</title>
@@ -172,6 +173,7 @@
             <span>Desenvolvido por <a href="">Finka Tech</a> | &#169; 2024</span>
         </div>
     </footer>
+
 </body>
 
 </html>

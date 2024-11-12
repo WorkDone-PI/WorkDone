@@ -1,46 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=M+PLUS+Rounded+1c:wght@100&family=Poppins:wght@400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
+    outline: 0;
     box-sizing: border-box;
-    list-style: none;
     text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --white: #fff;
+    --dark: #1e1e2a;
+}
+
+body {
     font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    background: var(--white);
 }
 
-body{
-    background-color: white;
-}
-
-body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
-}
-
-nav{
+nav {
     position: fixed;
     width: 100%;
-    padding: 20px 0px;
-    background-color: white;
-    font-family: 'Montserrat', sans-serif;
+    top: 0;
+    left: 0;
     box-shadow: 0 0 10px gray;
-    z-index: 2; /* Coloca a imagem atrás do conteúdo */
+    background-color: white;
+    z-index: 1000;
+    padding: 0px 4rem;
 }
 
-nav.navbar{
-    width: 100%;
+nav.navbar {
+    height: 85px;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-nav.navbar  .logo a{
-    font-size: 30px;
-    font-weight: 300;
+nav.navbar .logo a {
+    font-size: 35px;
     color: black;
-    margin: 0 10px;
+}
+
+nav.navbar .media-icons {
+    font-size: 18px;
+    margin: 0 6px;
+    color: black;
+    display: flex;
+}
+
+.navbar .media-icons a {
+    color: black;
+    text-decoration: none;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
 }
 
 nav.navbar .menu{
@@ -54,7 +72,12 @@ nav.navbar .menu a{
     color: black;
 }
 
-.navbar .menu li{
+.navbar.menu li{
+    margin: 0 8px;
+    list-style: none;
+}
+
+nav.navbar .menu li a{
     font-size: 18px;
     font-size: 500;
     color: black;
@@ -62,21 +85,33 @@ nav.navbar .menu a{
 }
 
 
-.navbar .media-icons{
+nav.navbar .media-icons{
     font-size: 18px;
     margin: 0 6px;
     color: black;
     display: flex;
 }
 
-.navbar .media-icons li{
+nav.navbar .media-icons li{
     margin: 0 10px;
     cursor: pointer;
 }
 
-.navbar .media-icons a{
+nav.navbar .media-icons a{
     color: black;
     text-decoration: none;
+}
+
+main{
+    position: relative;
+    top: 5.4rem;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 28vh auto 2vw;
+    column-gap: 2rem;
+    position: relative;
 }
 
 /*Home*/
@@ -359,4 +394,78 @@ footer.text span a{
     color: white;
     font-size: 17px;
     font-weight: 500;
+}
+
+
+@media screen and (max-width: 1190px){
+    .about .content{
+        width: 85%;
+    }
+    .skills .content{
+        width: 90%;
+    }
+    .services .content{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1090px){
+    .about .about-details{
+        flex-direction: column;
+    }
+    .about .about-details .right{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .about .about-details .left{
+        width: 55%;
+        text-align: justify;
+        margin: 25px 80px;
+    }
+    .about .about-details .left p{
+        font-size: 17px;
+    }
+    .services .content .boxes .box{
+        width: calc(100% / 2 - 20px);
+    }
+    
+}
+
+@media  (max-width: 750px) {
+    .skills .skill-details{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .skills .skill-details .left .experience{
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    .services .content .boxes .box{
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 971px){
+    .about .about-details .right img{
+        height: 300px;
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    nav.navbar .menu{
+        display: none;
+    }
+
+    nav.navbar .logo a{
+        font-size: 18px;
+        font-weight: bolder;
+    }
+
+    .logo-container{
+        display: none;
+    }
 }
