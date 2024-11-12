@@ -18,7 +18,7 @@
                 <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
                 <div class="profile-photo">
                     <a href="{{ route('profile') }}">
-                        
+
                     </a>
                 </div>
             </div>
@@ -31,43 +31,47 @@
         <form action="{{ route('produto') }}" method="post" enctype="multipart/form-data">
             @csrf
 
-                <div class="form first">
-                    <div class="details">
-                        <span class="title">Adicione as informações do seu projeto</span>
+            <div class="form first">
+                <div class="details">
+                    <span class="title">Adicione as informações do seu projeto</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label for="Titulo">Título do projeto</label>
+                            <input type="text" name="Titulo" placeholder="Qual o nome do seu projeto?" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="Valor">Precifique seu projeto</label>
+                            <input type="text" name="Valor" placeholder="Valor..." required>
+                        </div>
+
                         <div class="fields">
                             <div class="input-field">
-                                <label for="Titulo">Título do projeto</label>
-                                <input type="text" name="Titulo" placeholder="Qual o nome do seu projeto?" required>
+                                <label for="Descricao">Descreva seu projeto</label>
+                                <textarea name="Descricao" id="desc" placeholder="Descrição..." required></textarea>
                             </div>
-
-                            <div class="input-field">
-                                <label for="Valor">Precifique seu projeto</label>
-                                <input type="text" name="Valor" placeholder="Valor..." required>
-                            </div>
-
-                            <div class="fields">
-                                <div class="input-field">
-                                    <label for="Descricao">Descreva seu projeto</label>
-                                    <textarea name="Descricao" id="desc" placeholder="Descrição..." required></textarea>
-                                </div>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="Categoria">Escolha uma categoria</label>
-                                <select name="Categoria" id="Categoria">
-                                    <option value="">Selecione uma categoria</option>
-                                </select>
-                            </div>
-                            <div class="input-field">
-                                <label for="project_image">Imagem do Perfil</label>
-                                <input type="file" name="project_image" id="project_image" accept="image/*">
-                            </div>
-                            
                         </div>
+
+                        <div class="input-field">
+                            <label for="Categoria">Escolha uma categoria</label>
+                            <select name="Id_Categoria" id="Categoria">
+                                <option value="">Selecione uma categoria</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->Titulo }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="project_image">Imagem do Perfil</label>
+                            <input type="file" name="project_image" id="project_image" accept="image/*">
+                        </div>
+
                     </div>
                 </div>
-                <button type="submit">Finalizar<box-icon name='paper-plane' type='solid' color='#ffffff' ></box-icon></button>
-            
+            </div>
+            <button type="submit">Finalizar<box-icon name='paper-plane' type='solid'
+                    color='#ffffff'></box-icon></button>
+
         </form>
     </div>
 

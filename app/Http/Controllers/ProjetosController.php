@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class ProjetosController extends Controller
@@ -14,56 +15,59 @@ class ProjetosController extends Controller
         $projetos = Product::with('user', 'categories')->get();
 
         $user = Auth::user();
-     
-        return view('home', compact('projetos', 'user')); 
+
+        return view('home', compact('projetos', 'user'));
     }
 
     public function show()
     {
-        return view('postagem');
-
+        $categories = Category::all();
+        return view('postagem', compact('categories'));
     }
 
 
 
     public function produto(Request $request)
-{
-    $userId = Auth::id();
+    {
+        $userId = Auth::id();
 
-    $request->validate([
-        'Titulo' => 'required|string|max:255',
-        'Descricao' => 'required|string|max:255',
-        'Valor' => 'required|numeric|between:0,99999.99',
-        'project_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'removed' => 'false'
-    ]);
+        $request->validate([
+            'Titulo' => 'required|string|max:255',
+            'Descricao' => 'required|string|max:255',
+            'Valor' => 'required|numeric|between:0,99999.99',
+            'Id_Categoria' => 'required|exists:categories,id',
+            'project_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'removed' => 'nullable|boolean'
+        ]);
 
-    // Criação do produto
-    $produto = new Product([
-        'Titulo' => $request->Titulo,
-        'Descricao' => $request->Descricao,
-        'Valor' => $request->Valor,
-        'Id_User' => $userId,
-        'removed' => false
-    ]);
+        // Criação do produto
+        $produto = new Product([
+            'Titulo' => $request->Titulo,
+            'Descricao' => $request->Descricao,
+            'Valor' => $request->Valor,
+            'Id_User' => $userId,
+            'removed' => $request->removed ?? false
+        ]);
 
-    // Verifica se há uma imagem
-    if ($request->hasFile('project_image')) {
-        // Se já existir uma imagem, delete-a
-        if ($produto->project_image) {
-            Storage::disk('public')->delete($produto->project_image);
+        // Verifica se há uma imagem
+        if ($request->hasFile('project_image')) {
+            // Se já existir uma imagem, delete-a
+            if ($produto->project_image) {
+                Storage::disk('public')->delete($produto->project_image);
+            }
+
+            // Salva a nova imagem
+            $imagePath = $request->file('project_image')->store('project_image', 'public');
+            $produto->project_image = $imagePath;
         }
 
-        // Salva a nova imagem
-        $imagePath = $request->file('project_image')->store('project_image', 'public');
-        $produto->project_image = $imagePath;
+        // Salva o produto no banco de dados
+        $produto->save();
+
+        $produto->categories()->attach($request->Id_Categoria);
+
+        return redirect()->route('home')->with('success', 'Projeto criado com sucesso!');
     }
-
-    // Salva o produto no banco de dados
-    $produto->save();
-
-    return redirect()->route('home')->with('success', 'Projeto criado com sucesso!');
-}
 
     public function prjs()
     {
@@ -92,10 +96,11 @@ class ProjetosController extends Controller
         $prj = Product::where('id', $Id)
             ->where('Id_User', $user->id)
             ->firstOrFail();
+        $categories = Category::all();
 
         return view(
             'editpost',
-            compact('prj', 'user')
+            compact('prj', 'user', 'categories')
         );
 
 
@@ -128,19 +133,28 @@ class ProjetosController extends Controller
             'Titulo' => 'required|string|max:255',
             'Descricao' => 'required|string|max:255',
             'Valor' => 'required|numeric|between:0,99999.99',
+            'Id_Categoria' => 'required|exists:categories,id'
         ]);
-    
+
         $prj = Product::findOrFail($Id);
         $user = auth()->user();
-    
+
         $prj->fill([
             'Titulo' => $request->input('Titulo'),
             'Descricao' => $request->input('Descricao'),
             'Valor' => $request->input('Valor'),
             'Id_User' => $user->id,
         ]);
-    
+
         if ($prj->save()) {
+            // Verifica se a categoria atual é diferente da categoria selecionada
+            $selectedCategoryId = $request->Id_Categoria;
+            $currentCategoryId = $prj->categories->first()->id ?? null; // Pega a primeira categoria associada (se existir)
+
+            if ($currentCategoryId != $selectedCategoryId) {
+                // Se a categoria for diferente, substitui a categoria associada
+                $prj->categories()->sync([$selectedCategoryId]);  // Sincroniza a nova categoria (substitui a antiga)
+            }
             return redirect()->route('profile')->with('success', 'Projeto atualizado com sucesso!'); // Mudei para redirecionar para a rota profile
         } else {
             return redirect()->back()->withErrors(['Erro ao atualizar o projeto.']);

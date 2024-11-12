@@ -242,6 +242,10 @@ main{
     justify-content: space-between;
 }
 
+.empty_project h2{
+    margin-top: 5vh;
+}
+
 .middle .feed .user{
     margin-bottom: 1rem;
     display: flex;

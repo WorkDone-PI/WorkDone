@@ -22,7 +22,7 @@
                 <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
                 <div class="profile-photo">
                     <a href="{{ route('profile') }}">
-                        
+
                     </a>
                 </div>
             </div>
@@ -42,32 +42,42 @@
                     <div class="fields">
                         <div class="input-field">
                             <label for="Titulo">Título do projeto</label>
-                            <input type="text" name="Titulo" value="{{ old('Titulo', $prj->Titulo) }}" placeholder="Qual o nome do seu projeto?" required>
+                            <input type="text" name="Titulo" value="{{ old('Titulo', $prj->Titulo) }}"
+                                placeholder="Qual o nome do seu projeto?" required>
                         </div>
 
                         <div class="input-field">
                             <label for="Valor">Precifique seu projeto</label>
-                            <input type="text" name="Valor" value="{{ old('Valor', $prj->Valor) }}" placeholder="Valor..." required>
+                            <input type="text" name="Valor" value="{{ old('Valor', $prj->Valor) }}"
+                                placeholder="Valor..." required>
                         </div>
 
                         <div class="fields">
                             <div class="input-field">
                                 <label for="Descricao">Descreva seu projeto</label>
-                                <textarea name="Descricao" id="desc" placeholder="Descrição..." required>{{ old('Descricao', $prj->Descricao) }}</textarea>
+                                <textarea name="Descricao" id="desc" placeholder="Descrição..."
+                                    required>{{ old('Descricao', $prj->Descricao) }}</textarea>
                             </div>
                         </div>
 
                         <div class="input-field">
                             <label for="Categoria">Escolha uma categoria</label>
-                            <select name="Categoria" id="Categoria">
+                            <select name="Id_Categoria" id="Categoria" required>
                                 <option value="">Selecione uma categoria</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @if ($prj->categories->contains($category->id))
+                                    selected @endif>
+                                        {{ $category->Titulo }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
-            <button type="submit">Atualizar<box-icon name='paper-plane' type='solid' color='#ffffff'></box-icon></button>
+            <button type="submit">Atualizar<box-icon name='paper-plane' type='solid'
+                    color='#ffffff'></box-icon></button>
             <a href=" {{ route('profile') }} " class="btn btn-primary">Voltar</a>
         </form>
 
