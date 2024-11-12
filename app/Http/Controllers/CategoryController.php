@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     function index(Request $request) {
-        $categories = Category::with('children')->whereNull('parent_id')->get();
-        return $categories;
+        //$categories = Category::with('children')->whereNull('parent_id')->get();
+        //return $categories;
         $categories = Category::with('parent')->get();
         return view('categories.index', compact('categories'));
     }
@@ -38,18 +38,18 @@ class CategoryController extends Controller
     }
 
     function show($id) {
-        $categories = Category::find($id);
+        $categories = Category::findOrFail($id);
         return view('categories.show', compact('categories'));
     }
     
-    function edit(Request $request) {
-        $categories = Category::findOrFail($id);
+    function edit($id) {
+        $category = Category::findOrFail($id);
         $categories = Category::where('id', '!=', $id)->get();
 
-        return view('categories.edit', compact('categories'));
+        return view('categories.edit', compact('category', 'categories'));
     }
     
-    function update(Request $request) {
+    function update(Request $request, $id) {
         $categories = Category::findOrFail($id);
 
         $request->validate([
@@ -67,9 +67,9 @@ class CategoryController extends Controller
         return redirect()->route('category.index');
     }
     
-    function destroy(Request $request) {
-        $categories = Category::findOrFail($id);
-        $categories->delete();
+    function destroy($id) {
+        $category = Category::findOrFail($id);
+        $category->delete();
 
         return redirect()->route('category.index');
     }
