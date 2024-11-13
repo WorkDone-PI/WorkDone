@@ -64,10 +64,110 @@
                     <span><i class='bx bx-plus-circle'></i></i></span>
                     <h3>Novo Projeto</h3>
                 </a>
-                <a class="menu-item active">
+                <a class="menu-item active" id="filterBtn">
                     <span><i class='bx bx-filter-alt'></i></span>
                     <h3>Filtrar</h3>
                 </a>
+                <div class="filter-dropdown" id="filterDropdown" style="display: none;">
+                    <form action="{{ route('home') }}" method="GET">
+                        <div class="filter-option">
+                            <label for="price_order">Ordenar por Preço:</label>
+                            <select name="price_order" id="price_order">
+                                <option value="">Selecione</option>
+                                <option value="asc" {{ request('price_order') == 'asc' ? 'selected' : '' }}>Do menor para
+                                    o maior</option>
+                                <option value="desc" {{ request('price_order') == 'desc' ? 'selected' : '' }}>Do maior
+                                    para o menor</option>
+                            </select>
+                        </div>
+                        <div class="filter-option">
+                            <label for="date_order">Ordenar por Data:</label>
+                            <select name="date_order" id="date_order">
+                                <option value="">Selecione</option>
+                                <option value="desc" {{ request('date_order') == 'desc' ? 'selected' : '' }}>Mais recente
+                                </option>
+                                <option value="asc" {{ request('date_order') == 'asc' ? 'selected' : '' }}>Mais antigo
+                                </option>
+                            </select>
+                        </div>
+                        <div class="filter-option">
+                            <label for="category">Categoria:</label>
+                            <select name="category" id="category">
+                                <option value="">Selecione</option>
+                                @foreach ($categories as $category)
+                                    @if ($category->parent_id == null)
+                                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->Titulo }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="filter-option">
+                            <label for="subcategory">Sub-Categoria:</label>
+                            <select name="subcategory" id="subcategory" disabled>
+                                <option value="">Selecione</option>
+                                @foreach ($categories as $category)
+                                    @if ($category->parent_id != null)
+                                        <option value="{{ $category->id }}" 
+                                            data-category="{{ $category->parent_id }}" 
+                                            {{ request('subcategory') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->Titulo }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Filtrar</button>
+                    </form>
+                    <script>
+                        document.getElementById('filterBtn').addEventListener('click', function () {
+                            const dropdown = document.getElementById('filterDropdown');
+                            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                                dropdown.style.display = 'flex';
+                                setTimeout(() => {
+                                    dropdown.style.opacity = 1;
+                                }, 10);
+                            } else {
+                                dropdown.style.opacity = 0;
+                                setTimeout(() => {
+                                    dropdown.style.display = 'none';
+                                }, 300);
+                            }
+                        });
+                        document.getElementById('category').addEventListener('change', function () {
+                            const categoryId = this.value;
+                            const subcategorySelect = document.getElementById('subcategory');
+                            const options = subcategorySelect.querySelectorAll('option');
+
+                            // Limpa a seleção da subcategoria e reseta para a opção "Selecione"
+                            subcategorySelect.value = '';  // Reseta a subcategoria
+                            subcategorySelect.disabled = false;  // Habilita o campo de subcategoria
+
+                            // Se uma categoria for selecionada
+                            if (categoryId) {
+                                // Filtra as subcategorias baseadas na categoria selecionada
+                                options.forEach(option => {
+                                    if (option.getAttribute('data-category') == categoryId || option.value == '') {
+                                        option.style.display = 'block';  // Exibe as opções relacionadas
+                                    } else {
+                                        option.style.display = 'none';   // Oculta as opções não relacionadas
+                                    }
+                                });
+                            } else {
+                                // Se nenhuma categoria for selecionada, desabilita o campo de subcategoria
+                                subcategorySelect.disabled = true;
+                                subcategorySelect.innerHTML = '<option value="">Selecione</option>'; // Reseta as opções de subcategoria
+                            }
+                        });
+
+                        // Para garantir que, se já houver categoria e subcategoria selecionadas na URL, os filtros sejam aplicados corretamente
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const categoryId = document.getElementById('category').value;
+                            if (categoryId) {
+                                document.getElementById('category').dispatchEvent(new Event('change'));  // Aciona a mudança para aplicar o filtro
+                            }
+                        });
+                    </script>
+                </div>
                 <a href=" {{ route('chatbot.show') }} " class="menu-item active">
                     <span><i class='bx bx-question-mark'></i></span>
                     <h3>Suporte</h3>
@@ -147,4 +247,5 @@
         </div>
     </div>
 </body>
+
 </html>

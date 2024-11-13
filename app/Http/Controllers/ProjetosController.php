@@ -24,31 +24,62 @@ class ProjetosController extends Controller
     {
         $query = Product::with('user', 'categories');
 
-        // Verifica se há uma busca sendo feita
         if ($request->has('search') && $request->search != '') {
             $searchTerm = $request->search;
-
-            // Realiza a busca nas colunas Titulo e Descricao do produto
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('Titulo', 'like', "%$searchTerm%")
                     ->orWhere('Descricao', 'like', "%$searchTerm%")
-                    ->orWhereHas('user', function ($query) use ($searchTerm){
+                    ->orWhereHas('user', function ($query) use ($searchTerm) {
                         $query->where('name', 'like', "%$searchTerm%");
                     })
                     ->orWhereHas('categories', function ($query) use ($searchTerm) {
-                        $query->where('Titulo', 'like', "%$searchTerm%");
+                        // Especificando que o 'Titulo' é da tabela 'categories'
+                        $query->where('categories.Titulo', 'like', "%$searchTerm%");
                     });
             });
         }
 
+        if ($request->has('category') && $request->category != '') {
+            $query->whereHas('categories', function ($q) use ($request) {
+                $q->where('categories.id', $request->category)
+                    ->orWhere('categories.parent_id', $request->category);
+            });
+        }
+
+        // Filtro por subcategoria
+        if ($request->has('subcategory') && $request->subcategory != '') {
+            $query->whereHas('categories', function ($q) use ($request) {
+                $q->where('categories.id', $request->subcategory)
+                    ->orWhere('categories.parent_id', $request->subcategory);
+            });
+        }
+
         // Ordena os projetos pela data de criação (mais recente primeiro)
-        $projetos = $query->orderBy('created_at', 'desc')->paginate(2);
+        //$projetos = $query->orderBy('created_at', 'desc')->paginate(10);
+
+        // Filtro por preço
+        if ($request->has('price_order') && in_array($request->price_order, ['asc', 'desc'])) {
+            $query->orderBy('Valor', $request->price_order);
+        }
+
+        // Filtro por data
+        if ($request->has('date_order') && in_array($request->date_order, ['asc', 'desc'])) {
+            $query->orderBy('created_at', $request->date_order);
+        } else {
+            // Caso não tenha o filtro de data, ordena por data mais recente
+            $query->orderBy('created_at', 'desc');
+        }
+
+        // Paginando os resultados
+        $projetos = $query->paginate(10);
 
         // Obtém o usuário autenticado
         $user = Auth::user();
 
+        $categories = Category::all();
+
         // Retorna a view com os projetos e o usuário
-        return view('home', compact('projetos', 'user'));
+        return view('home', compact('projetos', 'user', 'categories'));
     }
 
 
@@ -169,7 +200,7 @@ class ProjetosController extends Controller
             'Id_Categoria' => 'required|exists:categories,id',
             'project_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        
+
         $prj = Product::findOrFail($Id);
         if ($request->hasFile('project_image')) {
             if ($prj->project_image) {
