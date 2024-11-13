@@ -188,42 +188,44 @@
                     </div>
                 @endif
                 @foreach($projetos as $projeto)
-                    <div class="feed">
-                        <div class="head">
-                            <div class="user">
-                                <div class="profile-photo">
-                                    @if($projeto->user && $projeto->user->profile_image)
-                                        <img src="{{ asset('storage/' . $projeto->user->profile_image) }}" alt="Profile Image">
-                                    @else
-                                        <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
-                                    @endif
+                    @if($projeto->removed == 0)
+                        <div class="feed">
+                            <div class="head">
+                                <div class="user">
+                                    <div class="profile-photo">
+                                        @if($projeto->user && $projeto->user->profile_image)
+                                            <img src="{{ asset('storage/' . $projeto->user->profile_image) }}" alt="Profile Image">
+                                        @else
+                                            <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
+                                        @endif
+                                    </div>
+                                    <div class="ingo">
+                                        <h3>{{ $projeto->Titulo }}</h3>
+                                        <small>Adicionado em
+                                            {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
+                                            |</small>
+                                        <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
+                                        <!-- Exibe o nome do usuário -->
+                                    </div>
                                 </div>
-                                <div class="ingo">
-                                    <h3>{{ $projeto->Titulo }}</h3>
-                                    <small>Adicionado em
-                                        {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
-                                        |</small>
-                                    <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
-                                    <!-- Exibe o nome do usuário -->
+                                <div class="descricao">
+                                    <p>{{ $projeto->Descricao }}</p>
                                 </div>
                             </div>
-                            <div class="descricao">
-                                <p>{{ $projeto->Descricao }}</p>
+                            <div class="valor">
+                                <p>Preço: R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
                             </div>
+                            <div class="categorias">
+                                <strong>Categorias:</strong>
+                                <ul>
+                                    @foreach($projeto->categories as $category)
+                                        <li>{{ $category->Titulo }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <a href="{{ route('home') }}">Ver Projeto</a>
                         </div>
-                        <div class="valor">
-                            <p>Preço: R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
-                        </div>
-                        <div class="categorias">
-                            <strong>Categorias:</strong>
-                            <ul>
-                                @foreach($projeto->categories as $category)
-                                    <li>{{ $category->Titulo }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <a href="{{ route('home') }}">Ver Projeto</a>
-                    </div>
+                    @endif
                 @endforeach
                 <div class="pagination-container">
                     <div class="pagination">

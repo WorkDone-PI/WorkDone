@@ -42,7 +42,7 @@
 
                         <div class="input-field">
                             <label for="Valor">Precifique seu projeto</label>
-                            <input type="text" name="Valor" placeholder="Valor..." required>
+                            <input type="number" name="Valor" placeholder="Valor..." required>
                         </div>
 
                         <div class="fields">

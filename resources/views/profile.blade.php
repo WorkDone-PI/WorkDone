@@ -49,7 +49,7 @@
         <!-- Segunda sessão: Estatísticas -->
         <div class="stats">
             <div class="stat">
-                <h3>{{ count($projetos) }}</h3>
+            <h3>{{ $projetos ? count($projetos) : 0 }}</h3>
                 <p>Projetos</p>
             </div>
             <div class="stat">
@@ -65,34 +65,36 @@
             <h2 class="projects-title">Meus Projetos</h2>
             <div class="projects-container">
                 @foreach($projetos as $projeto)
-                    <div class="project-card">
+                    @if($projeto->removed == 0)
+                        <div class="project-card">
 
-                        @if($projeto->project_image)
-                            <img src="{{ asset('storage/' . $projeto->project_image) }}" alt="Imagem do Projeto">
-                        @else
-                            <img src="https://via.placeholder.com/480x320" alt="Imagem Padrão do Projeto">
-                        @endif
+                            @if($projeto->project_image)
+                                <img src="{{ asset('storage/' . $projeto->project_image) }}" alt="Imagem do Projeto">
+                            @else
+                                <img src="https://via.placeholder.com/480x320" alt="Imagem Padrão do Projeto">
+                            @endif
 
-                        <h4>{{ $projeto->Titulo }}</h4>
+                            <h4>{{ $projeto->Titulo }}</h4>
 
-                        <p>{{ $projeto->Descricao }}</p>
+                            <p>{{ $projeto->Descricao }}</p>
 
-                        <small>Adicionado em
-                            {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}</small>
+                            <small>Adicionado em
+                                {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}</small>
 
-                        <p><strong>Preço:</strong> R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
+                            <p><strong>Preço:</strong> R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
 
-                        <strong>Categorias:</strong>
-                        <ul>
-                            @foreach($projeto->categories as $category)
-                                <li>{{ $category->Titulo }}</li>
-                            @endforeach
-                        </ul>
+                            <strong>Categorias:</strong>
+                            <ul>
+                                @foreach($projeto->categories as $category)
+                                    <li>{{ $category->Titulo }}</li>
+                                @endforeach
+                            </ul>
 
-                        <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Editar Projeto</a>
-                        <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Remover Projeto</a>
+                            <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Editar Projeto</a>
+                            <a href="{{ route('deleteProject', $projeto->id) }}" class="btn btn-primary">Remover Projeto</a>
 
-                    </div>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>

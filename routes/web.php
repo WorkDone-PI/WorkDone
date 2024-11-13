@@ -45,6 +45,7 @@ Route::get('/editP{Id}', [ProjetosController::class, 'search'])->name('editP')->
 //Route::put('/editP{Id}', [ProjetosController::class, 'updateP'])->name('updateP')->middleware('auth');
 Route::put('/editP/{Id}', [ProjetosController::class, 'updateP'])->name('updateP')->middleware('auth');
 Route::delete('/delete/{Id}', [ProjetosController::class, 'delete'])->name('delete')->middleware('auth');
+Route::get('/delete-project/{id}', [ProjetosController::class, 'delete'])->name('deleteProject')->middleware('auth');
 
 //Route::middleware('auth')->group(function () {
     //Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth', 'verified'])->name('profile');

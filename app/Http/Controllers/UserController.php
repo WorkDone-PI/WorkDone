@@ -53,7 +53,7 @@ class UserController extends Controller
 
         $user = Auth::user();
         $userId = Auth::id();
-        $projetos = Product::where('Id_User', $userId)->get();
+        $projetos = Product::where('Id_User', $userId)->where('removed', 0)->get(); // Certifique-se de filtrar os projetos removidos
 
         return view('profile', compact('user', 'projetos'));
 

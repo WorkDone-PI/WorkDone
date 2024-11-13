@@ -137,9 +137,15 @@ class ProjetosController extends Controller
     {
         $userId = Auth::id();
         $user = Auth::user(); // Obter o usuário autenticado
-        $prjs = Product::where('Id_User', $userId)->get();
-        return view('profile', compact('prjs', 'user'));
+    
+        // Obtendo os projetos onde 'removed' é 0
+        $projetos = Product::where('Id_User', $userId)->where('removed', 0)->get() ?? collect(); // Define como coleção vazia se nulo
+    
+        // Passando a variável correta para a view
+        return view('profile', compact('projetos', 'user')); // Passando 'projetos' ao invés de 'prjs'
     }
+    
+
 
 
     public function projetos()
@@ -236,7 +242,8 @@ class ProjetosController extends Controller
     public function delete($Id)
     {
         $prj = Product::findOrFail($Id);
-        $prj->delete();
+        $prj->removed = 1;
+        $prj->save();
 
         return redirect()->route('prjs')->with('Projeto deletado com sucesso!');
     }
