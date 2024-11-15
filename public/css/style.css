@@ -56,28 +56,28 @@ nav.navbar .media-icons {
     text-decoration: none;
 }
 
-.container{
+.container {
     width: 80%;
     margin: 0 auto;
 }
 
-nav.navbar .menu{
+nav.navbar .menu {
     display: flex;
 }
 
-nav.navbar .menu a{
+nav.navbar .menu a {
     cursor: pointer;
     margin: 0 8px;
     text-decoration: none;
     color: black;
 }
 
-.navbar.menu li{
+.navbar.menu li {
     margin: 0 8px;
     list-style: none;
 }
 
-nav.navbar .menu li a{
+nav.navbar .menu li a {
     font-size: 18px;
     font-size: 500;
     color: black;
@@ -85,45 +85,59 @@ nav.navbar .menu li a{
 }
 
 
-nav.navbar .media-icons{
+nav.navbar .media-icons {
     font-size: 18px;
     margin: 0 6px;
     color: black;
     display: flex;
 }
 
-nav.navbar .media-icons li{
+nav.navbar .media-icons li {
     margin: 0 10px;
     cursor: pointer;
 }
 
-nav.navbar .media-icons a{
+nav.navbar .media-icons a {
     color: black;
     text-decoration: none;
 }
 
-main{
+@media screen and (max-width: 992px) {
+    nav.navbar .menu {
+        display: none;
+    }
+
+    nav.navbar .logo a {
+        font-size: 18px;
+        font-weight: bolder;
+    }
+
+    .logo-container {
+        display: none;
+    }
+}
+
+main {
     position: relative;
     top: 5.4rem;
 }
 
-.container{
+.container {
     display: grid;
     grid-template-columns: 28vh auto 2vw;
     column-gap: 2rem;
     position: relative;
 }
 
-/*Home*/
-.home{
+.home {
     height: 100vh;
     width: 100%;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 25%, rgba(247,247,247,1) 75%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 25%, rgba(247, 247, 247, 1) 75%, rgba(255, 255, 255, 1) 100%);
     background-position: center;
     background-size: cover;
 }
 
-.home .home-content{
+.home .home-content {
     height: 100%;
     width: 90%;
     margin: auto;
@@ -132,90 +146,89 @@ main{
     justify-content: center;
 }
 
-.home .text .text-one{
+.home .text .text-one {
     font-size: 45px;
 }
-.home .text .text-two{
+
+.home .text .text-two {
     font-size: 35px;
 }
-.home .text .text-three{
+
+.home .text .text-three {
     font-size: 40px;
     font-weight: bold;
 }
-.home .text .text-four{
+
+.home .text .text-four {
     font-size: 10px;
 }
 
 .home .logo-container {
     position: absolute;
-    right: 60px; /* Ajuste a distância da imagem para a borda direita */
-    top: 50%; /* Centraliza verticalmente */
+    right: 60px;
+    top: 50%;
     transform: translateY(-50%);
-    z-index: 1; /* Coloca a imagem atrás do conteúdo */
+    z-index: 1;
 }
 
 .home .logo-container img {
-    width: 475px; /* Ajuste o tamanho da imagem conforme necessário */
+    width: 475px;
     height: auto;
 }
 
-
-/* Sobre Nós*/
-
-.about .about-details .right img{
-    height: 400px;
-    width: 400px;
+.about .about-details .right img {
+    width: 90%;
     object-fit: cover;
     border-radius: 12px;
 }
 
-.about .about-details .right{
+.about .about-details .right {
     width: 45%;
-
+    display: flex;
 }
 
-.about .about-details .left{
+.about .about-details .left {
     width: 55%;
 }
 
-.about-details .left .topic{
+.about-details .left .topic {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.about-details .left p{
+.about-details .left p {
     text-align: justify;
     font-size: 20px;
 }
 
-.about .about-details{
+.about .about-details {
     display: flex;
     justify-content: space-between;
 }
 
-section{
+section {
     padding: 40px 0;
 }
 
-section .content{
+section .content {
     width: 80%;
-    margin: 40px auto; 
+    margin: 40px auto;
 }
 
-section .title{
+section .title {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
 }
 
-section .title span{
+section .title span {
     font-size: 30px;
     font-weight: 600;
     position: relative;
 }
 
-.about .title span::before{
+.about .title span::before {
     content: '';
     position: absolute;
     left: 0;
@@ -223,14 +236,14 @@ section .title span{
     width: 100%;
 }
 
-.about .title span::after{
+.about .title span::after {
     width: 70%;
     left: 50%;
     transform: translateX(-50%);
     bottom: -7px;
 }
 
-.content .title span{
+.content .title span {
     display: flex;
     justify-content: center;
     font-size: 30px;
@@ -238,89 +251,82 @@ section .title span{
     position: relative;
 }
 
-
-/*Skills*/
-
-.skills{
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 25%, rgba(247,247,247,1) 75%, rgba(255,255,255,1) 100%);
+.skills {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 25%, rgba(247, 247, 247, 1) 75%, rgba(255, 255, 255, 1) 100%);
 }
 
-.skills .skill-details{
+.skills .skill-details {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.skills .content{
+.skills .content {
     padding: 40px 0;
 }
 
-.skills .skill-details .left{
+.skills .skill-details .left {
     width: 50%;
 }
 
-.skills .skill-details .left .topic{
+.skills .skill-details .left .topic {
     font-size: 20px;
     font-weight: bold;
 }
 
-.skills .skill-details .boxes{
+.skills .skill-details .boxes {
     width: 45%;
 }
 
-.skill-details .left p{
+.skill-details .left p {
     text-align: justify;
 
 }
 
-.skill-details .left .experience{
+.skill-details .left .experience {
     display: flex;
     align-items: center;
 }
 
-.skill-details .left .experience .num{
+.skill-details .left .experience .num {
     font-size: 80px;
     font-weight: 500;
 }
 
-.skill-details .left .experience .exp{
+.skill-details .left .experience .exp {
     font-size: 18px;
     font-weight: 500;
 }
 
-.skills .skill-details .boxes{
+.skills .skill-details .boxes {
     width: 45%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.skills .skill-details .boxes .box{
+.skills .skill-details .boxes .box {
     width: calc(100% / 2 - 20px);
 }
 
-.skills .skill-details .boxes .box .topic{
+.skills .skill-details .boxes .box .topic {
     font-size: 20px;
     font-weight: 500;
 }
 
-.skills .skill-details .boxes .box .num{
+.skills .skill-details .boxes .box .num {
     font-size: 60px;
     font-weight: 500;
 }
 
-
-
-/*Services*/
-
-.services .boxes{   
+.services .boxes {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.services .boxes .box{
+.services .boxes .box {
     width: calc(100% / 3 - 20px);
     margin: 20px 0;
     border-radius: 12px;
@@ -330,34 +336,32 @@ section .title span{
     transition: all 0.4s ease;
 }
 
-.services .boxes .box:hover{
+.services .boxes .box:hover {
     background-color: black;
     color: white;
 }
 
-.services .boxes .box .topic{
+.services .boxes .box .topic {
     font-size: 23px;
     font-weight: bold;
 }
 
-.services .content .text{
+.services .content .text {
     justify-content: center;
     text-align: center;
 }
 
-.services .content .text p{
+.services .content .text p {
     font-size: 17px;
 }
 
-/*Contato*/
-
-.contact{
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 25%, rgba(247,247,247,1) 75%, rgba(255,255,255,1) 100%);
+.contact {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 25%, rgba(247, 247, 247, 1) 75%, rgba(255, 255, 255, 1) 100%);
     padding: 20px 0;
 }
 
-.contact .text{
+.contact .text {
     justify-content: space-between;
     text-align: center;
     margin: auto;
@@ -365,13 +369,13 @@ section .title span{
     font-size: 15px;
 }
 
-.contact .text .topic{
+.contact .text .topic {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.contact .text button{
+.contact .text button {
     border-style: none;
     height: 38px;
     width: 175px;
@@ -383,89 +387,103 @@ section .title span{
     cursor: pointer;
 }
 
-/* Footer */
-
-footer .text{
+footer .text {
     text-align: center;
     padding: 15px 0;
 }
 
-footer.text span a{
+footer.text span a {
     color: white;
     font-size: 17px;
     font-weight: 500;
 }
 
 
-@media screen and (max-width: 1190px){
-    .about .content{
+@media screen and (max-width: 1190px) {
+    .about .content {
         width: 85%;
     }
-    .skills .content{
+
+    .skills .content {
         width: 90%;
     }
-    .services .content{
+
+    .services .content {
         width: 90%;
     }
 }
 
-@media screen and (max-width: 1090px){
-    .about .about-details{
+@media screen and (max-width: 1090px) {
+    .about .about-details {
         flex-direction: column;
+        display: flex;
+        align-items: center;
     }
-    .about .about-details .right{
+
+    .about .about-details .right {
         width: 100%;
         display: flex;
         justify-content: center;
     }
-    .about .about-details .left{
-        width: 55%;
+
+    .about .about-details .left {
+        width: 100%;
         text-align: justify;
         margin: 25px 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    .about .about-details .left p{
+
+    .about .about-details .left p {
         font-size: 17px;
     }
-    .services .content .boxes .box{
+
+    .services .content .boxes .box {
         width: calc(100% / 2 - 20px);
     }
-    
+
 }
 
-@media  (max-width: 750px) {
-    .skills .skill-details{
+@media (max-width: 750px) {
+    .skills .skill-details .left {
+        width: 100%;
+    }
+
+    .skills .skill-details {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
     }
-    .skills .skill-details .left .experience{
+
+    .skills .skill-details .left .experience {
         margin-top: 20px;
-        margin-bottom: 15px;
+        margin-bottom: 15%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    .services .content .boxes .box{
+
+    .services .content .boxes .box {
         width: 100%;
     }
-    
-}
 
-@media screen and (max-width: 971px){
-    .about .about-details .right img{
-        height: 300px;
-        width: 300px;
+    .skills .skill-details .boxes {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .skills .skill-details .boxes .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
-@media screen and (max-width: 992px) {
-    nav.navbar .menu{
-        display: none;
-    }
-
-    nav.navbar .logo a{
-        font-size: 18px;
-        font-weight: bolder;
-    }
-
-    .logo-container{
-        display: none;
+@media screen and (max-width: 971px) {
+    .about .about-details .right img {
+        width: 80%;
     }
 }
