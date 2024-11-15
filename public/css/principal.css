@@ -259,210 +259,6 @@ main{
     margin: 0.7rem 0;
 }
 
-
-.container .right{
-    height: max-content;
-    position: sticky;
-    margin-top: 7rem;
-    bottom: 0;
-}
-
-.right .messages{
-    background: white;
-    border-radius: var(--card-border-radius);
-    padding: var(--card-padding);
-}
-
-.right .messages .heading{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.right .messages i{
-    font-size: 1.4rem;
-}
-
-.right .messages .search-bar{
-    display: flex;
-    margin-bottom: 1rem;
-}
-
-.right .messages .category{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.right .messages .category h6{
-    width: 100%;
-    text-align: center;
-    border-bottom: 4px solid #888;
-    padding-bottom: 0.5rem;
-    font-size: 0.85rem;
-}
-
-.right .messages .category .active{
-    border-color: rgb(235, 235, 235);
-}
-
-.right .messages .message{
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.right .messages .message:last-child{
-    margin: 0;
-}
-
-.right .messages .message p{
-    font-size: 0.8rem;
-}
-
-.right .messages .message .profile-photo .active{
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    border: 3px solid gray;
-}   
-
-.right .message .profile-photo{
-    position: relative;
-    overflow: visible;
-}
-
-.empty_container {
-    margin: 0rem 4.7rem;
-}
-
-.empty_project{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.empty_image {
-    width: 50%;
-    mix-blend-mode: darken;
-}
-
-/* Nova classe para a paginação */
-.pagination-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1rem;
-}
-
-.pagination-btn, .pagination-page {
-    padding: 0.6rem 1.2rem;
-    background-color: #fff;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-weight: 600;
-    border: 1px solid #ddd;
-    transition: background-color 0.3s, color 0.3s;
-    text-decoration: none;
-}
-
-.pagination-btn:hover, .pagination-page:hover {
-    background-color: #f1f1f1;
-}
-
-.pagination-btn.disabled, .pagination-page.disabled {
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-.pagination-page.active {
-    background-color: black;
-    color: white;
-}
-
-.pagination-page.active:hover {
-    background-color: #3b3a3a;
-}
-
-.pagination-btn {
-    width: 120px;
-    text-align: center;
-}
-
-.pagination-page {
-    padding: 0.5rem 1rem;
-    text-align: center;
-}
-
-.pagination-container .pagination a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pagination-container .pagination .active {
-    background-color: black;
-    color: white;
-}
-
-a {
-    color: black; 
-    text-decoration: none; 
-}
-
-a:visited  a:hover a:active{
-    color: black; 
-}
-
-/* Container do botão de filtro */
-#filterBtn {
-    position: relative;
-    cursor: pointer;
-}
-
-/* Estilo do dropdown para expandir para a direita */
-.filter-dropdown {
-    display: none; /* Inicialmente oculto */
-    position: absolute;
-    top: 0;
-    left: 100%; /* Faz com que o dropdown apareça à direita */
-    margin-left: 10px; /* Espaçamento entre o botão e o dropdown */
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 100; /* Garante que o dropdown fique sobre outros elementos */
-    width: 250px; /* Largura do dropdown */
-}
-
-/* Estilo das opções do filtro */
-.filter-option {
-    margin-bottom: 15px;
-}
-
-.filter-option label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.filter-option select {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
 /* Adicionando uma animação suave para o dropdown */
 .filter-dropdown {
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -475,3 +271,110 @@ a:visited  a:hover a:active{
     opacity: 1;
     visibility: visible;
 }
+
+
+@media (max-width: 1174px) {
+    /* Ajuste para o nav */
+    .navbar .search-bar {
+        width: 23vw; /* Diminui a largura da barra de pesquisa */
+    }
+    .search-bar{
+        background-color: whitesmoke;
+        border-radius: var(--border-radius);
+        padding: var(--search-padding);
+        color: black;
+    }
+    
+    .search-bar input[type="search"]::placeholder{
+        color: gray;
+    }
+    .navbar .create {
+        margin-right: 100px; /* Traz a div 'create' mais para a esquerda */
+    }
+
+    .navbar .create h5{
+        display: none;
+    }
+
+    .navbar .create .profile-photo{
+        margin-right: 170px;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .navbar .search-bar {
+        width: 35vw; /* Diminui a largura da barra de pesquisa */
+    }
+    .search-bar{
+        background-color: whitesmoke;
+        border-radius: var(--border-radius);
+        padding: var(--search-padding);
+        color: black;
+        margin-right: 80px;
+        margin-left: 80px;
+        height: 40px;
+    }
+    
+    .search-bar input[type="search"]::placeholder{
+        color: gray;
+    }
+
+    .left {
+      display: none;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: 100%;
+        column-gap: 2rem;
+        position: relative;
+    }
+
+    .middle{
+        margin-top: 7rem;
+        max-height: calc(100vh - 6rem);
+        overflow-y: scroll;
+        overflow-x: hidden; 
+        padding-bottom: 1.5rem;
+    }
+    
+    .middle::-webkit-scrollbar{
+        width: 12px;
+    }
+    
+    .middle::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.849);
+        border-radius: 10px; 
+    }
+    
+    .middle::-webkit-scrollbar-thumb {
+        background-color: #888; 
+        border-radius: 10px; 
+        border: 2px solid #f1f1f1; 
+    }
+    
+    .middle::-webkit-scrollbar-thumb:hover {
+        background-color: #555; 
+    }   
+    
+    
+    .profile-dropdown {
+      display: block; /* Exibir o dropdown quando necessário */
+      position: relative;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%; /* Aparece abaixo da foto de perfil */
+      right: 0;
+      background-color: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    
+    .profile-dropdown:hover .dropdown-content {
+      display: block; /* Mostra o menu ao passar o mouse */
+    }
+  }
+  

@@ -18,7 +18,7 @@
                 <form action="{{ route('home') }}" method="GET">
                     <i class='bx bx-search-alt'></i>
                     <input type="search" name="search" id="search"
-                        placeholder="Pesquise por projetos, pessoas e filtros..."
+                     
                         value="{{ request()->input('search') }}">
                 </form>
             </div>

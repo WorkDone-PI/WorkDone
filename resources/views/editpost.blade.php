@@ -19,7 +19,7 @@
                 <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
             </div>
             <div class="create">
-                <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
+                <a href="{{ route('home') }}" class="btn btn-primary">voltar</a>
                 <div class="profile-photo">
                     <a href="{{ route('profile') }}">
 
