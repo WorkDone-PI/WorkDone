@@ -138,32 +138,30 @@
                             const subcategorySelect = document.getElementById('subcategory');
                             const options = subcategorySelect.querySelectorAll('option');
 
-                            // Limpa a seleção da subcategoria e reseta para a opção "Selecione"
-                            subcategorySelect.value = '';  // Reseta a subcategoria
-                            subcategorySelect.disabled = false;  // Habilita o campo de subcategoria
+                            subcategorySelect.value = '';  
+                            subcategorySelect.disabled = false;  
 
-                            // Se uma categoria for selecionada
                             if (categoryId) {
                                 // Filtra as subcategorias baseadas na categoria selecionada
                                 options.forEach(option => {
                                     if (option.getAttribute('data-category') == categoryId || option.value == '') {
-                                        option.style.display = 'block';  // Exibe as opções relacionadas
+                                        option.style.display = 'block';
                                     } else {
-                                        option.style.display = 'none';   // Oculta as opções não relacionadas
+                                        option.style.display = 'none'; 
                                     }
                                 });
                             } else {
                                 // Se nenhuma categoria for selecionada, desabilita o campo de subcategoria
                                 subcategorySelect.disabled = true;
-                                subcategorySelect.innerHTML = '<option value="">Selecione</option>'; // Reseta as opções de subcategoria
+                                subcategorySelect.innerHTML = '<option value="">Selecione</option>';
                             }
                         });
 
-                        // Para garantir que, se já houver categoria e subcategoria selecionadas na URL, os filtros sejam aplicados corretamente
+                        // Se já houver categoria e subcategoria selecionadas na URL, os filtros sejam aplicados corretamente
                         document.addEventListener('DOMContentLoaded', function () {
                             const categoryId = document.getElementById('category').value;
                             if (categoryId) {
-                                document.getElementById('category').dispatchEvent(new Event('change'));  // Aciona a mudança para aplicar o filtro
+                                document.getElementById('category').dispatchEvent(new Event('change')); 
                             }
                         });
                     </script>
@@ -204,7 +202,6 @@
                                         {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
                                         |</small>
                                     <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
-                                    <!-- Exibe o nome do usuário -->
                                 </div>
                             </div>
                             <div class="descricao">
