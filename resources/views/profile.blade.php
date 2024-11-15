@@ -14,15 +14,19 @@
         <div class="navbar">
             <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
             <div class="create">
-                <a href="{{ route('edit') }}" class="btn btn-primary">Editar Perfil</a>
+                <a href="{{ route('edit') }}"  class="btn btn-primary">Editar Perfil</a>
                 <div class="profile-photo">
-                    <a href="{{ route('profile') }}">
+                    <a id="profile-photo">
                         @if($user->profile_image)
                             <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto de Perfil">
                         @else
                             <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                         @endif
                     </a>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="{{ route('edit') }}" class="dropdown-item">Editar Perfil</a>
+                    <a href="{{ route('logout') }}" class="dropdown-item" id="logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -108,6 +112,28 @@
                     <a href="{{ route('chatbot.show') }}" class="btn btn-primary">Suporte</a>
                 </div>-->
     </div>
+    <script>
+     document.addEventListener("DOMContentLoaded", function () {
+        const profilePhoto = document.querySelector('.profile-photo');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        if (profilePhoto && dropdownMenu) {
+            profilePhoto.addEventListener('click', function (event) {
+                // Impede a propagação do clique
+                event.stopPropagation();
+                dropdownMenu.classList.toggle('show');
+            });
+
+            // Fecha o dropdown se clicar em qualquer lugar fora dele
+            document.addEventListener('click', function (event) {
+                if (!profilePhoto.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        }
+    });
+
+    </script>
 </body>
 
 </html>

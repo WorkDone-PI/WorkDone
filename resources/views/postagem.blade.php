@@ -15,7 +15,7 @@
         <div class="navbar">
             <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
             <div class="create">
-                <a href="{{ route('registerProject') }}" class="btn btn-primary">Novo Projeto</a>
+                <a href="{{ route('home') }}" class="btn btn-primary">Voltar</a>
                 <div class="profile-photo">
                     <a href="{{ route('profile') }}">
 
