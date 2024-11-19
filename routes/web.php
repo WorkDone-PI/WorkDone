@@ -32,6 +32,8 @@ Route::post('/register', [UserController::class, 'register'])->name('user.regist
 Route::get('/profile', [UserController::class, 'index'])->name('profile')->middleware('auth');
 Route::get('/edit', [UserController::class, 'edit'])->name('edit')->middleware('auth');
 Route::put('/update', [UserController::class, 'update'])->name('update')->middleware('auth');
+Route::get('/profile/{id}', [UserController::class, 'showProfile'])->name('profile.show');
+
 
 //Rotas de Projetos
 Route::get('/registerProject',[ProjetosController::class, 'show'])->name('registerProject');
@@ -69,6 +71,8 @@ Route::post('/form', [FormController::class, 'submitForm'])->name('form.submit')
 
 Route::get('/projetos/{id}/edit', [ProjetosController::class, 'search'])->name('editProject');
 Route::put('/projetos/{id}', [ProjetosController::class, 'updateP'])->name('updateProject');
+Route::get('/projeto/{id}', [ProjetosController::class, 'showProject'])->name('project.show');
+
 
 //Rotas de ChatBot
 Route::post('/chatbot', [ChatbotController::class, 'respond']);

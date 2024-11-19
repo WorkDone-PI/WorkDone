@@ -17,9 +17,7 @@
             <div class="search-bar">
                 <form action="{{ route('home') }}" method="GET">
                     <i class='bx bx-search-alt'></i>
-                    <input type="search" name="search" id="search"
-                     
-                        value="{{ request()->input('search') }}">
+                    <input type="search" name="search" id="search" value="{{ request()->input('search') }}">
                 </form>
             </div>
             <div class="create">
@@ -138,8 +136,8 @@
                             const subcategorySelect = document.getElementById('subcategory');
                             const options = subcategorySelect.querySelectorAll('option');
 
-                            subcategorySelect.value = '';  
-                            subcategorySelect.disabled = false;  
+                            subcategorySelect.value = '';
+                            subcategorySelect.disabled = false;
 
                             if (categoryId) {
                                 // Filtra as subcategorias baseadas na categoria selecionada
@@ -147,7 +145,7 @@
                                     if (option.getAttribute('data-category') == categoryId || option.value == '') {
                                         option.style.display = 'block';
                                     } else {
-                                        option.style.display = 'none'; 
+                                        option.style.display = 'none';
                                     }
                                 });
                             } else {
@@ -161,7 +159,7 @@
                         document.addEventListener('DOMContentLoaded', function () {
                             const categoryId = document.getElementById('category').value;
                             if (categoryId) {
-                                document.getElementById('category').dispatchEvent(new Event('change')); 
+                                document.getElementById('category').dispatchEvent(new Event('change'));
                             }
                         });
                     </script>
@@ -202,35 +200,37 @@
                                         <small>Adicionado em
                                             {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
                                             |</small>
-                                        <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
-                                        <!-- Exibe o nome do usuário -->
+                                            <a href="{{ route('profile.show', $projeto->user->id) }}">
+                                                <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
+                                            </a>
                                     </div>
                                 </div>
-<<<<<<< HEAD
                                 <div class="descricao">
                                     <p>{{ $projeto->Descricao }}</p>
-=======
-                                <div class="ingo">
-                                    <h3>{{ $projeto->Titulo }}</h3>
-                                    <small>Adicionado em
-                                        {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
-                                        |</small>
-                                    <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
->>>>>>> feature/fix_designs
                                 </div>
                             </div>
                             <div class="valor">
                                 <p>Preço: R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
                             </div>
-                            <div class="categorias">
-                                <strong>Categorias:</strong>
-                                <ul>
-                                    @foreach($projeto->categories as $category)
-                                        <li>{{ $category->Titulo }}</li>
-                                    @endforeach
-                                </ul>
+                            <div class="ladolado">
+                                <div class="categorias">
+                                    <strong>Categorias:</strong>
+                                    <ul>
+                                        @foreach($projeto->categories as $category)
+                                            <li>{{ $category->Titulo }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <a href="{{ route('project.show', $projeto->id) }}" class="cta">
+                                    <span class="hover-underline-animation"> Ver Projeto </span>
+                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"
+                                        viewBox="0 0 46 16">
+                                        <path id="Path_10" data-name="Path 10"
+                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                            transform="translate(30)"></path>
+                                    </svg>
+                                </a>
                             </div>
-                            <a href="{{ route('home') }}">Ver Projeto</a>
                         </div>
                     @endif
                 @endforeach

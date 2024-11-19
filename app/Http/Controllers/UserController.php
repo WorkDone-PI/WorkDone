@@ -54,8 +54,9 @@ class UserController extends Controller
         $user = Auth::user();
         $userId = Auth::id();
         $projetos = Product::where('Id_User', $userId)->where('removed', 0)->get(); // Certifique-se de filtrar os projetos removidos
+        $usuario_autenticado = true;
 
-        return view('profile', compact('user', 'projetos'));
+        return view('profile', compact('user', 'usuario_autenticado', 'projetos'));
 
     }
 
@@ -129,4 +130,24 @@ class UserController extends Controller
         $users = User::all();
         return view('home', compact('users'));
     }*/
+
+    public function showProfile($id)
+    {
+        // Recuperar o usuário pelo ID
+        $user = Auth::user();
+        $other_user = User::findOrFail($id);
+
+        if ($user == $other_user){
+            $usuario_autenticado = true;
+        } else {
+            $usuario_autenticado = false;
+        } 
+        
+
+        // Recuperar os projetos desse usuário
+        $projetos = Product::where('Id_User', $id)->where('removed', 0)->get();
+
+        // Retornar a view com os dados do usuário e seus projetos
+        return view('profile', ['user' => $user, 'other_user' => $other_user, 'usuario_autenticado' => $usuario_autenticado, 'projetos' => $projetos]);
+    }
 }
