@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+:root{
+    --border-radius: 0.7rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;  
+    --card-padding: 1rem;
+    --sticky-top-left: 7rem;
+    --sticky-top-right: 18rem;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(235, 235, 235);
+}
+
+nav{
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 0 10px gray;
+    background-color: white;
+    z-index: 100;
+}
+
+.navbar{
+    width: 90%;
+    height: 85px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo a{
+    font-size: 35px;
+    color: black;
+}
+
+.navbar .menu{
+    display: flex;
+
+}
+
+main {
+    margin-top: 85px; /* Espaço abaixo do nav */
+    padding: 2rem;
+    background-color: rgb(235, 235, 235);
+}
+
+/* Seção de imagens */
+.image-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px; /* Limitar o tamanho máximo da imagem */
+    overflow: hidden; /* Ocultar imagens fora do contêiner */
+}
+
+.carousel .images {
+    display: flex;
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Limitar a altura máxima das imagens */
+    object-fit: cover; /* Ajusta as imagens para cobrir a área */
+    flex-shrink: 0; /* Evitar que as imagens encolham */
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.arrow:hover {
+    background-color: gray;
+}
+
+.arrow.left {
+    left: 10px;
+}
+
+.arrow.right {
+    right: 10px;
+}
+
+/* Seção de informações do projeto com animação */
+.project-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    perspective: 1000px; /* Perspectiva para o efeito 3D */
+    position: relative; /* Para garantir que o botão não seja coberto pela rotação */
+    height: 35rem;
+}
+
+.flip-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform-style: preserve-3d; /* Permitir a rotação em 3D */
+    transition: transform 0.5s ease-in-out;
+    z-index: 1; /* Certificar-se de que a flip-container está acima do conteúdo */
+}
+
+.flip-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconder o verso durante a rotação */
+    height: 25rem;
+}
+
+.front {
+    background-color: white;
+    padding: 1rem;
+    z-index: 2; /* A face da frente sempre ficará visível inicialmente */
+}
+
+.back {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    transform: rotateY(180deg); /* Virar a face de trás */
+}
+
+.show-user-info-btn {
+    align-self: flex-end;
+    padding: 0.5rem 1.5rem;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    position: absolute;
+    bottom: 20px; /* Garantir que o botão fique visível */
+    right: 20px;  /* Colocar o botão no canto inferior direito */
+    z-index: 3; /* Garantir que o botão fique acima do conteúdo */
+    height: 40px;
+    width: 20rem;
+    text-transform: uppercase;
+}
+
+.show-user-info-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o botão de exibir informações do usuário */
+.show-user-info-btn {
+    align-self: flex-end;
+    padding: 0.5rem 1.5rem;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+     transition: background-color 0.3s ease;
+}
+
+
+/* Ocultar as informações do criador até a rotação */
+.full-user-info {
+    display: none;
+}
+
+.project-details{
+    margin-top: 10rem;
+}
+
+.project-details p {
+    margin-bottom: 1rem; /* Espaçamento entre cada linha de informações */
+}
+
+.project-details h3 {
+    margin-bottom: 0.3rem; /* Espaço acima das informações adicionais */
+}

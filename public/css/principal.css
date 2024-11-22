@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
 
-:root{
+:root {
     --border-radius: 2rem;
     --card-border-radius: 1rem;
     --btn-padding: 0.6rem 2rem;
-    --search-padding: 0.6rem 1rem;  
+    --search-padding: 0.6rem 1rem;
     --card-padding: 1rem;
     --sticky-top-left: 7rem;
     --sticky-top-right: 18rem;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     outline: 0;
@@ -20,13 +20,13 @@
     border: none;
 }
 
-body{
+body {
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(235, 235, 235);
     overflow: hidden;
 }
 
-nav{
+nav {
     position: fixed;
     width: 100%;
     box-shadow: 0 0 10px gray;
@@ -34,7 +34,7 @@ nav{
     z-index: 100;
 }
 
-.navbar{
+.navbar {
     width: 90%;
     height: 85px;
     margin: auto;
@@ -43,32 +43,33 @@ nav{
     justify-content: space-between;
 }
 
-.navbar .logo a{
+.navbar .logo a {
     font-size: 35px;
     color: black;
 }
 
-.navbar .menu{
+.navbar .menu {
     display: flex;
 
 }
 
-.container{
+.container {
     width: 80%;
     margin: 0 auto;
 }
 
-.profile-photo{
+.profile-photo {
     overflow: hidden;
 }
 
-img{
+img {
     display: block;
     width: 8vh;
+    height: 8vh;
     border-radius: 50%;
 }
 
-.btn{
+.btn {
     display: inline-block;
     padding: var(--btn-padding);
     font-weight: 500;
@@ -78,42 +79,43 @@ img{
     font-size: 0.9rem;
 }
 
-.btn:hover{
-    opacity: 0.8;;
+.btn:hover {
+    opacity: 0.8;
+    ;
 }
 
-.btn-primary{
+.btn-primary {
     background: none;
     color: red;
 }
 
-.text-bold{
+.text-bold {
     font-weight: 500;
 }
 
-.text-muted{
+.text-muted {
     color: rgb(129, 129, 129);
     font-size: 0.7rem;
 }
 
-.text-view{
+.text-view {
     margin-top: 0.5rem;
     font-size: 0.8rem;
     color: #3b3a3a;
     text-decoration: none;
 }
 
-.text-view:hover{
+.text-view:hover {
     color: purple;
 }
 
-.handle h4{
+.handle h4 {
     font-weight: 500;
     color: black;
     font-size: 1.1rem;
 }
 
-.search-bar{
+.search-bar {
     background-color: whitesmoke;
     border-radius: var(--border-radius);
     padding: var(--search-padding);
@@ -128,36 +130,36 @@ img{
     color: black;
 }
 
-.search-bar input[type="search"]::placeholder{
+.search-bar input[type="search"]::placeholder {
     color: gray;
 }
 
-.navbar .create{
+.navbar .create {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
 
-main{
+main {
     position: relative;
     top: 5.4rem;
 }
 
-.container{
+.container {
     display: grid;
     grid-template-columns: 28vh auto 2vw;
     column-gap: 2rem;
     position: relative;
 }
 
-.container .left{
+.container .left {
     height: max-content;
     position: relative;
     top: var(--sticky-top-left);
 }
 
-.container .left .profile{
+.container .left .profile {
     padding: var(--card-padding);
     background: rgba(255, 255, 255, 0.849);
     border-radius: var(--border-radius);
@@ -167,14 +169,14 @@ main{
     width: 15rem;
 }
 
-.left .sidebar{
+.left .sidebar {
     margin-top: 1rem;
     background: rgba(255, 255, 255, 0.849);
     border-radius: var(--border-radius);
     width: 15rem;
 }
 
-.left .sidebar .menu-item{
+.left .sidebar .menu-item {
     display: flex;
     align-items: center;
     height: 5rem;
@@ -183,52 +185,52 @@ main{
     position: relative;
 }
 
-.left .sidebar .menu-item:hover{
+.left .sidebar .menu-item:hover {
     background: rgb(235, 235, 235);
     transition: 0.5s;
 }
 
-.left .sidebar i{
+.left .sidebar i {
     font-size: 1.4rem;
     color: black;
     margin-left: 2rem;
     position: relative;
 }
 
-.left .sider h3{
+.left .sider h3 {
     margin-left: 1.5rem;
     font-size: 1rem;
 }
 
 
-.middle{
+.middle {
     margin-top: 7rem;
     max-height: calc(100vh - 6rem);
     overflow-y: scroll;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     padding-bottom: 1.5rem;
 }
 
-.middle::-webkit-scrollbar{
+.middle::-webkit-scrollbar {
     width: 12px;
 }
 
 .middle::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.849);
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .middle::-webkit-scrollbar-thumb {
-    background-color: #888; 
-    border-radius: 10px; 
-    border: 2px solid #f1f1f1; 
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
 }
 
 .middle::-webkit-scrollbar-thumb:hover {
-    background-color: #555; 
-}   
+    background-color: #555;
+}
 
-.middle .feeds .feed{
+.middle .feeds .feed {
     background: rgba(255, 255, 255, 0.849);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
@@ -237,63 +239,63 @@ main{
     line-height: 1.5rem;
 }
 
-.middle .feed .head{
+.middle .feed .head {
     justify-content: space-between;
 }
 
-.empty_project h2{
+.empty_project h2 {
     margin-top: 5vh;
 }
 
-.middle .feed .user{
+.middle .feed .user {
     margin-bottom: 1rem;
     display: flex;
     gap: 1rem;
 }
 
-.middle .feed .photo{
+.middle .feed .photo {
     border-radius: var(--card-border-radius);
     overflow: hidden;
     margin: 0.7rem 0;
 }
 
 
-.container .right{
+.container .right {
     height: max-content;
     position: sticky;
     margin-top: 7rem;
     bottom: 0;
 }
 
-.right .messages{
+.right .messages {
     background: white;
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
 }
 
-.right .messages .heading{
+.right .messages .heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
-.right .messages i{
+.right .messages i {
     font-size: 1.4rem;
 }
 
-.right .messages .search-bar{
+.right .messages .search-bar {
     display: flex;
     margin-bottom: 1rem;
 }
 
-.right .messages .category{
+.right .messages .category {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
-.right .messages .category h6{
+.right .messages .category h6 {
     width: 100%;
     text-align: center;
     border-bottom: 4px solid #888;
@@ -301,32 +303,32 @@ main{
     font-size: 0.85rem;
 }
 
-.right .messages .category .active{
+.right .messages .category .active {
     border-color: rgb(235, 235, 235);
 }
 
-.right .messages .message{
+.right .messages .message {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
 }
 
-.right .messages .message:last-child{
+.right .messages .message:last-child {
     margin: 0;
 }
 
-.right .messages .message p{
+.right .messages .message p {
     font-size: 0.8rem;
 }
 
-.right .messages .message .profile-photo .active{
+.right .messages .message .profile-photo .active {
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 50%;
     border: 3px solid gray;
-}   
+}
 
-.right .message .profile-photo{
+.right .message .profile-photo {
     position: relative;
     overflow: visible;
 }
@@ -335,7 +337,7 @@ main{
     margin: 0rem 4.7rem;
 }
 
-.empty_project{
+.empty_project {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -363,7 +365,8 @@ main{
     font-size: 1rem;
 }
 
-.pagination-btn, .pagination-page {
+.pagination-btn,
+.pagination-page {
     padding: 0.6rem 1.2rem;
     background-color: #fff;
     border-radius: var(--border-radius);
@@ -374,11 +377,13 @@ main{
     text-decoration: none;
 }
 
-.pagination-btn:hover, .pagination-page:hover {
+.pagination-btn:hover,
+.pagination-page:hover {
     background-color: #f1f1f1;
 }
 
-.pagination-btn.disabled, .pagination-page.disabled {
+.pagination-btn.disabled,
+.pagination-page.disabled {
     pointer-events: none;
     opacity: 0.5;
 }
@@ -414,12 +419,12 @@ main{
 }
 
 a {
-    color: black; 
-    text-decoration: none; 
+    color: black;
+    text-decoration: none;
 }
 
-a:visited  a:hover a:active{
-    color: black; 
+a:visited a:hover a:active {
+    color: black;
 }
 
 /* Container do botão de filtro */
@@ -430,18 +435,23 @@ a:visited  a:hover a:active{
 
 /* Estilo do dropdown para expandir para a direita */
 .filter-dropdown {
-    display: none; /* Inicialmente oculto */
+    display: none;
+    /* Inicialmente oculto */
     position: absolute;
     top: 0;
-    left: 100%; /* Faz com que o dropdown apareça à direita */
-    margin-left: 10px; /* Espaçamento entre o botão e o dropdown */
+    left: 100%;
+    /* Faz com que o dropdown apareça à direita */
+    margin-left: 10px;
+    /* Espaçamento entre o botão e o dropdown */
     background-color: #fff;
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 100; /* Garante que o dropdown fique sobre outros elementos */
-    width: 250px; /* Largura do dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    /* Garante que o dropdown fique sobre outros elementos */
+    width: 250px;
+    /* Largura do dropdown */
 }
 
 /* Estilo das opções do filtro */
@@ -477,36 +487,36 @@ a:visited  a:hover a:active{
     border: none;
     background: none;
     cursor: pointer;
-  }
-  
-  .cta span {
+}
+
+.cta span {
     padding-bottom: 7px;
     letter-spacing: 4px;
     font-size: 14px;
     padding-right: 15px;
     text-transform: uppercase;
-  }
-  
-  .cta svg {
+}
+
+.cta svg {
     transform: translateX(-8px);
     transition: all 0.3s ease;
-  }
-  
-  .cta:hover svg {
+}
+
+.cta:hover svg {
     transform: translateX(0);
-  }
-  
-  .cta:active svg {
+}
+
+.cta:active svg {
     transform: scale(0.9);
-  }
-  
-  .hover-underline-animation {
+}
+
+.hover-underline-animation {
     position: relative;
     color: black;
     padding-bottom: 20px;
-  }
-  
-  .hover-underline-animation:after {
+}
+
+.hover-underline-animation:after {
     content: "";
     position: absolute;
     width: 100%;
@@ -517,15 +527,42 @@ a:visited  a:hover a:active{
     background-color: #000000;
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
-  }
-  
-  .cta:hover .hover-underline-animation:after {
+}
+
+.cta:hover .hover-underline-animation:after {
     transform: scaleX(1);
     transform-origin: bottom left;
-  }
-  
-  .ladolado{
+}
+
+.ladolado {
     width: 100%;
     display: flex;
     justify-content: space-between;
-  }
+}
+
+@media (max-width: 768px) {
+    .navbar .logo a {
+        font-size: 24px;
+        /* Logo menor */
+    }
+
+    .search-bar input[type="search"] {
+        width: 25vw;
+    }
+
+    .navbar .create {
+        gap: 0.5rem;
+    }
+
+    .middle .feeds .feed {
+        margin: 0rem 2rem 1rem;
+        width: 80%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 1rem;
+        width: 100%;
+    }
+}
