@@ -51,6 +51,11 @@
                                 value="{{ old('email', $user->email) }}" required>
                         </div>
                         <div class="input-field">
+                            <label for="phone">Telefone</label>
+                            <input type="text"  name="phone" id="phone" placeholder="Digite seu telefone"
+                                value="{{ old('phone', $user->phone) }}" required oninput="mascaraTelefone(event)">
+                        </div>
+                        <div class="input-field">
                             <label for="arroba">Arroba (Nome de Usuário)</label>
                             <input type="text" name="arroba" id="arroba" placeholder="Digite seu @"
                                 value="{{ old('arroba', $user->Arroba) }}" required>
@@ -83,6 +88,22 @@
             </div>
         </form>
     </div>
+    <script>
+        function mascaraTelefone(event) {
+            let input = event.target;
+            let telefone = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+            
+            if (telefone.length <= 2) {
+                input.value = telefone;
+            } else if (telefone.length <= 5) {
+                input.value = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
+            } else if (telefone.length <= 9) {
+                input.value = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7)}`;
+            } else {
+                input.value = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
+            }
+        }
+    </script>
 </body>
 
 </html>

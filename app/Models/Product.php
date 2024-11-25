@@ -25,4 +25,11 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
     }
+
+    public function isFavorited()
+    {
+        return Favorite::where('user_id', Auth::id())
+                    ->where('product_id', $this->id)
+                    ->exists();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follower;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,7 @@ class UserController extends Controller
             'arroba' => null,
             'profile_image' => null,
             'background_image' => null,
+            'phone' => null,
         ]);
 
         // Redireciona para a página inicial com uma mensagem de sucesso
@@ -80,6 +82,7 @@ class UserController extends Controller
             'dataNasc' => 'nullable|date',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'background_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone' => 'nullable|string|max:15',
         ]);
 
         if ($request->hasFile('profile_image')) {
@@ -114,7 +117,8 @@ class UserController extends Controller
             'descricao' => $request->descricao,
             'arroba' => $request->arroba,
             'profile_image' => $user->profile_image,
-            'background_image' => $user->background_image
+            'background_image' => $user->background_image,
+            'phone' => $request->phone,
         ]);
 
         return redirect()->route('profile')->with('success', 'Perfil atualizado com sucesso.');
@@ -131,23 +135,66 @@ class UserController extends Controller
         return view('home', compact('users'));
     }*/
 
-    public function showProfile($id)
+    public function showProfile($id = null)
     {
         // Recuperar o usuário pelo ID
         $user = Auth::user();
-        $other_user = User::findOrFail($id);
 
-        if ($user == $other_user){
-            $usuario_autenticado = true;
+        if ($id === null) {
+            $other_user = $user;
         } else {
-            $usuario_autenticado = false;
+            $other_user = User::findOrFail($id);
         } 
         
+        $usuario_autenticado = $user->id == $other_user->id;
+
+        $seguidoresCount = Follower::where('followed_id', $other_user->id)->count();
+
+        $seguindoCount = Follower::where('follower_id', $other_user->id)->count();
 
         // Recuperar os projetos desse usuário
-        $projetos = Product::where('Id_User', $id)->where('removed', 0)->get();
+        $projetos = Product::where('Id_User', $other_user->id)->where('removed', 0)->get();
 
         // Retornar a view com os dados do usuário e seus projetos
-        return view('profile', ['user' => $user, 'other_user' => $other_user, 'usuario_autenticado' => $usuario_autenticado, 'projetos' => $projetos]);
+        return view('profile', ['user' => $user, 'other_user' => $other_user, 'usuario_autenticado' => $usuario_autenticado, 'projetos' => $projetos, 'seguidoresCount' => $seguidoresCount,
+        'seguindoCount' => $seguindoCount]);
+    }
+
+    public function followUser($id)
+    {
+        $user = Auth::user();
+        $other_user = User::findOrFail($id);
+
+        // Verifica se o usuário já está seguindo
+        if ($user->following()->where('follower_id', $user->id)->where('followed_id', $other_user->id)->exists()) {
+            return redirect()->back()->with('error', 'Você já segue este usuário!');
+        }
+
+        // Segue o usuário
+        Follower::create([
+            'followed_id' => $other_user->id,
+            'follower_id' => $user->id
+        ]);
+
+        return redirect()->back()->with('success', 'Você seguiu o usuário com sucesso!');
+    }
+
+    public function unfollowUser($id)
+    {
+        $user = Auth::user();
+        $other_user = User::findOrFail($id);
+
+        // Verifica se o usuário está seguindo
+        $follower = Follower::where('follower_id', $user->id)
+                            ->where('followed_id', $other_user->id)
+                            ->first();
+
+        if ($follower) {
+            // Desfaz o seguimento
+            $follower->delete();
+            return redirect()->back()->with('success', 'Você deixou de seguir este usuário.');
+        }
+
+        return redirect()->back()->with('error', 'Você não segue esse usuário.');
     }
 }

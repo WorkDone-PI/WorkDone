@@ -1,0 +1,57 @@
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `Descricao`, `Arroba`, `profile_image`, `background_image`, `dataNasc`)
+VALUES
+(1, 'João Silva', 'joao.silva@example.com', '2024-11-25 10:00:00', 'hashed_password_1', 'token1', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Desenvolvedor de software.', '@joaosilva', 'profile1.jpg', 'background1.jpg', '1990-02-15'),
+(2, 'Maria Oliveira', 'maria.oliveira@example.com', '2024-11-25 10:00:00', 'hashed_password_2', 'token2', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Designer gráfico apaixonada por arte.', '@mariaoliveira', 'profile2.jpg', 'background2.jpg', '1992-05-10'),
+(3, 'Pedro Santos', 'pedro.santos@example.com', '2024-11-25 10:00:00', 'hashed_password_3', 'token3', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Engenheiro de software e gamer.', '@pedrosantos', 'profile3.jpg', 'background3.jpg', '1993-07-20'),
+(4, 'Ana Costa', 'ana.costa@example.com', '2024-11-25 10:00:00', 'hashed_password_4', 'token4', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Consultora de marketing digital.', '@anacosta', 'profile4.jpg', 'background4.jpg', '1995-03-11'),
+(5, 'Lucas Pereira', 'lucas.pereira@example.com', '2024-11-25 10:00:00', 'hashed_password_5', 'token5', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Especialista em SEO.', '@lucaspereira', 'profile5.jpg', 'background5.jpg', '1994-08-05'),
+(6, 'Juliana Almeida', 'juliana.almeida@example.com', '2024-11-25 10:00:00', 'hashed_password_6', 'token6', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Programadora Fullstack.', '@julianaalmeida', 'profile6.jpg', 'background6.jpg', '1996-12-01'),
+(7, 'Carlos Souza', 'carlos.souza@example.com', '2024-11-25 10:00:00', 'hashed_password_7', 'token7', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Gerente de projetos ágeis.', '@carlossouza', 'profile7.jpg', 'background7.jpg', '1991-04-13'),
+(8, 'Mariana Lima', 'mariana.lima@example.com', '2024-11-25 10:00:00', 'hashed_password_8', 'token8', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Especialista em experiência do usuário.', '@marianalima', 'profile8.jpg', 'background8.jpg', '1992-01-23'),
+(9, 'Ricardo Martins', 'ricardo.martins@example.com', '2024-11-25 10:00:00', 'hashed_password_9', 'token9', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Desenvolvedor mobile.', '@ricardomartins', 'profile9.jpg', 'background9.jpg', '1990-11-09'),
+(10, 'Fernanda Rocha', 'fernanda.rocha@example.com', '2024-11-25 10:00:00', 'hashed_password_10', 'token10', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Gestora de conteúdo digital.', '@fernandarocha', 'profile10.jpg', 'background10.jpg', '1993-09-15'),
+(11, 'Gabriel Fernandes', 'gabriel.fernandes@example.com', '2024-11-25 10:00:00', 'hashed_password_11', 'token11', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Analista de dados e BI.', '@gabrielfernandes', 'profile11.jpg', 'background11.jpg', '1994-06-10'),
+(12, 'Isabela Martins', 'isabela.martins@example.com', '2024-11-25 10:00:00', 'hashed_password_12', 'token12', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Engenheira de software especializada em IA.', '@isabelamartins', 'profile12.jpg', 'background12.jpg', '1995-05-25'),
+(13, 'André Silva', 'andre.silva@example.com', '2024-11-25 10:00:00', 'hashed_password_13', 'token13', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Desenvolvedor de aplicações web.', '@andresilva', 'profile13.jpg', 'background13.jpg', '1992-04-22'),
+(14, 'Tatiane Costa', 'tatiane.costa@example.com', '2024-11-25 10:00:00', 'hashed_password_14', 'token14', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Especialista em marketing digital.', '@tianecosta', 'profile14.jpg', 'background14.jpg', '1993-10-30'),
+(15, 'Eduardo Almeida', 'eduardo.almeida@example.com', '2024-11-25 10:00:00', 'hashed_password_15', 'token15', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Consultor de TI e segurança da informação.', '@eduardoalmeida', 'profile15.jpg', 'background15.jpg', '1990-12-04'),
+(16, 'Roberta Souza', 'roberta.souza@example.com', '2024-11-25 10:00:00', 'hashed_password_16', 'token16', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Designer UX/UI.', '@robertasouza', 'profile16.jpg', 'background16.jpg', '1992-11-18'),
+(17, 'Renan Lima', 'renan.lima@example.com', '2024-11-25 10:00:00', 'hashed_password_17', 'token17', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Desenvolvedor de jogos e experiências interativas.', '@renanlima', 'profile17.jpg', 'background17.jpg', '1994-03-09'),
+(18, 'Tatiane Rocha', 'tatiane.rocha@example.com', '2024-11-25 10:00:00', 'hashed_password_18', 'token18', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Analista de marketing digital e conteúdo.', '@tianerocha', 'profile18.jpg', 'background18.jpg', '1991-07-17'),
+(19, 'Thiago Pereira', 'thiago.pereira@example.com', '2024-11-25 10:00:00', 'hashed_password_19', 'token19', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Especialista em dados e tecnologia.', '@thiagopereira', 'profile19.jpg', 'background19.jpg', '1990-06-08'),
+(20, 'Simone Oliveira', 'simone.oliveira@example.com', '2024-11-25 10:00:00', 'hashed_password_20', 'token20', '2024-11-25 10:00:00', '2024-11-25 10:00:00', 'Gestora de projetos e consultora de inovação.', '@simoneoliveira', 'profile20.jpg', 'background20.jpg', '1993-09-11');
+
+
+INSERT INTO `products` (`id`, `created_at`, `updated_at`, `Titulo`, `Descricao`, `Valor`, `Id_User`, `project_image`, `removed`)
+VALUES
+(1, '2024-11-25 10:10:00', '2024-11-25 10:10:00', 'Projeto Web - E-commerce', 'Desenvolvimento de plataforma de e-commerce com integração de pagamento e painel administrativo.', 1500.00, 3, 'project_image1.jpg', 0),
+(2, '2024-11-25 10:15:00', '2024-11-25 10:15:00', 'Consultoria de Marketing Digital', 'Consultoria especializada para aumentar a presença online e gerar mais conversões para e-commerces.', 2500.00, 4, 'project_image2.jpg', 0),
+(3, '2024-11-25 10:20:00', '2024-11-25 10:20:00', 'SEO para Sites de Vendas', 'Ajustes e otimizações SEO para melhorar o rankeamento de sites de vendas nos motores de busca.', 1800.00, 5, 'project_image3.jpg', 0),
+(4, '2024-11-25 10:25:00', '2024-11-25 10:25:00', 'Desenvolvimento de App para iOS', 'Aplicativo personalizado para iOS, com design intuitivo e funcionalidades integradas.', 3000.00, 6, 'project_image4.jpg', 0),
+(5, '2024-11-25 10:30:00', '2024-11-25 10:30:00', 'Gerenciamento de Projetos Ágeis', 'Serviço de consultoria para implantar e gerenciar projetos utilizando metodologia ágil (Scrum/Kanban).', 2200.00, 7, 'project_image5.jpg', 0),
+(6, '2024-11-25 10:35:00', '2024-11-25 10:35:00', 'Design de Interface para Apps', 'Criação de interfaces de usuário modernas e amigáveis para aplicativos móveis.', 1300.00, 8, 'project_image6.jpg', 0),
+(7, '2024-11-25 10:40:00', '2024-11-25 10:40:00', 'Desenvolvimento de Jogos Mobile', 'Criação e desenvolvimento de jogos para dispositivos móveis, com gráficos e jogabilidade imersiva.', 4000.00, 9, 'project_image7.jpg', 0),
+(8, '2024-11-25 10:45:00', '2024-11-25 10:45:00', 'Gestão de Redes Sociais', 'Gerenciamento de redes sociais, estratégias de conteúdo e análise de performance para empresas.', 1500.00, 10, 'project_image8.jpg', 0),
+(9, '2024-11-25 10:50:00', '2024-11-25 10:50:00', 'Consultoria em Segurança da Informação', 'Consultoria especializada para auditorias de segurança em sistemas e redes empresariais.', 3500.00, 11, 'project_image9.jpg', 0),
+(10, '2024-11-25 10:55:00', '2024-11-25 10:55:00', 'Criação de Campanha Publicitária', 'Desenvolvimento de campanhas publicitárias para aumentar a visibilidade da sua marca.', 1700.00, 12, 'project_image10.jpg', 0),
+(11, '2024-11-25 11:00:00', '2024-11-25 11:00:00', 'Consultoria para Automação de Processos', 'Soluções de automação de processos para aumentar a eficiência operacional das empresas.', 2900.00, 13, 'project_image11.jpg', 0),
+(12, '2024-11-25 11:05:00', '2024-11-25 11:05:00', 'Desenvolvimento de Sistema de Gestão', 'Criação de sistemas personalizados para gestão de empresas, com integração com ERP e CRM.', 4500.00, 14, 'project_image12.jpg', 0),
+(13, '2024-11-25 11:10:00', '2024-11-25 11:10:00', 'Criação de Website Corporativo', 'Desenvolvimento de websites responsivos e modernos para empresas, com design personalizado.', 2000.00, 15, 'project_image13.jpg', 0),
+(14, '2024-11-25 11:15:00', '2024-11-25 11:15:00', 'Consultoria em UX/UI', 'Consultoria especializada para melhorar a experiência do usuário em sites e aplicativos.', 2300.00, 16, 'project_image14.jpg', 0),
+(15, '2024-11-25 11:20:00', '2024-11-25 11:20:00', 'Desenvolvimento de Software Personalizado', 'Desenvolvimento de softwares sob medida para atender às necessidades específicas da sua empresa.', 5000.00, 17, 'project_image15.jpg', 0),
+(16, '2024-11-25 11:25:00', '2024-11-25 11:25:00', 'Desenvolvimento de Soluções em Nuvem', 'Criação de soluções de TI baseadas em nuvem, com foco em segurança e escalabilidade.', 3700.00, 18, 'project_image16.jpg', 0),
+(17, '2024-11-25 11:30:00', '2024-11-25 11:30:00', 'Consultoria para E-commerce', 'Consultoria estratégica para aumentar a performance e as vendas de lojas virtuais.', 2100.00, 19, 'project_image17.jpg', 0),
+(18, '2024-11-25 11:35:00', '2024-11-25 11:35:00', 'Desenvolvimento de Soluções de IA', 'Implementação de soluções de Inteligência Artificial para empresas, com foco em automação e análise de dados.', 6000.00, 20, 'project_image18.jpg', 0);
+
+INSERT INTO categories (Titulo, Descricao, created_at, updated_at) 
+VALUES
+('Desenvolvimento Web', 'Projetos relacionados ao desenvolvimento de sites e aplicativos web, incluindo front-end e back-end.', NOW(), NOW()),
+('Inteligência Artificial', 'Projetos que envolvem aprendizado de máquina, redes neurais e algoritmos inteligentes.', NOW(), NOW()),
+('Desenvolvimento Móvel', 'Projetos focados em aplicativos móveis para iOS, Android e outras plataformas.', NOW(), NOW()),
+('Banco de Dados', 'Projetos envolvendo criação, otimização e manutenção de bancos de dados relacionais e não relacionais.', NOW(), NOW()),
+('Automação', 'Projetos que envolvem automação de processos, incluindo scripts e robôs para otimização de tarefas repetitivas.', NOW(), NOW()),
+('Segurança da Informação', 'Projetos relacionados à proteção de dados e sistemas, incluindo criptografia, pentest e segurança de redes.', NOW(), NOW()),
+('Desenvolvimento de Jogos', 'Projetos voltados à criação de jogos, incluindo programação gráfica, física e lógica de jogo.', NOW(), NOW()),
+('API e Microservices', 'Projetos que envolvem o desenvolvimento de APIs RESTful, microserviços e arquiteturas distribuídas.', NOW(), NOW()),
+('Computação em Nuvem', 'Projetos que exploram tecnologias de computação em nuvem, como AWS, Azure e Google Cloud.', NOW(), NOW()),
+('Desenvolvimento de Software Open Source', 'Projetos colaborativos de código aberto, focados em criar soluções acessíveis a todos.', NOW(), NOW());

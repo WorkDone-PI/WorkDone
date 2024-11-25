@@ -230,6 +230,33 @@
                                             transform="translate(30)"></path>
                                     </svg>
                                 </a>
+                                @if (!in_array($projeto->id, $favorites))
+                                <form action="{{ route('project.favorite', $projeto->id) }}" method="POST" class="favoritar-form">
+                                    @csrf
+                                    <button type="submit" class="favoritar-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12l5 5l10-10"></path>
+                                        </svg>
+                                        <span>Favoritar</span>
+                                    </button>
+                                </form>
+                                @else
+                                <form action="{{ route('project.favorite', $projeto->id) }}" method="POST" class="favoritar-form">
+                                    @csrf
+                                    <button type="submit" class="favoritar-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12l5 5l10-10"></path>
+                                        </svg>
+                                        <span>Favoritado</span>
+                                    </button>
+                                </form>
+                                @endif
+                                <div class="share-buttons">
+                                    <button class="btn-share" onclick="copiarLink('{{ route('project.show', $projeto->id) }}')">
+                                        <i class="bx bx-link"></i> Compartilhar Link
+                                    </button>
+                                    <span id="link-copiado" style="display:none; color: green;">Link copiado com sucesso!</span>
+                                </div>
                             </div>
                         </div>
                     @endif
@@ -255,6 +282,38 @@
             </div>
         </div>
     </div>
+    <script>
+        function copiarLink(url) {
+            // Cria um campo temporário para copiar o link
+            var campo = document.createElement('input');
+            document.body.appendChild(campo);
+            campo.value = url;
+            campo.select();
+            document.execCommand('copy');
+            document.body.removeChild(campo);
+
+            // Exibe a mensagem de "Link copiado com sucesso!"
+            var mensagem = document.createElement('div');
+            mensagem.textContent = "Link copiado com sucesso!";
+            mensagem.style.position = 'fixed';
+            mensagem.style.bottom = '20px';
+            mensagem.style.left = '50%';
+            mensagem.style.transform = 'translateX(-50%)';
+            mensagem.style.padding = '10px';
+            mensagem.style.backgroundColor = '#4CAF50';
+            mensagem.style.color = '#fff';
+            mensagem.style.borderRadius = '5px';
+            mensagem.style.fontSize = '16px';
+            mensagem.style.zIndex = '9999';
+            document.body.appendChild(mensagem);
+
+            // Fecha a mensagem após 2 segundos
+            setTimeout(function() {
+                mensagem.style.display = 'none';
+            }, 2000);  // A mensagem será ocultada após 3 segundos
+                }
+    </script>
+
 </body>
 
 </html>

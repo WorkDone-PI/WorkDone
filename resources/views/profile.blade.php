@@ -72,13 +72,31 @@
                 <p>Projetos</p>
             </div>
             <div class="stat">
-                <h3>200</h3>
+                <h3>{{ $seguidoresCount }}</h3>
                 <p>Seguidores</p>
             </div>
             <div class="stat">
-                <h3>150</h3>
+                <h3>{{ $seguindoCount }}</h3>
                 <p>Seguindo</p>
             </div>
+        </div>
+        <div class="follow-button">
+            @if(Auth::user()->id != $other_user->id)
+                @if(Auth::user()->following()->where('followed_id', $other_user->id)->exists())
+                    <!-- Já segue, então exibe o botão para deixar de seguir -->
+                    <form action="{{ route('unfollowUser', $other_user->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Deixar de Seguir</button>
+                    </form>
+                @else
+                    <!-- Não segue ainda, então exibe o botão para seguir -->
+                    <form action="{{ route('followUser', $other_user->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Seguir</button>
+                    </form>
+                @endif
+            @endif
         </div>
         <div class="projects-section">
             <h2 class="projects-title">Meus Projetos</h2>

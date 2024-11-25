@@ -33,6 +33,7 @@
                             class="user-photo">
                         <div class="user-details">
                             <h3>{{ $projeto->user->name }}</h3>
+                            <h3>{{$projeto->Titulo}}</h3>
                             <p class="description">
                                 {{ $projeto->Descricao }}
                             </p>

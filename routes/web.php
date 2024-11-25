@@ -29,10 +29,11 @@ Route::get('/register', [UserController::class, 'showFormRegister'])->name('regi
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 
 //Rotas do perfil
-Route::get('/profile', [UserController::class, 'index'])->name('profile')->middleware('auth');
 Route::get('/edit', [UserController::class, 'edit'])->name('edit')->middleware('auth');
 Route::put('/update', [UserController::class, 'update'])->name('update')->middleware('auth');
 Route::get('/profile/{id}', [UserController::class, 'showProfile'])->name('profile.show');
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+
 
 
 //Rotas de Projetos
@@ -78,3 +79,7 @@ Route::get('/projeto/{id}', [ProjetosController::class, 'showProject'])->name('p
 Route::post('/chatbot', [ChatbotController::class, 'respond']);
 Route::get('/chatbot', [ChatbotController::class, 'showChat'])->name('chatbot.show');
 
+Route::post('/project/{id}/favorite', [ProjetosController::class, 'favorite'])->name('project.favorite')->middleware('auth');
+
+Route::post('/follow/{id}', [UserController::class, 'followUser'])->name('followUser');
+Route::delete('/unfollow/{id}', [UserController::class, 'unfollowUser'])->name('unfollowUser');

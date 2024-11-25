@@ -566,3 +566,51 @@ a:visited a:hover a:active {
         width: 100%;
     }
 }
+
+.favoritar-btn {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.favoritar-btn:hover {
+    background: #ddd;
+}
+
+.favoritar-btn svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    stroke: #333;
+}
+
+.share-buttons {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-share {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-share i {
+    margin-right: 5px;
+}
+
+#link-copiado {
+    margin-left: 10px;
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+}

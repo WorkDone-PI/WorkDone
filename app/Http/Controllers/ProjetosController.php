@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -67,8 +68,10 @@ class ProjetosController extends Controller
         $user = Auth::user();
 
         $categories = Category::all();
+        $favorites = Favorite::where('user_id', $user->id)->pluck('product_id')->toArray();
 
-        return view('home', compact('projetos', 'user', 'categories'));
+
+        return view('home', compact('projetos', 'user', 'categories', 'favorites'));
     }
 
 
@@ -247,6 +250,30 @@ class ProjetosController extends Controller
 
         // Retorna a view de detalhes do projeto com as informações necessárias
         return view('project.show', compact('projeto', 'categories'));
+    }
+
+    public function favorite($productId)
+    {
+        $user = Auth::user();  // Obtém o usuário autenticado
+        $product = Product::findOrFail($productId);  // Encontra o projeto
+    
+        // Verifica se o projeto já foi favoritado pelo usuário
+        $existingFavorite = Favorite::where('user_id', $user->id)
+                                    ->where('product_id', $product->id)
+                                    ->first();
+    
+        if ($existingFavorite) {
+            // Se já estiver favoritado, desfavorece
+            $existingFavorite->delete();
+            return back()->with('success', 'Projeto desfavoritado com sucesso!');
+        } else {
+            // Se não estiver favoritado, adiciona aos favoritos
+            Favorite::create([
+                'user_id' => $user->id,
+                'product_id' => $product->id,
+            ]);
+            return back()->with('success', 'Projeto favoritado com sucesso!');
+        }
     }
 
 }

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'arroba',
         'profile_image',
         'background_image',
+        'phone',
     ];
 
     public function products()
@@ -52,7 +53,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /*public function verificaProdutos(){
-        return $this->hasMany(Produtos::class, 'fk_Id_User');
-    }*/
+    public function favoritos()
+    {
+        return $this->belongsToMany(Product::class, 'favoritos', 'user_id', 'product_id');
+    }
+
+    public function followers()
+    {
+        return $this->hasMany(Follower::class, 'user_id');
+    }
+
+    public function following()
+    {
+        return $this->hasMany(Follower::class, 'follower_id');
+    }
 }
