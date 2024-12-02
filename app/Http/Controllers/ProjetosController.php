@@ -38,38 +38,34 @@ class ProjetosController extends Controller
                     });
             });
         }
-
         if ($request->has('category') && $request->category != '') {
             $query->whereHas('categories', function ($q) use ($request) {
                 $q->where('categories.id', $request->category)
                     ->orWhere('categories.parent_id', $request->category);
             });
         }
-
         if ($request->has('subcategory') && $request->subcategory != '') {
             $query->whereHas('categories', function ($q) use ($request) {
                 $q->where('categories.id', $request->subcategory)
                     ->orWhere('categories.parent_id', $request->subcategory);
             });
         }
-
         if ($request->has('price_order') && in_array($request->price_order, ['asc', 'desc'])) {
             $query->orderBy('Valor', $request->price_order);
         }
-
         if ($request->has('date_order') && in_array($request->date_order, ['asc', 'desc'])) {
             $query->orderBy('created_at', $request->date_order);
         } else {
             $query->orderBy('created_at', 'desc');
         }
-
         $projetos = $query->paginate(10);
-
         $user = Auth::user();
-
         $categories = Category::all();
-        $favorites = Favorite::where('user_id', $user->id)->pluck('product_id')->toArray();
 
+        $favorites = [];
+        if ($user) {
+            $favorites = Favorite::where('user_id', $user->id)->pluck('product_id')->toArray();
+        }
 
         return view('home', compact('projetos', 'user', 'categories', 'favorites'));
     }

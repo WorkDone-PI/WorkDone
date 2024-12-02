@@ -149,15 +149,29 @@ class UserController extends Controller
         $usuario_autenticado = $user->id == $other_user->id;
 
         $seguidoresCount = Follower::where('followed_id', $other_user->id)->count();
-
         $seguindoCount = Follower::where('follower_id', $other_user->id)->count();
 
         // Recuperar os projetos desse usuário
         $projetos = Product::where('Id_User', $other_user->id)->where('removed', 0)->get();
 
-        // Retornar a view com os dados do usuário e seus projetos
-        return view('profile', ['user' => $user, 'other_user' => $other_user, 'usuario_autenticado' => $usuario_autenticado, 'projetos' => $projetos, 'seguidoresCount' => $seguidoresCount,
-        'seguindoCount' => $seguindoCount]);
+        // Obter os usuários que o outro usuário está seguindo
+        $seguindo = Follower::where('follower_id', $other_user->id)
+                            ->join('users', 'users.id', '=', 'followers.followed_id')
+                            ->select('users.id', 'users.name', 'users.profile_image')
+                            ->get();
+
+        $favorites = $user->favorites()->get();
+
+        return view('profile', [
+            'user' => $user,
+            'other_user' => $other_user,
+            'usuario_autenticado' => $usuario_autenticado,
+            'projetos' => $projetos,
+            'seguidoresCount' => $seguidoresCount,
+            'seguindoCount' => $seguindoCount,
+            'seguindo' => $seguindo,
+            'favorites' => $favorites
+        ]);
     }
 
     public function followUser($id)

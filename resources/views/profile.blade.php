@@ -7,6 +7,47 @@
     <link rel="shortcut icon" href="{{ asset('img/WK.png') }}" type="Favicon_Image_Location">
     <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
     <title>WorkDone | {{ $user->name }}</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #followingList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #followingList li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,11 +67,17 @@
                         @endif
                     </a>
                 </div>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="dropdown-item" id="logout">Logout</button> 
+                </form>
                 <div class="dropdown-menu">
-                    @if (Auth::id() == $user->id)
-                        <a href="{{ route('edit') }}" class="dropdown-item">Editar Perfil</a>
-                        <a href="{{ route('logout') }}" class="dropdown-item" id="logout">Logout</a>
-                    @endif
+                    
+                        @if (Auth::id() == $user->id)
+                            <a href="{{ route('edit') }}" class="dropdown-item">Editar Perfil</a>
+                                                  
+                        @endif
+                    
                 </div>
             </div>
         </div>
@@ -43,7 +90,7 @@
             </div>
             @if ($usuario_autenticado)
                 @if($user->profile_image)
-                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="">
+                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto de Perfil">
                 @else
                     <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                 @endif
@@ -54,7 +101,7 @@
             </div>
             @else
                 @if($user->profile_image)
-                    <img src="{{ asset('storage/' . $other_user->profile_image) }}" alt="">
+                    <img src="{{ asset('storage/' . $other_user->profile_image) }}" alt="Default Profile Image">
                 @else
                     <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
                 @endif
@@ -80,53 +127,63 @@
                 <p>Seguindo</p>
             </div>
         </div>
+
         <div class="follow-button">
             @if(Auth::user()->id != $other_user->id)
                 @if(Auth::user()->following()->where('followed_id', $other_user->id)->exists())
                     <!-- Já segue, então exibe o botão para deixar de seguir -->
-                    <form action="{{ route('unfollowUser', $other_user->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Deixar de Seguir</button>
-                    </form>
+                    <div class="stat">
+                        <form action="{{ route('unfollowUser', $other_user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Deixar de Seguir</button>
+                        </form>
+                    </div>
                 @else
                     <!-- Não segue ainda, então exibe o botão para seguir -->
-                    <form action="{{ route('followUser', $other_user->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">Seguir</button>
-                    </form>
+                    <div class="stat">
+                        <form action="{{ route('followUser', $other_user->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Seguir</button>
+                        </form>
+                    </div>
                 @endif
+                <div class="stat">
+                    <button id="viewFollowingBtn" class="btn btn-secondary">Ver Seguindo</button>
+                </div>
             @endif
         </div>
+
+        <!-- Modal: Lista de pessoas que o usuário está seguindo -->
+        <div id="followingModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Pessoas que você está seguindo</h3>
+                <ul id="followingList"> </ul>
+            </div>
+        </div>
+
         <div class="projects-section">
             <h2 class="projects-title">Meus Projetos</h2>
             <div class="projects-container">
                 @foreach($projetos as $projeto)
                     @if($projeto->removed == 0)
                         <div class="project-card">
-
                             @if($projeto->project_image)
                                 <img src="{{ asset('storage/' . $projeto->project_image) }}" alt="Imagem do Projeto">
                             @else
                                 <img src="https://via.placeholder.com/480x320" alt="Imagem Padrão do Projeto">
                             @endif
-
                             <h4>{{ $projeto->Titulo }}</h4>
-
                             <p>{{ $projeto->Descricao }}</p>
-
-                            <small>Adicionado em
-                                {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}</small>
-
+                            <small>Adicionado em {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}</small>
                             <p><strong>Preço:</strong> R$ {{ number_format($projeto->Valor, 2, ',', '.') }}</p>
-
                             <strong>Categorias:</strong>
                             <ul>
                                 @foreach($projeto->categories as $category)
                                     <li>{{ $category->Titulo }}</li>
                                 @endforeach
                             </ul>
-
                             @if ($usuario_autenticado)
                                 <a href="{{ route('editProject', $projeto->id) }}" class="btn btn-primary">Editar Projeto</a>
                                 <a href="{{ route('deleteProject', $projeto->id) }}" class="btn btn-secundary">Remover Projeto</a>
@@ -138,37 +195,72 @@
                 @endforeach
             </div>
         </div>
-
-        <!--<div class="profile-actions">
-                    <a href="{{ route('edit') }}" class="btn btn-primary">Editar Perfil</a>
-                    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </form>
-                    <a href="{{ route('chatbot.show') }}" class="btn btn-primary">Suporte</a>
-                </div>-->
+        @if ($usuario_autenticado)
+            <div class="projects-section">
+                <h2 class="projects-title">Projetos Favoritos</h2>
+                <div class="projects-container">
+                    @foreach($favorites as $favorito)
+                        <div class="project-card">
+                            <img src="{{ asset('storage/' . $favorito->project_image ?? 'https://via.placeholder.com/480x320') }}" alt="Imagem do Projeto">
+                            <h4>{{ $favorito->Titulo }}</h4>
+                            <p>{{ $favorito->Descricao }}</p>
+                            <small>Favoritado em {{ $favorito->created_at->diffForHumans() }}</small>
+                            <p><strong>Preço:</strong> R$ {{ number_format($favorito->Valor, 2, ',', '.') }}</p>
+                            <a href="{{ route('project.show', $favorito->id) }}" class="btn btn-primary">Ver Projeto</a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const profilePhoto = document.querySelector('.profile-photo');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
+        const followingButton = document.getElementById('viewFollowingBtn');
+        const modal = document.getElementById('followingModal');
+        const closeModal = document.querySelector('.close');
+        const followingList = document.getElementById('followingList');
 
-            if (profilePhoto && dropdownMenu) {
-                profilePhoto.addEventListener('click', function (event) {
-                    // Impede a propagação do clique
-                    event.stopPropagation();
-                    dropdownMenu.classList.toggle('show');
-                });
+        // Passando os seguidores como um array para o JavaScript (agora os usuários que o outro está seguindo)
+        const followingArray = @json($seguindo);
 
-                // Fecha o dropdown se clicar em qualquer lugar fora dele
-                document.addEventListener('click', function (event) {
-                    if (!profilePhoto.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                        dropdownMenu.classList.remove('show');
-                    }
-                });
-            }
+        // Abrir o modal quando clicar no botão "Seguindo"
+        followingButton.addEventListener('click', function () {
+            modal.style.display = "block";
+
+            // Limpar a lista antes de adicionar os novos itens
+            followingList.innerHTML = '';
+
+            // Preencher a lista de pessoas que o outro usuário está seguindo
+            followingArray.forEach(function(following) {
+                const listItem = document.createElement('li');
+                listItem.textContent = following.name;
+
+                // Caso o usuário tenha uma imagem de perfil, exiba ela também
+                const img = document.createElement('img');
+                img.src = following.profile_image ? "{{ asset('storage/') }}" + '/' + following.profile_image : "{{ asset('img/avatar.png') }}";
+                img.alt = "Imagem de Perfil";
+                img.style.width = "40px";
+                img.style.height = "40px";
+                img.style.borderRadius = "50%";
+                listItem.prepend(img); // Adiciona a imagem antes do nome
+
+                followingList.appendChild(listItem);
+            });
         });
 
+        // Fechar o modal quando clicar no "X"
+        closeModal.addEventListener('click', function () {
+            modal.style.display = "none";
+        });
+
+        // Fechar o modal se o usuário clicar fora da área do modal
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
     </script>
 </body>
 
