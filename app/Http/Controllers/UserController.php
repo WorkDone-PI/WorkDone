@@ -161,6 +161,8 @@ class UserController extends Controller
                             ->get();
 
         $favorites = $user->favorites()->get();
+        $like = $user->like()->get();
+
 
         return view('profile', [
             'user' => $user,
@@ -211,4 +213,5 @@ class UserController extends Controller
 
         return redirect()->back()->with('error', 'Você não segue esse usuário.');
     }
+
 }

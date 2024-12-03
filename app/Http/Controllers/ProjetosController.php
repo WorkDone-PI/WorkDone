@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Favorite;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -270,6 +271,17 @@ class ProjetosController extends Controller
             ]);
             return back()->with('success', 'Projeto favoritado com sucesso!');
         }
+    }
+
+    public function like($productId)
+    {
+        $user = Auth::user();
+        $product = Product::findOrFail($productId);
+    
+        // Obtém os likes do usuário para o produto
+        $likes = Like::where('user_id', $user->id)->pluck('product_id')->toArray();
+    
+        return view('home.blade.php', compact('product', 'likes'));
     }
 
 }

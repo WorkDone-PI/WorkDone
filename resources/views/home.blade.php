@@ -251,6 +251,27 @@
                                     </button>
                                 </form>
                                 @endif
+                                @if (!in_array($projeto->id, $likes)) <!-- Use $product em vez de $projeto -->
+                                    <form action="{{ route('project.like', $product->id) }}" method="POST" class="like-form">
+                                        @csrf
+                                        <button type="submit" class="like-btn">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12l5 5l10-10"></path>
+                                            </svg>
+                                            <span>Like</span>
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('project.like', $product->id) }}" method="POST" class="like-form">
+                                        @csrf
+                                        <button type="submit" class="favoritar-btn">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12l5 5l10-10"></path>
+                                            </svg>
+                                            <span>Like</span>
+                                        </button>
+                                    </form>
+                                @endif
                                 <div class="share-buttons">
                                     <button class="btn-share" onclick="copiarLink('{{ route('project.show', $projeto->id) }}')">
                                         <i class="bx bx-link"></i> Compartilhar Link

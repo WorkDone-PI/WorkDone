@@ -586,6 +586,25 @@ a:visited a:hover a:active {
     stroke: #333;
 }
 
+.like-btn {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.like-btn:hover {
+    background: #ddd;
+}
+
+.like-btn svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    stroke: #333;
+}
+
 .share-buttons {
     margin-top: 10px;
     display: flex;

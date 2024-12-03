@@ -79,7 +79,12 @@ Route::get('/projeto/{id}', [ProjetosController::class, 'showProject'])->name('p
 Route::post('/chatbot', [ChatbotController::class, 'respond']);
 Route::get('/chatbot', [ChatbotController::class, 'showChat'])->name('chatbot.show');
 
+//Rota de Favoritar
 Route::post('/project/{id}/favorite', [ProjetosController::class, 'favorite'])->name('project.favorite')->middleware('auth');
 
+//Rota de Seguir
 Route::post('/follow/{id}', [UserController::class, 'followUser'])->name('followUser');
 Route::delete('/unfollow/{id}', [UserController::class, 'unfollowUser'])->name('unfollowUser');
+
+//Rota de Like
+Route::post('/project/{id}/like', [ProjetosController::class, 'like'])->name('project.like')->middleware('auth');
