@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -8,47 +8,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
     <title>WorkDone | {{ $user->name }}</title>
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        #followingList {
-            list-style-type: none;
-            padding: 0;
-        }
-        #followingList li {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
 </head>
 
 <body>
@@ -86,9 +45,15 @@
 
     <div class="profile-container">
         <div class="profile-header">
+            @if ($usuario_autenticado)
             <div class="profile-background"
                 style="background-image: url('{{ asset('storage/' . $user->background_image) }}');">
             </div>
+            @else
+            <div class="profile-background"
+                style="background-image: url('{{ asset('storage/' . $other_user->background_image) }}');">
+            </div>
+            @endif
             @if ($usuario_autenticado)
                 @if($user->profile_image)
                     <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Foto de Perfil">
