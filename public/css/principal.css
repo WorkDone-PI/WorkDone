@@ -348,6 +348,8 @@ main {
 .empty_image {
     width: 50%;
     mix-blend-mode: darken;
+    height: auto; 
+    border-radius: 0;
 }
 
 /* Nova classe para a paginação */
@@ -542,22 +544,88 @@ a:visited a:hover a:active {
 }
 
 @media (max-width: 768px) {
-    .navbar .logo a {
-        font-size: 24px;
-        /* Logo menor */
+    /* Ajustes gerais para celulares */
+
+    body{
+        overflow: auto;
     }
 
-    .search-bar input[type="search"] {
-        width: 25vw;
+    .left {
+        display: flex; /* Garante flexibilidade no layout */
+        flex-direction: column; /* Empilha os itens */
+        width: 100%; /* Ocupa toda a largura da tela */
+        margin: 0 auto; /* Centraliza o bloco */
+    }
+
+    .left .sidebar,
+    .left .profile {
+        width: 100%; /* Ocupa toda a largura da tela */
+        margin-bottom: 1rem; /* Adiciona espaçamento entre os elementos */
+        padding: 1rem; /* Adiciona espaço interno para conteúdo */
+        box-sizing: border-box; /* Garante que padding não ultrapasse a largura */
+    }
+
+    /* Elementos gerais */
+    .container {
+        grid-template-columns: 1fr; /* Reduz colunas para apenas uma */
+        row-gap: 2rem; /* Espaçamento entre as linhas */
+    }
+
+    .right {
+        display: none; /* Oculta mensagens em telas menores */
+    }
+
+    /* Navbar */
+    .navbar .logo a {
+        font-size: 22px; /* Reduz tamanho do logo */
+        text-align: center; /* Centraliza o logo */
     }
 
     .navbar .create {
-        gap: 0.5rem;
+        gap: 0.5rem; /* Reduz espaçamento entre os elementos */
+        justify-content: center; /* Alinha elementos no centro */
     }
 
+    /* Barra de pesquisa */
+    .search-bar input[type="search"] {
+        width: 90%; /* Preenche a maior parte da tela */
+        font-size: 0.8rem; /* Reduz a fonte */
+        margin: 0 auto; /* Centraliza o campo de busca */
+    }
+
+    /* Feeds */
     .middle .feeds .feed {
-        margin: 0rem 2rem 1rem;
-        width: 80%;
+        margin: 0.5rem auto; /* Centraliza os feeds */
+        width: 100%; /* Faz com que ocupem toda a largura */
+        max-width: 100%; /* Evita que excedam a largura */
+    }
+
+    /* Container principal */
+    .container {
+        display: grid; /* Garante o uso de grid */
+        grid-template-columns: 1fr; /* Reduz para uma coluna */
+        row-gap: 2rem; /* Espaçamento entre linhas */
+        padding: 1rem; /* Espaçamento interno */
+    }
+
+    /* Barra lateral e perfil */
+    .left .sidebar,
+    .left .profile {
+        width: 100%; /* Ocupa toda a largura */
+        margin-bottom: 1rem; /* Espaçamento inferior */
+    }
+
+    /* Ocultar elementos desnecessários */
+    .right {
+        display: none; /* Esconde mensagens em telas pequenas */
+    }
+
+    /* Paginação */
+    .pagination {
+        display: flex; /* Garante alinhamento flexível */
+        flex-wrap: wrap; /* Permite quebra de linha */
+        gap: 0.5rem; /* Espaçamento entre itens */
+        justify-content: center; /* Centraliza os itens */
     }
 }
 

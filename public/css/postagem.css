@@ -271,3 +271,87 @@ button{
     border: 1px solid white;
     font-weight: 600;
 }
+
+@media (max-width: 1024px) {
+    .navbar {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .navbar .logo a {
+        font-size: 28px;
+    }
+
+    .navbar .create {
+        margin-top: 10px;
+    }
+
+    .search-bar input[type="search"] {
+        width: 50vw;
+    }
+}
+
+@media (max-width: 950px) {
+    .formPostagem {
+        width: 90%;
+        top: var(--sticky-top-left);
+        padding: 20px;
+        margin: 0 10px;
+    }
+
+    .formPostagem form .fields {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .formPostagem form .fields .input-field {
+        width: 100%;
+    }
+
+    .input-field textarea#desc {
+        width: 100%;
+    }
+
+    .input-field input,
+    .input-field select {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .navbar .logo a {
+        font-size: 20px;
+    }
+
+    .formPostagem {
+        padding: 15px;
+    }
+
+    .formPostagem header {
+        font-size: 18px;
+    }
+
+    .input-field label {
+        font-size: 14px;
+    }
+
+    .input-field input,
+    .input-field select,
+    .input-field textarea#desc {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 10px;
+    }
+}

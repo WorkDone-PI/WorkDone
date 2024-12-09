@@ -333,3 +333,103 @@ img {
     transform: translateX(-56px);
   }
   
+@media screen and (max-width: 768px) {
+    .navbar {
+        
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .navbar .logo a {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: var(--btn-padding);
+        font-size: 0.8rem;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    .formPostagem {
+        width: 90%;
+        margin: 100px auto;
+        padding: 15px;
+    }
+
+    .details .title {
+        font-size: 16px;
+    }
+
+    .fields {
+        grid-template-columns: 1fr; 
+        gap: 15px;
+    }
+
+    .input-field label {
+        font-size: 12px;
+    }
+
+    .input-field input,
+    .input-field textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .profile-preview {
+        width: 60px;
+        height: 60px;
+    }
+
+    .imagem-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .buttons_submit {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar .logo a {
+        font-size: 24px;
+    }
+
+    .formPostagem header {
+        font-size: 20px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.7rem;
+    }
+
+    .details .title {
+        font-size: 14px;
+    }
+
+    .fields {
+        gap: 10px;
+    }
+
+    .input-field input,
+    .input-field textarea {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .profile-preview {
+        width: 50px;
+        height: 50px;
+    }
+}
