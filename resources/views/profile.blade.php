@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('img/WK.png') }}" type="Favicon_Image_Location">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
     <title>WorkDone | {{ $user->name }}</title>
     <style>
@@ -69,7 +70,7 @@
                 </div>
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                     @csrf
-                    <button type="submit" class="dropdown-item" id="logout">Logout</button> 
+                    <button type="submit" class="dropdown-item" id="logout"><i class='bx bx-log-out'></i></button> 
                 </form>
                 <div class="dropdown-menu">
                     
@@ -196,21 +197,7 @@
             </div>
         </div>
         @if ($usuario_autenticado)
-            <div class="projects-section">
-                <h2 class="projects-title">Projetos Favoritos</h2>
-                <div class="projects-container">
-                    @foreach($favorites as $favorito)
-                        <div class="project-card">
-                            <img src="{{ asset('storage/' . $favorito->project_image ?? 'https://via.placeholder.com/480x320') }}" alt="Imagem do Projeto">
-                            <h4>{{ $favorito->Titulo }}</h4>
-                            <p>{{ $favorito->Descricao }}</p>
-                            <small>Favoritado em {{ $favorito->created_at->diffForHumans() }}</small>
-                            <p><strong>Preço:</strong> R$ {{ number_format($favorito->Valor, 2, ',', '.') }}</p>
-                            <a href="{{ route('project.show', $favorito->id) }}" class="btn btn-primary">Ver Projeto</a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+            
         @endif
     </div>
 

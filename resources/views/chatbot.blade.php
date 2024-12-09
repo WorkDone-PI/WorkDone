@@ -36,7 +36,6 @@
                 </div>
             </div>
             <div class="bottom-section">
-                <i class='bx bxs-camera'></i>
                 <input type="text" id="message" placeholder="Digite sua mensagem..." />
                 <button onclick="sendMessage()">Enviar
                     <i class='bx bxs-send'></i>
@@ -47,11 +46,12 @@
     <script>
         const menuToggle = document.querySelector('.menuToggle');
         menuToggle.onclick = function() {
-            menuToggle.classList.toggle('active')
+            menuToggle.classList.toggle('active');
         }
 
         async function sendMessage() {
             const message = document.getElementById('message').value;
+            if (!message.trim()) return; // Evita enviar mensagens vazias
             const response = await fetch('/chatbot', {
                 method: 'POST',
                 headers: {
@@ -84,8 +84,13 @@
 
             const chatSection = document.getElementById('chat');
             chatSection.scrollTop = chatSection.scrollHeight;
-
         }
+
+        document.getElementById('message').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
     </script>
 </body>
 </html>

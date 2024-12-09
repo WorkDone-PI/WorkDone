@@ -14,17 +14,8 @@
     <nav>
         <div class="navbar">
             <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
-            <div class="search-bar">
-                <i class='bx bx-search-alt'></i>
-                <input type="search" name="" id="" placeholder="Pesquise por projetos, pessoas e filtros...">
-            </div>
             <div class="create">
-                <a href="{{ route('home') }}" class="btn btn-primary">voltar</a>
-                <div class="profile-photo">
-                    <a href="{{ route('profile') }}">
-
-                    </a>
-                </div>
+                <a href="{{ route('home') }}" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </nav>
@@ -81,9 +72,8 @@
                     </div>
                 </div>
             </div>
-            <button type="submit">Atualizar<box-icon name='paper-plane' type='solid'
+            <button type="submit" style="background-color:black">Atualizar<box-icon name='paper-plane' type='solid'
                     color='#ffffff'></box-icon></button>
-            <a href=" {{ route('profile') }} " class="btn btn-primary">Voltar</a>
         </form>
 
     </div>

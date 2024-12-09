@@ -60,6 +60,7 @@ nav {
 
 .profile-photo {
     overflow: hidden;
+    margin-right: 3vh;
 }
 
 img {
@@ -81,7 +82,6 @@ img {
 
 .btn:hover {
     opacity: 0.8;
-    ;
 }
 
 .btn-primary {
@@ -251,6 +251,7 @@ main {
     margin-bottom: 1rem;
     display: flex;
     gap: 1rem;
+    justify-content: space-between;
 }
 
 .middle .feed .photo {
@@ -575,10 +576,6 @@ a:visited a:hover a:active {
     transition: background-color 0.3s ease;
 }
 
-.favoritar-btn:hover {
-    background: #ddd;
-}
-
 .favoritar-btn svg {
     width: 18px;
     height: 18px;
@@ -586,17 +583,6 @@ a:visited a:hover a:active {
     stroke: #333;
 }
 
-.like-btn {
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.like-btn:hover {
-    background: #ddd;
-}
 
 .like-btn svg {
     width: 18px;
@@ -605,31 +591,59 @@ a:visited a:hover a:active {
     stroke: #333;
 }
 
-.share-buttons {
-    margin-top: 10px;
+.share-save{
     display: flex;
-    align-items: center;
+    flex-direction: row;
 }
 
 .btn-share {
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 10px;
+    background-color: white; 
     border: none;
-    border-radius: 5px;
+    border-radius: 50%; 
     cursor: pointer;
-    font-size: 16px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-.btn-share i {
-    margin-right: 5px;
+.share-icon {
+    width: 24px; 
+    height: 24px;
 }
 
 #link-copiado {
-    margin-left: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40px; 
     font-size: 14px;
-    color: green;
+    color: #28a745; 
     font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s ease-out; 
+}
+
+#link-copiado.show {
+    opacity: 1; 
+}
+
+
+.descricao {
+    word-wrap: break-word;
+}
+
+.favoritar-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.favoritar-btn img {
+    width: 50px; 
+    height: 50px; 
+    display: block;
 }

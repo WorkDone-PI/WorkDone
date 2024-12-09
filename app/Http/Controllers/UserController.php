@@ -161,7 +161,7 @@ class UserController extends Controller
                             ->get();
 
         $favorites = $user->favorites()->get();
-        $like = $user->like()->get();
+        //$like = $user->like()->get();
 
 
         return view('profile', [

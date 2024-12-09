@@ -188,21 +188,52 @@
                         <div class="feed">
                             <div class="head">
                                 <div class="user">
-                                    <div class="profile-photo">
-                                        @if($projeto->user && $projeto->user->profile_image)
-                                            <img src="{{ asset('storage/' . $projeto->user->profile_image) }}" alt="Profile Image">
-                                        @else
-                                            <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
-                                        @endif
-                                    </div>
-                                    <div class="ingo">
-                                        <h3>{{ $projeto->Titulo }}</h3>
-                                        <small>Adicionado em
-                                            {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
-                                            |</small>
+                                    <div style="display: flex;">
+                                        <div class="profile-photo">
+                                            @if($projeto->user && $projeto->user->profile_image)
+                                                <img src="{{ asset('storage/' . $projeto->user->profile_image) }}"
+                                                    alt="Profile Image">
+                                            @else
+                                                <img src="{{ asset('img/avatar.png') }}" alt="Default Profile Image">
+                                            @endif
+                                        </div>
+                                        <div class="ingo">
+                                            <h3>{{ $projeto->Titulo }}</h3>
+                                            <small>Adicionado em
+                                                {{ $projeto->created_at->setTimezone('America/Sao_Paulo')->diffForHumans() }}
+                                                |</small>
                                             <a href="{{ route('profile.show', $projeto->user->id) }}">
                                                 <small>Desenvolvido por: {{ $projeto->user->name ?? 'Desconhecido' }}</small>
                                             </a>
+                                        </div>
+                                    </div>
+                                    <div class="share-save">
+                                        @if (!in_array($projeto->id, $favorites))
+                                            <form action="{{ route('project.favorite', $projeto->id) }}" method="POST"
+                                                class="favoritar-form">
+                                                @csrf
+                                                <button type="submit" class="favoritar-btn">
+                                                    <img src="{{ asset('img/save.png') }}" alt="Favoritar">
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('project.favorite', $projeto->id) }}" method="POST"
+                                                class="favoritar-form">
+                                                @csrf
+                                                <button type="submit" class="favoritar-btn">
+                                                    <img src="{{ asset('img/saved.png') }}" alt="Favoritado">
+                                                </button>
+                                            </form>
+                                        @endif
+
+
+                                        <div class="share-buttons">
+                                            <button class="btn-share"
+                                                onclick="copiarLink('{{ route('project.show', $projeto->id) }}')">
+                                                <img src="{{ asset('img/share.png') }}" alt="Compartilhar" class="share-icon">
+                                            </button>
+                                            <span id="link-copiado" style="display:none;">Link copiado com sucesso!</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="descricao">
@@ -230,54 +261,6 @@
                                             transform="translate(30)"></path>
                                     </svg>
                                 </a>
-                                @if (!in_array($projeto->id, $favorites))
-                                <form action="{{ route('project.favorite', $projeto->id) }}" method="POST" class="favoritar-form">
-                                    @csrf
-                                    <button type="submit" class="favoritar-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12l5 5l10-10"></path>
-                                        </svg>
-                                        <span>Favoritar</span>
-                                    </button>
-                                </form>
-                                @else
-                                <form action="{{ route('project.favorite', $projeto->id) }}" method="POST" class="favoritar-form">
-                                    @csrf
-                                    <button type="submit" class="favoritar-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12l5 5l10-10"></path>
-                                        </svg>
-                                        <span>Favoritado</span>
-                                    </button>
-                                </form>
-                                @endif
-                                @if (!in_array($projeto->id, $likes)) <!-- Use $product em vez de $projeto -->
-                                    <form action="{{ route('project.like', $product->id) }}" method="POST" class="like-form">
-                                        @csrf
-                                        <button type="submit" class="like-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M5 12l5 5l10-10"></path>
-                                            </svg>
-                                            <span>Like</span>
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('project.like', $product->id) }}" method="POST" class="like-form">
-                                        @csrf
-                                        <button type="submit" class="favoritar-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M5 12l5 5l10-10"></path>
-                                            </svg>
-                                            <span>Like</span>
-                                        </button>
-                                    </form>
-                                @endif
-                                <div class="share-buttons">
-                                    <button class="btn-share" onclick="copiarLink('{{ route('project.show', $projeto->id) }}')">
-                                        <i class="bx bx-link"></i> Compartilhar Link
-                                    </button>
-                                    <span id="link-copiado" style="display:none; color: green;">Link copiado com sucesso!</span>
-                                </div>
                             </div>
                         </div>
                     @endif
@@ -329,10 +312,10 @@
             document.body.appendChild(mensagem);
 
             // Fecha a mensagem após 2 segundos
-            setTimeout(function() {
+            setTimeout(function () {
                 mensagem.style.display = 'none';
             }, 2000);  // A mensagem será ocultada após 3 segundos
-                }
+        }
     </script>
 
 </body>

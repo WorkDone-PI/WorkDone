@@ -54,56 +54,57 @@ class ChatbotController extends Controller
             return $this->handleFAQResponse($message);
         }
 
-        if ($this->containsKeywords($message, ['perfil'])) {
+        if ($this->containsKeywords($message, ['perfil', 'indentidade', 'perfiu', 'perfio','prfil', 'perfilh', 'perfíl', 'pehrfil', 'perfell', 'perfilo', 'perfill' ])) {
             return $this->handleProfileIssues($message);
         }
 
-        if ($this->containsKeywords($message, ['projeto'])) {
+        if ($this->containsKeywords($message, ['projeto','progeto', 'projeto', 'projheto', 'projeto', 'proieto', 'projito', 'proeto', 'projto', 'projjeto', 'projtoh'])) {
             return $this->handleProjectIssues();
         }
 
         switch (true) {
-            case $this->containsKeywords($message, ['senha']):
+            case $this->containsKeywords($message, ['senha','senhaa', 'cenha','sennha', 'senah', 'seha', 'senh', 'sena', 'senhaa', 'xenha', 'zenha']):
                 return $this->handlePasswordIssue();
 
-            case $this->containsKeywords($message, ['duvida', 'frequente']):
+            case $this->containsKeywords($message, [ 'duvida', 'dúvida', 'duvda', 'duvia', 'duvída', 'duvda','duvidaa', 'dúvidaa','dvuida', 'frequente', 'frequênt', 'frekente', 'frequnte', 'frekquente', 'frequênte','frequent', 'frequeti', 'frequeti', 'freqeunte', 'frekente']):
                 $this->awaitingFAQResponse = true;
                 return $this->handleFAQ();
 
-            case $this->containsKeywords($message, ['sair']):
+            case $this->containsKeywords($message, ['sair', 'saiir', 'sairr', 'sairh', 'sai', 'sairi', 'xair', 'sairrr', 'sairre', 'saer', 'zair']):
                 return 'Entendo que deseja sair do suporte. Se precisar de ajuda novamente, estaremos aqui para ajudar! Até logo.';
 
-            case $this->containsKeywords($message, ['vendedor']):
+            case $this->containsKeywords($message, ['vendedor', 'vendedorr', 'vendedorh', 'vendendor', 'venddor', 'vendedo', 'vendador', 'vnededor', 'vendedoor', 'vededor', 'vendeder', 'venddedor'
+            ]):                
                 return $this->handleContactSeller();
 
-            case $this->containsKeywords($message, ['suporte','profissional']):
+            case $this->containsKeywords($message, ['suporte', 'supote','sopurte', 'suport', 'supprte', 'profissional', 'profisional', 'profissionall', 'profecional', 'profissionall', 'proficional']):
                 return $this->handleSupport();
 
-            case $this->containsKeywords($message, ['email']):
+            case $this->containsKeywords($message, ['email', 'emial', 'e-mail', 'emil', 'emaill', 'imeil', 'eimal', 'eimail', 'emeil', 'emaiil']):
                 return $this->handleEmailIssue();
                 
-            case $this->containsKeywords($message, ['seguidores','seguindo']):
+            case $this->containsKeywords($message, ['seguidores', 'segidores', 'seguidoress', 'seeguidore', 'seeguidores', 'seguindo', 'segindo', 'seguiindo', 'seeguiindo', 'seguiindo']):
                 return $this->handleFollowIssue();  
 
-            case $this->containsKeywords($message, ['numero de contato', 'telefone']):
+            case $this->containsKeywords($message, [    'numero de contato', 'número de contato', 'numero contato', 'numero d contato', 'numerodecontato', 'telefone', 'telefhone', 'telefoone', 'teelefone', 'telefonee']):
                 return $this->handleTelefoneIssue();  
 
-            case $this->containsKeywords($message, ['publicar', 'postar']):
+            case $this->containsKeywords($message, [    'publicar', 'publicar', 'publikar', 'publcar', 'publcar', 'postar','postarr', 'pstar', 'posttar', 'posstar']):
                 return $this->handlePublicarIssue(); 
 
-            case $this->containsKeywords($message, ['atualizar']):
+            case $this->containsKeywords($message, [    'atualizar', 'atualisar', 'atualizer', 'atualizarr', 'atulizar', 'atulizar']):
                 return $this->handleUpdateProjectIssue();  
 
-            case $this->containsKeywords($message, ['deletar','apagar']):
+            case $this->containsKeywords($message, [    'deletar', 'deletarr', 'deletaar', 'delettar', 'deleta', 'apagar', 'apagaar', 'apaggar', 'appagar', 'apagaarr']):
                 return $this->handleDeleteProjectIssue();
 
-            case $this->containsKeywords($message, ['excluir']):
+            case $this->containsKeywords($message, ['excluir', 'escluir', 'exluir', 'exccluir', 'excluirr', 'excluirr']):
                 return $this->handleDeleteAccountIssue();
 
-            case $this->containsKeywords($message, ['visualizar','ver']):
+            case $this->containsKeywords($message, [    'visualizar', 'visulizar', 'vizualizar', 'visualisar', 'visalizar', 'ver', 'vee', 'verr', 'veer', 'vver']):
                 return $this->handleVisuIssue();  
 
-            case $this->containsKeywords($message, ['obrigado']):
+            case $this->containsKeywords($message, [    'obrigado', 'brigado', 'orbigado', 'obrigadoo', 'obrigaddo', 'origado', 'obridago', 'obriigado', 'obrrigado', 'obrgado']):
                 return $this->handleThanksIssue();
 
             default:
@@ -142,25 +143,25 @@ class ChatbotController extends Controller
     }
     private function handleUpdateProjectIssue()
     {
-        return 'Você está enfrentando problemas ao editar seu conteúdo. Certifique-se de que a página está carregada corretamente e sua conexão está estável.';
+        return 'Você está enfrentando problemas ao editar seu conteúdo. Certifique-se de que a página está carregada corretamente e sua conexão está estável, verifique se todos os campos estão preenchidos corretamente e espere a página carregar por completo.';
     }
     private function handlePublicarIssue()
     {
-        return 'Você está enfrentando problemas ao publicar seu conteúdo. Tente novamente mais tarde e verifique sua conexão de internet.';
+        return 'Você está enfrentando problemas ao publicar seu conteúdo. Verifique se todos os campos necessários estão preenchidos, aguarde a página carregar, se o erro persistir, tente novamente mais tarde e verifique sua conexão de internet.';
     }
     private function handleDeleteProjectIssue()
     {
-        return 'Você está enfrentando problemas ao deletar seu conteúdo. Tente novamente mais tarde e verifique sua conexão de internet.';
+        return 'Você está enfrentando problemas ao deletar seu conteúdo. Ao clicar em deletar, reinicie a página e verifique se deletou, se presistir, tente novamente mais tarde e verifique sua conexão de internet.';
     }
     private function handleDeleteAccountIssue()
     {
-        return 'Você está enfrentando problemas ao deletar seu perfil. Tente novamente mais tarde e verifique sua conexão de internet.';
+        return 'Se está querendo deletar o seu perfil, entre em contato com o e-mail, suporte@workdone.com e mande o moitov pelo qual quer deletar a conta.';
     }
     
     
     private function handleFollowIssue()
     {
-        return 'Você está enfrentando problemas ao visualizar seus seguidores/seguindo. Verifique sua conexão e tente novamente.';
+        return 'Você está enfrentando problemas ao visualizar seus seguidores/seguindo. Verifique sua conexão com a internet, verifique se a página está completamente carregar e se está na página correta.';
     }
 
     private function handleProfileIssues($message)
@@ -188,16 +189,16 @@ class ChatbotController extends Controller
 
     private function handleEmailIssue()
     {
-        return 'O e-mail de contato está incorreto. Por favor, forneça o e-mail correto.';
+        return 'O e-mail de contato está incorreto.Iremos entrar em contato com o profissional para que forneça o e-mail correto.';
     }
     private function handleSupport()
     {
-        return 'Para entrar em contato com o suporte profissional, entraremos em contato com você via email com um dos nossos profissionais.';
+        return 'Para entrar em contato com o suporte profissional, entraremos em contato com você via e-mail com um dos nossos profissionais, aguarde o e-mail suporte@workdone.com.';
     }
 
     private function handleTelefoneIssue()
     {
-        return 'O número de contato está incorreto. Por favor, forneça o número correto.';
+        return 'O número de contato está incorreto.Iremos entrar em contato com o profissional para que forneça o número correto.';
     }
 
 
@@ -210,7 +211,7 @@ class ChatbotController extends Controller
                 return 'Para redefinir sua senha, acesse a página de perfil e clique em "Alterar senha".';
 
             case preg_match('/\b(suporte|profissional)\b/', $message):
-                return 'Para entrar em contato com o suporte profissional, entraremos em contato com você via email com um dos nossos profissionais.';
+                return 'Para entrar em contato com o suporte profissional, entraremos em contato com você via e-mail com um dos nossos profissionais, aguarde o e-mail suporte@workdone.com.';
 
             case preg_match('/\b(projeto)\b/', $message):
                 return 'Qual problema você está enfrentando no projeto? Pode ser uma dificuldade para publicar, editar ou visualizar o conteúdo.';
@@ -219,10 +220,10 @@ class ChatbotController extends Controller
                 return 'Você está enfrentando dificuldades na edição do perfil. Por favor, siga as instruções para corrigir esse problema.';
 
             case preg_match('/\b(publicar)\b/', $message):
-                return 'Você está enfrentando problemas ao publicar seu conteúdo. Tente novamente mais tarde e verifique sua conexão de internet.';
+                return 'Você está enfrentando problemas ao publicar seu conteúdo. Verifique se todos os campos necessários estão preenchidos, aguarde a página carregar, se o erro persistir, tente novamente mais tarde e verifique sua conexão de internet.';
 
             case preg_match('/\b(visualizar projeto)\b/', $message):
-                return 'Você está enfrentando problemas ao visualizar seu conteúdo. Tente recarregar a página e verifique a conexão com a internet.';
+                return 'Você está enfrentando problemas ao visualizar seu conteúdo. Tente recarregar a página e verifique a conexão com a internet, verifique se o projeto foi publicado e se encontra nesta aba.';
         }
     }
 
@@ -240,11 +241,11 @@ class ChatbotController extends Controller
     {
         switch ($option) {
             case 'editar':
-                return 'Você informou que não consegue editar o seu perfil. Por favor, siga os seguintes passos: 1- Reinicie a página. 2- Verifique se a sua conexão com a internet está estável. 3- Aguarde a página carregar por completo.';
+                return 'Você informou que não consegue editar o seu perfil. Por favor, siga os seguintes passos: 1- Reinicie a página. 2- Verifique se a sua conexão com a internet está estável. 3- Aguarde a página carregar por completo. 4- Preencha todos os campos pedidos';
             case 'seguidores':
                 return 'Você informou que não consegue ver os seus seguidores/seguindos. Por favor, siga os seguintes passos: 1- Reinicie a página. 2- Verifique sua conexão com a internet. 3- Tente acessar o perfil de outro usuário.';
             case 'excluir':
-                return 'Você informou que as suas informações não estão atualizadas corretamente. Por favor, siga os seguintes passos: 1- Atualize suas informações manualmente. 2- Caso o problema persista, entre em contato com o suporte.';
+                return 'Você está enfrentando problemas ao deletar seu perfil. Ao clicar em deletar, reinicie a página e verifique se deletou, se presistir, tente novamente mais tarde e verifique sua conexão de internet.';
             default:
                 return 'Escolha inválida. Por favor, digite o número correto.';
         }

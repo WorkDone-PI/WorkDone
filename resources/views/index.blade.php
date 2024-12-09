@@ -88,7 +88,7 @@
                         <div class="num">3º</div>
                     </div>
                     <div class="box">
-                        <div class="topic">Ganhe dinheiro</div>
+                        <div class="topic">Lucre</div>
                         <div class="num">4º</div>
                     </div>
                 </div>
@@ -160,9 +160,11 @@
             <div class="title"><span>Contate-nos</span></div>
             <div class="text">
                 <div class="topic">Tem algum projeto?</div>
-                <p>Entre em contato com a gente para melhorarmos ainda mais a sua experiência!</p>
+                <p>Comece agora a sua experência!</p>
                 <div class="button">
-                    <button>Vamos conversar!</button>
+                    <a href="{{ route('register') }}">
+                        <button>Vamos conversar!</button>
+                    </a>
                 </div>
             </div>
         </div>

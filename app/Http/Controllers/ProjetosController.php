@@ -244,9 +244,13 @@ class ProjetosController extends Controller
 
         // Recupera as categorias associadas ao projeto
         $categories = $projeto->categories;
-
+        $user = Auth::user();
+        $favorites = [];
+        if ($user) {
+            $favorites = Favorite::where('user_id', $user->id)->pluck('product_id')->toArray();
+        }
         // Retorna a view de detalhes do projeto com as informações necessárias
-        return view('project.show', compact('projeto', 'categories'));
+        return view('project.show', compact('projeto', 'categories', 'favorites'));
     }
 
     public function favorite($productId)
@@ -271,17 +275,6 @@ class ProjetosController extends Controller
             ]);
             return back()->with('success', 'Projeto favoritado com sucesso!');
         }
-    }
-
-    public function like($productId)
-    {
-        $user = Auth::user();
-        $product = Product::findOrFail($productId);
-    
-        // Obtém os likes do usuário para o produto
-        $likes = Like::where('user_id', $user->id)->pluck('product_id')->toArray();
-    
-        return view('home.blade.php', compact('product', 'likes'));
     }
 
 }

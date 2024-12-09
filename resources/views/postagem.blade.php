@@ -16,11 +16,6 @@
             <div class="logo"><a href="{{ route('home') }}">WorkDone</a></div>
             <div class="create">
                 <a href="{{ route('home') }}" class="btn btn-primary">Voltar</a>
-                <div class="profile-photo">
-                    <a href="{{ route('profile') }}">
-
-                    </a>
-                </div>
             </div>
         </div>
     </nav>
@@ -62,14 +57,14 @@
                             </select>
                         </div>
                         <div class="input-field">
-                            <label for="project_image">Imagem do Perfil</label>
+                            <label for="project_image">Imagem do Projeto</label>
                             <input type="file" name="project_image" id="project_image" accept="image/*">
                         </div>
 
                     </div>
                 </div>
             </div>
-            <button type="submit">Finalizar<box-icon name='paper-plane' type='solid'
+            <button type="submit" style="background-color:black">Finalizar<box-icon name='paper-plane' type='solid'
                     color='#ffffff'></box-icon></button>
 
         </form>
