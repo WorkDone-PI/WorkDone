@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
 
-:root{
+:root {
     --border-radius: 2rem;
     --card-border-radius: 1rem;
     --btn-padding: 0.6rem 2rem;
-    --search-padding: 0.6rem 1rem;  
+    --search-padding: 0.6rem 1rem;
     --card-padding: 1rem;
     --sticky-top-left: 7rem;
     --sticky-top-right: 18rem;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     outline: 0;
@@ -20,13 +20,13 @@
     border: none;
 }
 
-body{
+body {
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(235, 235, 235);
     overflow: hidden;
 }
 
-nav{
+nav {
     position: fixed;
     width: 100%;
     box-shadow: 0 0 10px gray;
@@ -34,7 +34,7 @@ nav{
     z-index: 100;
 }
 
-.navbar{
+.navbar {
     width: 90%;
     height: 85px;
     margin: auto;
@@ -43,35 +43,34 @@ nav{
     justify-content: space-between;
 }
 
-.navbar .logo a{
+.navbar .logo a {
     font-size: 35px;
     color: black;
 }
 
-.navbar .menu{
+.navbar .menu {
     display: flex;
 
 }
 
-.container{
+.container {
     width: 80%;
     margin: 0 auto;
 }
 
-.profile-photo{
-    width: 2.7rem;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
+.profile-photo {
     overflow: hidden;
+    margin-right: 3vh;
 }
 
-
-img{
+img {
     display: block;
-    width: 100%;
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
 }
 
-.btn{
+.btn {
     display: inline-block;
     padding: var(--btn-padding);
     font-weight: 500;
@@ -81,42 +80,42 @@ img{
     font-size: 0.9rem;
 }
 
-.btn:hover{
-    opacity: 0.8;;
+.btn:hover {
+    opacity: 0.8;
 }
 
-.btn-primary{
-    background: black;
-    color: white;
+.btn-primary {
+    background: none;
+    color: red;
 }
 
-.text-bold{
+.text-bold {
     font-weight: 500;
 }
 
-.text-muted{
+.text-muted {
     color: rgb(129, 129, 129);
     font-size: 0.7rem;
 }
 
-.text-view{
+.text-view {
     margin-top: 0.5rem;
     font-size: 0.8rem;
     color: #3b3a3a;
     text-decoration: none;
 }
 
-.text-view:hover{
+.text-view:hover {
     color: purple;
 }
 
-.handle h4{
+.handle h4 {
     font-weight: 500;
     color: black;
     font-size: 1.1rem;
 }
 
-.search-bar{
+.search-bar {
     background-color: whitesmoke;
     border-radius: var(--border-radius);
     padding: var(--search-padding);
@@ -131,36 +130,36 @@ img{
     color: black;
 }
 
-.search-bar input[type="search"]::placeholder{
+.search-bar input[type="search"]::placeholder {
     color: gray;
 }
 
-.navbar .create{
+.navbar .create {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
 
-main{
+main {
     position: relative;
     top: 5.4rem;
 }
 
-.container{
+.container {
     display: grid;
     grid-template-columns: 28vh auto 2vw;
     column-gap: 2rem;
     position: relative;
 }
 
-.container .left{
+.container .left {
     height: max-content;
     position: relative;
     top: var(--sticky-top-left);
 }
 
-.container .left .profile{
+.container .left .profile {
     padding: var(--card-padding);
     background: rgba(255, 255, 255, 0.849);
     border-radius: var(--border-radius);
@@ -170,14 +169,14 @@ main{
     width: 15rem;
 }
 
-.left .sidebar{
+.left .sidebar {
     margin-top: 1rem;
     background: rgba(255, 255, 255, 0.849);
     border-radius: var(--border-radius);
     width: 15rem;
 }
 
-.left .sidebar .menu-item{
+.left .sidebar .menu-item {
     display: flex;
     align-items: center;
     height: 5rem;
@@ -186,51 +185,52 @@ main{
     position: relative;
 }
 
-.left .sidebar .menu-item:hover{
+.left .sidebar .menu-item:hover {
     background: rgb(235, 235, 235);
     transition: 0.5s;
 }
 
-.left .sidebar i{
+.left .sidebar i {
     font-size: 1.4rem;
     color: black;
     margin-left: 2rem;
     position: relative;
 }
 
-.left .sider h3{
+.left .sider h3 {
     margin-left: 1.5rem;
     font-size: 1rem;
 }
 
 
-.middle{
+.middle {
     margin-top: 7rem;
     max-height: calc(100vh - 6rem);
     overflow-y: scroll;
-    overflow-x: hidden; 
+    overflow-x: hidden;
+    padding-bottom: 1.5rem;
 }
 
-.middle::-webkit-scrollbar{
+.middle::-webkit-scrollbar {
     width: 12px;
 }
 
 .middle::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.849);
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .middle::-webkit-scrollbar-thumb {
-    background-color: #888; 
-    border-radius: 10px; 
-    border: 2px solid #f1f1f1; 
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
 }
 
 .middle::-webkit-scrollbar-thumb:hover {
-    background-color: #555; 
-}   
+    background-color: #555;
+}
 
-.middle .feeds .feed{
+.middle .feeds .feed {
     background: rgba(255, 255, 255, 0.849);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
@@ -239,59 +239,64 @@ main{
     line-height: 1.5rem;
 }
 
-.middle .feed .head{
+.middle .feed .head {
     justify-content: space-between;
 }
 
-.middle .feed .user{
+.empty_project h2 {
+    margin-top: 5vh;
+}
+
+.middle .feed .user {
     margin-bottom: 1rem;
     display: flex;
     gap: 1rem;
+    justify-content: space-between;
 }
 
-.middle .feed .photo{
+.middle .feed .photo {
     border-radius: var(--card-border-radius);
     overflow: hidden;
     margin: 0.7rem 0;
 }
 
 
-.container .right{
+.container .right {
     height: max-content;
     position: sticky;
     margin-top: 7rem;
     bottom: 0;
 }
 
-.right .messages{
+.right .messages {
     background: white;
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
 }
 
-.right .messages .heading{
+.right .messages .heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
-.right .messages i{
+.right .messages i {
     font-size: 1.4rem;
 }
 
-.right .messages .search-bar{
+.right .messages .search-bar {
     display: flex;
     margin-bottom: 1rem;
 }
 
-.right .messages .category{
+.right .messages .category {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
-.right .messages .category h6{
+.right .messages .category h6 {
     width: 100%;
     text-align: center;
     border-bottom: 4px solid #888;
@@ -299,32 +304,414 @@ main{
     font-size: 0.85rem;
 }
 
-.right .messages .category .active{
+.right .messages .category .active {
     border-color: rgb(235, 235, 235);
 }
 
-.right .messages .message{
+.right .messages .message {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
 }
 
-.right .messages .message:last-child{
+.right .messages .message:last-child {
     margin: 0;
 }
 
-.right .messages .message p{
+.right .messages .message p {
     font-size: 0.8rem;
 }
 
-.right .messages .message .profile-photo .active{
+.right .messages .message .profile-photo .active {
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 50%;
     border: 3px solid gray;
-}   
+}
 
-.right .message .profile-photo{
+.right .message .profile-photo {
     position: relative;
     overflow: visible;
+}
+
+.empty_container {
+    margin: 0rem 4.7rem;
+}
+
+.empty_project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.empty_image {
+    width: 50%;
+    mix-blend-mode: darken;
+    height: auto; 
+    border-radius: 0;
+}
+
+/* Nova classe para a paginação */
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1rem;
+}
+
+.pagination-btn,
+.pagination-page {
+    padding: 0.6rem 1.2rem;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.pagination-btn:hover,
+.pagination-page:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination-btn.disabled,
+.pagination-page.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pagination-page.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination-page.active:hover {
+    background-color: #3b3a3a;
+}
+
+.pagination-btn {
+    width: 120px;
+    text-align: center;
+}
+
+.pagination-page {
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.pagination-container .pagination a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-container .pagination .active {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited a:hover a:active {
+    color: black;
+}
+
+/* Container do botão de filtro */
+#filterBtn {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Estilo do dropdown para expandir para a direita */
+.filter-dropdown {
+    display: none;
+    /* Inicialmente oculto */
+    position: absolute;
+    top: 0;
+    left: 100%;
+    /* Faz com que o dropdown apareça à direita */
+    margin-left: 10px;
+    /* Espaçamento entre o botão e o dropdown */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    /* Garante que o dropdown fique sobre outros elementos */
+    width: 250px;
+    /* Largura do dropdown */
+}
+
+/* Estilo das opções do filtro */
+.filter-option {
+    margin-bottom: 15px;
+}
+
+.filter-option label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-option select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filter-dropdown {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.filter-dropdown[style*="display: flex"] {
+    opacity: 1;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+.cta {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.cta span {
+    padding-bottom: 7px;
+    letter-spacing: 4px;
+    font-size: 14px;
+    padding-right: 15px;
+    text-transform: uppercase;
+}
+
+.cta svg {
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+    transform: translateX(0);
+}
+
+.cta:active svg {
+    transform: scale(0.9);
+}
+
+.hover-underline-animation {
+    position: relative;
+    color: black;
+    padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.ladolado {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    /* Ajustes gerais para celulares */
+
+    body{
+        overflow: auto;
+    }
+
+    .left {
+        display: flex; /* Garante flexibilidade no layout */
+        flex-direction: column; /* Empilha os itens */
+        width: 100%; /* Ocupa toda a largura da tela */
+        margin: 0 auto; /* Centraliza o bloco */
+    }
+
+    .left .sidebar,
+    .left .profile {
+        width: 100%; /* Ocupa toda a largura da tela */
+        margin-bottom: 1rem; /* Adiciona espaçamento entre os elementos */
+        padding: 1rem; /* Adiciona espaço interno para conteúdo */
+        box-sizing: border-box; /* Garante que padding não ultrapasse a largura */
+    }
+
+    /* Elementos gerais */
+    .container {
+        grid-template-columns: 1fr; /* Reduz colunas para apenas uma */
+        row-gap: 2rem; /* Espaçamento entre as linhas */
+    }
+
+    .right {
+        display: none; /* Oculta mensagens em telas menores */
+    }
+
+    /* Navbar */
+    .navbar .logo a {
+        font-size: 22px; /* Reduz tamanho do logo */
+        text-align: center; /* Centraliza o logo */
+    }
+
+    .navbar .create {
+        gap: 0.5rem; /* Reduz espaçamento entre os elementos */
+        justify-content: center; /* Alinha elementos no centro */
+    }
+
+    /* Barra de pesquisa */
+    .search-bar input[type="search"] {
+        width: 90%; /* Preenche a maior parte da tela */
+        font-size: 0.8rem; /* Reduz a fonte */
+        margin: 0 auto; /* Centraliza o campo de busca */
+    }
+
+    /* Feeds */
+    .middle .feeds .feed {
+        margin: 0.5rem auto; /* Centraliza os feeds */
+        width: 100%; /* Faz com que ocupem toda a largura */
+        max-width: 100%; /* Evita que excedam a largura */
+    }
+
+    /* Container principal */
+    .container {
+        display: grid; /* Garante o uso de grid */
+        grid-template-columns: 1fr; /* Reduz para uma coluna */
+        row-gap: 2rem; /* Espaçamento entre linhas */
+        padding: 1rem; /* Espaçamento interno */
+    }
+
+    /* Barra lateral e perfil */
+    .left .sidebar,
+    .left .profile {
+        width: 100%; /* Ocupa toda a largura */
+        margin-bottom: 1rem; /* Espaçamento inferior */
+    }
+
+    /* Ocultar elementos desnecessários */
+    .right {
+        display: none; /* Esconde mensagens em telas pequenas */
+    }
+
+    /* Paginação */
+    .pagination {
+        display: flex; /* Garante alinhamento flexível */
+        flex-wrap: wrap; /* Permite quebra de linha */
+        gap: 0.5rem; /* Espaçamento entre itens */
+        justify-content: center; /* Centraliza os itens */
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 1rem;
+        width: 100%;
+    }
+}
+
+.favoritar-btn {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.favoritar-btn svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    stroke: #333;
+}
+
+
+.like-btn svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    stroke: #333;
+}
+
+.share-save{
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-share {
+    padding: 10px;
+    background-color: white; 
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.share-icon {
+    width: 24px; 
+    height: 24px;
+}
+
+#link-copiado {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40px; 
+    font-size: 14px;
+    color: #28a745; 
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s ease-out; 
+}
+
+#link-copiado.show {
+    opacity: 1; 
+}
+
+
+.descricao {
+    word-wrap: break-word;
+}
+
+.favoritar-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.favoritar-btn img {
+    width: 50px; 
+    height: 50px; 
+    display: block;
 }

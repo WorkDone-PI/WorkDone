@@ -29,9 +29,12 @@ Route::get('/register', [UserController::class, 'showFormRegister'])->name('regi
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 
 //Rotas do perfil
-Route::get('/profile', [UserController::class, 'index'])->name('profile')->middleware('auth');
 Route::get('/edit', [UserController::class, 'edit'])->name('edit')->middleware('auth');
 Route::put('/update', [UserController::class, 'update'])->name('update')->middleware('auth');
+Route::get('/profile/{id}', [UserController::class, 'showProfile'])->name('profile.show');
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+
+
 
 //Rotas de Projetos
 Route::get('/registerProject',[ProjetosController::class, 'show'])->name('registerProject');
@@ -45,6 +48,7 @@ Route::get('/editP{Id}', [ProjetosController::class, 'search'])->name('editP')->
 //Route::put('/editP{Id}', [ProjetosController::class, 'updateP'])->name('updateP')->middleware('auth');
 Route::put('/editP/{Id}', [ProjetosController::class, 'updateP'])->name('updateP')->middleware('auth');
 Route::delete('/delete/{Id}', [ProjetosController::class, 'delete'])->name('delete')->middleware('auth');
+Route::get('/delete-project/{id}', [ProjetosController::class, 'delete'])->name('deleteProject')->middleware('auth');
 
 //Route::middleware('auth')->group(function () {
     //Route::get('/profile', [UserController::class, 'profile'])->middleware(['auth', 'verified'])->name('profile');
@@ -52,7 +56,7 @@ Route::delete('/delete/{Id}', [ProjetosController::class, 'delete'])->name('dele
 //});   
 
 //Rotas da Categoria 
-Route::prefix('categories')->group(function () {
+/*Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('category.index'); // Listar todas as categorias
     Route::get('/create', [CategoryController::class, 'create'])->name('category.create'); // Formulário de cadastro de categoria
     Route::post('/', [CategoryController::class, 'store'])->name('category.store'); // Salvar nova categoria
@@ -60,7 +64,7 @@ Route::prefix('categories')->group(function () {
     Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit'); // Formulário de edição de categoria
     Route::put('/{id}', [CategoryController::class, 'update'])->name('category.update'); // Atualizar categoria
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('category.destroy'); // Excluir categoria
-});
+});*/
 
 //Rotas de postagem do projeto
 Route::get('/form', [FormController::class, 'showForm'])->name('form.show');
@@ -68,8 +72,19 @@ Route::post('/form', [FormController::class, 'submitForm'])->name('form.submit')
 
 Route::get('/projetos/{id}/edit', [ProjetosController::class, 'search'])->name('editProject');
 Route::put('/projetos/{id}', [ProjetosController::class, 'updateP'])->name('updateProject');
+Route::get('/projeto/{id}', [ProjetosController::class, 'showProject'])->name('project.show');
+
 
 //Rotas de ChatBot
 Route::post('/chatbot', [ChatbotController::class, 'respond']);
 Route::get('/chatbot', [ChatbotController::class, 'showChat'])->name('chatbot.show');
 
+//Rota de Favoritar
+Route::post('/project/{id}/favorite', [ProjetosController::class, 'favorite'])->name('project.favorite')->middleware('auth');
+
+//Rota de Seguir
+Route::post('/follow/{id}', [UserController::class, 'followUser'])->name('followUser');
+Route::delete('/unfollow/{id}', [UserController::class, 'unfollowUser'])->name('unfollowUser');
+
+//Rota de Like
+Route::post('/project/{id}/like', [ProjetosController::class, 'like'])->name('project.like')->middleware('auth');

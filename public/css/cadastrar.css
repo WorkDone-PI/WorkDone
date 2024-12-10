@@ -339,4 +339,9 @@ nav.navbar .menu{
     .btn {
         width: 80%;
     }
+
+    nav.navbar .logo a{
+      font-size: 18px;
+      font-weight: 600;
+    }
 }

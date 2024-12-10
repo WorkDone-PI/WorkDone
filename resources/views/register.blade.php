@@ -40,8 +40,8 @@
                 </div>
 
                 <div class="box-user">
-                    <label for="birthdate" class="label-static">Data de Nascimento</label>
-                    <input type="date" name="birthdate" id="birthdate" required>
+                    <label for="dataNasc" class="label-static">Data de Nascimento</label>
+                    <input type="date" name="dataNasc" id="dataNasc" required>
                 </div>
             </div>
             <div class="box-user">

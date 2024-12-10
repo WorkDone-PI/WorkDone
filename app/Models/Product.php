@@ -15,7 +15,6 @@ class Product extends Model
         'Valor',
         'project_image',
         'Id_User',
-        'Id_Categoria',
         'removed'
     ];
     public function user()
@@ -25,5 +24,12 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
+    }
+
+    public function isFavorited()
+    {
+        return Favorite::where('user_id', Auth::id())
+                    ->where('product_id', $this->id)
+                    ->exists();
     }
 }

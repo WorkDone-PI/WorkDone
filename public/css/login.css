@@ -307,4 +307,9 @@ nav.navbar .media-icons {
     .illustration img {
         display: none;
     }
+
+    nav.navbar .logo a{
+      font-size: 18px;
+      font-weight: 600;
+    }
 }

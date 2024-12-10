@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="shortcut icon" href="{{ asset('img/logoWK.png') }}" type="Favicon_Image_Location">
+    <script src="{{ asset('js/index.js') }}"></script>
+    <link rel="shortcut icon" href="{{ asset('img/WK.png') }}" type="Favicon_Image_Location">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>WorkDone | Bem-vindo</title>
 </head>
@@ -87,7 +88,7 @@
                         <div class="num">3º</div>
                     </div>
                     <div class="box">
-                        <div class="topic">Ganhe dinheiro</div>
+                        <div class="topic">Lucre</div>
                         <div class="num">4º</div>
                     </div>
                 </div>
@@ -159,9 +160,11 @@
             <div class="title"><span>Contate-nos</span></div>
             <div class="text">
                 <div class="topic">Tem algum projeto?</div>
-                <p>Entre em contato com a gente para melhorarmos ainda mais a sua experiência!</p>
+                <p>Comece agora a sua experência!</p>
                 <div class="button">
-                    <button>Vamos conversar!</button>
+                    <a href="{{ route('register') }}">
+                        <button>Vamos conversar!</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -172,6 +175,7 @@
             <span>Desenvolvido por <a href="">Finka Tech</a> | &#169; 2024</span>
         </div>
     </footer>
+
 </body>
 
 </html>

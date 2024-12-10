@@ -16,15 +16,24 @@
                     @csrf
                     <div class="mb-3">
                         <label for="Titulo" class="form-label">Titulo</label>
-                        <input type="text" class="form-control" title="Titulo" id="Titulo" value="{{ old('Titulo') }}">
+                        <input type="text" class="form-control" name="Titulo" id="Titulo" value="{{ old('Titulo') }}">
                         @error('Titulo') {{ $message }} @enderror
                     </div>
                     <div class="mb-3">
                         <label for="Descricao" class="form-label">Descrição</label>
                         <input type="text" class="form-control" name="Descricao" id="Descricao" value="{{ old('Descricao') }}">
-                        @error('description') {{ $message }} @enderror
+                        @error('Descricao') {{ $message }} @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                    <div class="input-field">
+                        <label for="parent_id">Categoria pai</label>
+                            <select name="parent_id" id="parent_id">
+                            <option value=""></option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->Titulo }}</option>
+                            @endforeach
+                            </select> <br />
+                        <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>
