@@ -56,7 +56,7 @@ Route::get('/delete-project/{id}', [ProjetosController::class, 'delete'])->name(
 //});   
 
 //Rotas da Categoria 
-Route::prefix('categories')->group(function () {
+/*Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('category.index'); // Listar todas as categorias
     Route::get('/create', [CategoryController::class, 'create'])->name('category.create'); // Formulário de cadastro de categoria
     Route::post('/', [CategoryController::class, 'store'])->name('category.store'); // Salvar nova categoria
@@ -64,7 +64,7 @@ Route::prefix('categories')->group(function () {
     Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit'); // Formulário de edição de categoria
     Route::put('/{id}', [CategoryController::class, 'update'])->name('category.update'); // Atualizar categoria
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('category.destroy'); // Excluir categoria
-});
+});*/
 
 //Rotas de postagem do projeto
 Route::get('/form', [FormController::class, 'showForm'])->name('form.show');

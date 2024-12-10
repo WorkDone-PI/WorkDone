@@ -234,7 +234,7 @@ class ProjetosController extends Controller
         $prj->removed = 1;
         $prj->save();
 
-        return redirect()->route('prjs')->with('Projeto deletado com sucesso!');
+        return redirect()->route('profile')->with('Projeto deletado com sucesso!');
     }
     // ProjetosController
     public function showProject($id)
